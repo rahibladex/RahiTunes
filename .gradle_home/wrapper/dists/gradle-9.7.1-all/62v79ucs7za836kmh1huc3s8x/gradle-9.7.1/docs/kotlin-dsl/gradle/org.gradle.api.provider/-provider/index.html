@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Provider</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../styles/gradle.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    gradle
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+9.7.1        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":docs/java_api">API</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":docs/java_api"
+                                       data-filter=":docs/java_api"/>
+                                <span class="checkbox--icon"></span>
+                                API
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    gradle
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="gradle::org.gradle.api.provider/Provider///PointingToDeclaration//-1793262594">
+  <div class="breadcrumbs"><a href="../../../index.html">gradle</a><span class="delimiter">/</span><a href="../index.html">org.gradle.api.provider</a><span class="delimiter">/</span><span class="current">Provider</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Provider</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../../org.gradle.api/-non-extensible/index.html"><span class="token annotation builtin">NonExtensible</span></a></div></div><span class="token keyword">interface </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/gradle/gradle/blob/92f0512e7f06d84621afba191f75e265363890cf/subprojects/core-api/src/main/java//org/gradle/api/provider/Provider.java#L148">source</a>)</span></span></div><p class="paragraph">A container object that provides a value of a specific type. The value can be retrieved using one of the query methods such as <a href="get.html">get</a> or <a href="get-or-null.html">getOrNull</a>. </p><p class="paragraph"> A provider may not always have a value available, for example when the value may not yet be known but will be known at some point in the future. When a value is not available, <a href="is-present.html">isPresent</a> returns <code class="lang-java">false</code> and retrieving the value will fail with an exception. </p><p class="paragraph"> A provider may not always provide the same value. Although there are no methods on this interface to change the value, the provider implementation may be mutable or use values from some changing source. A provider may also provide a value that is mutable and that changes over time. </p><p class="paragraph"> A provider may represent a task output. Such a provider carries information about the task producing its value. When this provider is attached to an input of another task, Gradle will automatically determine the task dependencies based on this connection. </p><p class="paragraph"> A typical use of a provider is to pass values from one Gradle model element to another, e.g. from a project extension to a task, or between tasks. Providers also allow expensive computations to be deferred until their value is actually needed, usually at task execution time. </p><p class="paragraph"> There are a number of ways to create a <a href="index.html">Provider</a> instance. Some common methods: </p><ul><li>A number of Gradle types, such as <a href="../-property/index.html">Property</a>, extend <a href="index.html">Provider</a> and can be used directly as a provider.</li><li>Calling <a href="map.html">map</a> to create a new provider from an existing provider.</li><li>Using the return value of <a href="../../org.gradle.api.tasks/-task-container/register.html">register</a>, which is a provider that represents the task instance.</li><li>Using the methods on <a href="../../org.gradle.api.file/-directory/index.html">org.gradle.api.file.Directory</a> and <a href="../../org.gradle.api.file/-directory-property/index.html">org.gradle.api.file.DirectoryProperty</a> to produce file providers.</li><li>By calling <a href="../-provider-factory/provider.html">provider</a> or <a href="../../org.gradle.api/-project/provider.html">provider</a> to create a new provider from a <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a>.</li></ul><p class="paragraph"> For a provider whose value can be mutated, see <a href="../-property/index.html">Property</a> and the methods on <a href="../../org.gradle.api.model/-object-factory/index.html">org.gradle.api.model.ObjectFactory</a>. </p><p class="paragraph"><strong>Note:</strong> This interface is not intended for implementation by build script or plugin authors. </p><h2 class="">Configuration Cache</h2><p class="paragraph"> The <a href="https://docs.gradle.org/current/userguide/configuration_cache.html">Configuration Cache</a> handles providers in a special way. When a provider is discovered to be part of the cached build configuration (e.g. when it is a task input), one of two things happen: </p><ul><li><strong>Cache by value</strong>. The value of the provider is computed and stored. This typically happens if the provider is derived from purely configuration-time data. </li><li><strong>Cache by computation</strong>. The provider is stored as a lazy computation. For example, if the provider is a result of <a href="map.html">map</a>, then the origin provider (on which <code class="lang-java">map</code> was called) and the <code class="lang-java">Transformer</code> (including its captured variables) are stored. Note that the origin provider may still be cached by value. After loading from cache, the value is only computed if requested (e.g. with <a href="get.html">get</a>), as usual. This typically happens when the value of the provider is only available at execution time (e.g. derived from a task output) or if it is sourced from the environment (e.g. a system property or an environment variable). </li></ul><p class="paragraph"> The Configuration Cache operates under the assumption that most of the stored providers will be used at execution time, so it attempts to cache values of as many providers as possible without introducing more build configuration inputs. However, the exact definition of which provider to cache is intentionally left underspecified. For example, even a provider derived from a system property provider may be cached by value if that system property is already an input. </p><p class="paragraph"> Following the rules below ensures that your Providers remain configuration-cache compatible regardless of applied optimizations. </p><ol><li>Providers returned by <a href="../-provider-factory/provider.html">provider</a> or <a href="../../org.gradle.api/-project/provider.html">provider</a> are always computed at configuration time. The <code class="lang-java">Callable</code> may capture arbitrary data types and freely call configuration-time-only APIs. This is the preferred way to bridge non-lazy and lazy APIs, like passing <a href="../../org.gradle.api/-project/get-version.html">getVersion</a> into task's input <a href="../-property/index.html">Property</a>. </li><li>Any value returned (provided) by the provider must conform to the <a href="https://docs.gradle.org/current/userguide/configuration_cache_requirements.html#config_cache:requirements">configuration cache requirements</a>. This requirement may not be enforced when the value is an intermediate result and the Configuration Cache runs the computation chain to cache the end result. </li><li>Any value captured by the computation of the provider (e.g. a variable captured by the <code class="lang-java">Transformer</code> lambda supplied to <a href="map.html">map</a>) must conform to the <a href="https://docs.gradle.org/current/userguide/configuration_cache_requirements.html#config_cache:requirements">configuration cache requirements</a>, except the <code class="lang-java">Callable</code> of <a href="../-provider-factory/provider.html">provider</a> or <a href="../../org.gradle.api/-project/provider.html">provider</a>. This requirement may not be enforced when the Configuration Cache runs the computation chain containing non-conforming transformation to cache the end result. </li><li>The computation of the provider (except the <code class="lang-java">Callable</code> of <a href="../-provider-factory/provider.html">provider</a> or <a href="../../org.gradle.api/-project/provider.html">provider</a>) should not invoke configuration-time only APIs. This requirement may not be enforced when the Configuration Cache runs the computation chain containing non-conforming transformation to cache the end result. </li><li>The computation of the provider should not use external state (read system properties, environment variables, or files) to avoid introducing accidental build configuration inputs. Preferably, these should be obtained through providers returned by <a href="../-provider-factory/index.html">ProviderFactory</a> and <a href="zip.html">zip</a> should be used to mix them into the computation chain. The <code class="lang-java">Callable</code> of <a href="../-provider-factory/provider.html">provider</a> or <a href="../../org.gradle.api/-project/provider.html">provider</a> must ignore this requirement if the external state is used by configuration-time-only API because adding an input is unavoidable in this case. </li></ol><p class="paragraph"> Configuration Cache's support of providers that do not conform to these requirements is unspecified and may change between Gradle versions or depending on when values of the providers are obtained during build. </p><p class="paragraph">Some providers returned by Gradle APIs provide types that cannot be configuration-cached, for example <a href="../../org.gradle.api.tasks/-task-provider/index.html">TaskProvider</a> or <code class="lang-java">Provider&lt;Configuration&gt;</code>. Such providers should not be used as part of the cached build configuration directly, but the providers returned by their <a href="map.html">map</a> or <a href="flat-map.html">flatMap</a> can be if their value or the downstream transformation chain conforms to the requirements above. In most cases it is also safe to add these non-cacheable providers to <a href="../../org.gradle.api.file/-configurable-file-collection/index.html">ConfigurableFileCollections</a> when it makes sense. </p><span class="kdoc-tag"><h4 class="">Since</h4><p class="paragraph">4.0</p></span><h4 class="tableheader">Parameters</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>&lt;T&gt;</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Type of value represented by provider</p></div></div></div></div></div><h4 class="tableheader">Inheritors</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../org.gradle.language/-binary-provider/index.html">BinaryProvider</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../org.gradle.api/-named-domain-object-provider/index.html">NamedDomainObjectProvider</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-map-property/index.html">MapProperty</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-property/index.html">Property</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-set-property/index.html">SetProperty</a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-list-property/index.html">ListProperty</a></div></span></div><div></div></div></div></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-957731894%2FFunctions%2F-1793262594" anchor-label="filter" id="-957731894%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter.html"><span><span>filter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-957731894%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="filter.html"><span class="token function">filter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">spec<span class="token operator">: </span><a href="../../org.gradle.api.specs/-spec/index.html">Spec</a><span class="token operator">&lt;</span><span class="token keyword">in </span><a href="index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span></div><div class="brief ">Returns a new <a href="index.html">Provider</a> with the value of this provider if the passed spec is satisfied and no value otherwise.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1461828113%2FFunctions%2F-1793262594" anchor-label="flatMap" id="1461828113%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="flat-map.html"><span>flat</span><wbr></wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1461828113%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="flat-map.html">S</a><span class="token operator">&gt; </span><a href="flat-map.html"><span class="token function">flatMap</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">transformer<span class="token operator">: </span><a href="../../org.gradle.api/-transformer/index.html">Transformer</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="org.jspecify.annotations/Nullable///PointingToDeclaration/"><span class="token annotation builtin">Nullable</span></span> </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="flat-map.html">S</a><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword">in </span><a href="index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="flat-map.html">S</a><span class="token operator">&gt;</span></div><div class="brief ">Returns a new <a href="index.html">Provider</a> from the value of this provider transformed using the given function.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1393266584%2FFunctions%2F-1793262594" anchor-label="get" id="1393266584%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get.html"><span><span>get</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1393266584%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="get.html"><span class="token function">get</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">T</a></div><div class="brief ">Returns the value of this provider if it has a value present, otherwise throws <code class="lang-java">java.lang.IllegalStateException</code>.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-239914574%2FFunctions%2F-1793262594" anchor-label="getOrElse" id="-239914574%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-or-else.html"><span>get</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Else</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-239914574%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="get-or-else.html"><span class="token function">getOrElse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">defaultValue<span class="token operator">: </span><a href="index.html">T</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">T</a></div><div class="brief ">Returns the value of this provider if it has a value present.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1453348974%2FFunctions%2F-1793262594" anchor-label="getOrNull" id="1453348974%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-or-null.html"><span>get</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1453348974%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="org.jspecify.annotations/Nullable///PointingToDeclaration/"><span class="token annotation builtin">Nullable</span></span></div></div><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="get-or-null.html"><span class="token function">getOrNull</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="org.jspecify.annotations/Nullable///PointingToDeclaration/"><span class="token annotation builtin">Nullable</span></span> </span><a href="index.html">T</a></div><div class="brief ">Returns the value of this provider if it has a value present.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-874896803%2FFunctions%2F-1793262594" anchor-label="isPresent" id="-874896803%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-present.html"><span>is</span><wbr></wbr><span><span>Present</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-874896803%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="is-present.html"><span class="token function">isPresent</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Returns <code class="lang-java">true</code> if there is a value present, otherwise <code class="lang-java">false</code>.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="719084427%2FFunctions%2F-1793262594" anchor-label="map" id="719084427%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map.html"><span><span>map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="719084427%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="map.html">S</a><span class="token operator">&gt; </span><a href="map.html"><span class="token function">map</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">transformer<span class="token operator">: </span><a href="../../org.gradle.api/-transformer/index.html">Transformer</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="org.jspecify.annotations/Nullable///PointingToDeclaration/"><span class="token annotation builtin">Nullable</span></span> </span><a href="map.html">S</a><span class="token punctuation">, </span><span class="token keyword">in </span><a href="index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="map.html">S</a><span class="token operator">&gt;</span></div><div class="brief ">Returns a new <a href="index.html">Provider</a> whose value is the value of this provider transformed using the given function.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="204428623%2FFunctions%2F-1793262594" anchor-label="orElse" id="204428623%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="or-else.html"><span>or</span><wbr></wbr><span><span>Else</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="204428623%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="or-else.html"><span class="token function">orElse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="index.html">T</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span></div><div class="brief ">Returns a <a href="index.html">Provider</a> whose value is the value of this provider, if present, otherwise the given default value.</div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="or-else.html"><span class="token function">orElse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">provider<span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="index.html">T</a><span class="token operator">&gt;</span></div><div class="brief ">Returns a <a href="index.html">Provider</a> whose value is the value of this provider, if present, otherwise uses the value from the given provider, if present.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1920436508%2FFunctions%2F-1793262594" anchor-label="zip" id="1920436508%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="zip.html"><span><span>zip</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1920436508%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="zip.html">U</a><span class="token punctuation">, </span><a href="zip.html">R</a><span class="token operator">&gt; </span><a href="zip.html"><span class="token function">zip</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">right<span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="zip.html">U</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">combiner<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/BiFunction.html">BiFunction</a><span class="token operator">&lt;</span><span class="token keyword">in </span><a href="index.html">T</a><span class="token punctuation">, </span><span class="token keyword">in </span><a href="zip.html">U</a><span class="token punctuation">, </span><span class="token keyword">out </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="org.jspecify.annotations/Nullable///PointingToDeclaration/"><span class="token annotation builtin">Nullable</span></span> </span><a href="zip.html">R</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Provider</a><span class="token operator">&lt;</span><a href="zip.html">R</a><span class="token operator">&gt;</span></div><div class="brief ">Returns a provider which value will be computed by combining this provider value with another provider value using the supplied combiner function.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Gradle Kotlin DSL Reference</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>org.gradle.tooling.events.problems</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../images/logo-icon.svg">
+<link href="../../styles/gradle.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../index.html" tabindex="1">
+                    gradle
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+9.7.1        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":docs/java_api">API</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":docs/java_api"
+                                       data-filter=":docs/java_api"/>
+                                <span class="checkbox--icon"></span>
+                                API
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    gradle
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="gradle::org.gradle.tooling.events.problems////PointingToDeclaration//-1793262594">
+  <div class="breadcrumbs"><a href="../../index.html">gradle</a><span class="delimiter">/</span><span class="current">org.gradle.tooling.events.problems</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><p class="paragraph">Problem specific interfaces and classes related to event notifications.</p></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="1127191449%2FClasslikes%2F-1793262594" anchor-label="AdditionalData" id="1127191449%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-additional-data/index.html"><span>Additional</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1127191449%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="org.jspecify.annotations/NullMarked///PointingToDeclaration/"><span class="token annotation builtin">NullMarked</span></span></div></div><span class="token keyword">interface </span><a href="-additional-data/index.html">AdditionalData</a></div><div class="brief ">Additional data attached to the problem.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="814265691%2FClasslikes%2F-1793262594" anchor-label="BaseProblemDescriptor" id="814265691%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-base-problem-descriptor/index.html"><span>Base</span><wbr></wbr><span>Problem</span><wbr></wbr><span><span>Descriptor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="814265691%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-base-problem-descriptor/index.html">BaseProblemDescriptor</a> : <a href="../org.gradle.tooling.events/-operation-descriptor/index.html">OperationDescriptor</a></div><div class="brief ">A common base interface for Problem API related descriptors.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-584216619%2FClasslikes%2F-1793262594" anchor-label="ContextualLabel" id="-584216619%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-contextual-label/index.html"><span>Contextual</span><wbr></wbr><span><span>Label</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-584216619%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-contextual-label/index.html">ContextualLabel</a></div><div class="brief ">Represents a contextual label.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="214885416%2FClasslikes%2F-1793262594" anchor-label="CustomAdditionalData" id="214885416%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-custom-additional-data/index.html"><span>Custom</span><wbr></wbr><span>Additional</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="214885416%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-custom-additional-data/index.html">CustomAdditionalData</a> : <a href="-additional-data/index.html">AdditionalData</a></div><div class="brief ">Custom Additional data for a problem.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="513835926%2FClasslikes%2F-1793262594" anchor-label="Details" id="513835926%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-details/index.html"><span><span>Details</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="513835926%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-details/index.html">Details</a></div><div class="brief ">Represents a problem details.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1264496764%2FClasslikes%2F-1793262594" anchor-label="DocumentationLink" id="-1264496764%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-documentation-link/index.html"><span>Documentation</span><wbr></wbr><span><span>Link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1264496764%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-documentation-link/index.html">DocumentationLink</a></div><div class="brief ">Represents documentation link.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1625283833%2FClasslikes%2F-1793262594" anchor-label="FileLocation" id="1625283833%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-location/index.html"><span>File</span><wbr></wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1625283833%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-file-location/index.html">FileLocation</a> : <a href="-location/index.html">Location</a></div><div class="brief ">A file location.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="868376960%2FClasslikes%2F-1793262594" anchor-label="LineInFileLocation" id="868376960%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-line-in-file-location/index.html"><span>Line</span><wbr></wbr><span>In</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="868376960%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-line-in-file-location/index.html">LineInFileLocation</a> : <a href="-file-location/index.html">FileLocation</a></div><div class="brief ">A basic location pointing to a specific part of a file using line number, column, and length for coordinates.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1824647275%2FClasslikes%2F-1793262594" anchor-label="Location" id="-1824647275%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-location/index.html"><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1824647275%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-location/index.html">Location</a></div><div class="brief ">Marker interface for problem location.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1773575617%2FClasslikes%2F-1793262594" anchor-label="OffsetInFileLocation" id="1773575617%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-offset-in-file-location/index.html"><span>Offset</span><wbr></wbr><span>In</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1773575617%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-offset-in-file-location/index.html">OffsetInFileLocation</a> : <a href="-file-location/index.html">FileLocation</a></div><div class="brief ">A basic location pointing to a specific part of a file using a global offset and length for coordinates.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1397605511%2FClasslikes%2F-1793262594" anchor-label="PluginIdLocation" id="1397605511%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-plugin-id-location/index.html"><span>Plugin</span><wbr></wbr><span>Id</span><wbr></wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1397605511%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-plugin-id-location/index.html">PluginIdLocation</a> : <a href="-location/index.html">Location</a></div><div class="brief ">Represents a plugin ID.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-322312743%2FClasslikes%2F-1793262594" anchor-label="Problem" id="-322312743%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem/index.html"><span><span>Problem</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-322312743%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem/index.html">Problem</a></div><div class="brief ">A problem report</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1638769401%2FClasslikes%2F-1793262594" anchor-label="ProblemAggregation" id="-1638769401%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-aggregation/index.html"><span>Problem</span><wbr></wbr><span><span>Aggregation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1638769401%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-aggregation/index.html">ProblemAggregation</a></div><div class="brief ">Represents a list of aggregated problems.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1545109535%2FClasslikes%2F-1793262594" anchor-label="ProblemAggregationEvent" id="-1545109535%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-aggregation-event/index.html"><span>Problem</span><wbr></wbr><span>Aggregation</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1545109535%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-aggregation-event/index.html">ProblemAggregationEvent</a> : <a href="-problem-event/index.html">ProblemEvent</a></div><div class="brief ">Represents a list of aggregated problems.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1326998822%2FClasslikes%2F-1793262594" anchor-label="ProblemContext" id="-1326998822%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-context/index.html"><span>Problem</span><wbr></wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1326998822%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-context/index.html">ProblemContext</a></div><div class="brief ">Describes a problem event.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1831000518%2FClasslikes%2F-1793262594" anchor-label="ProblemDefinition" id="1831000518%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-definition/index.html"><span>Problem</span><wbr></wbr><span><span>Definition</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1831000518%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-definition/index.html">ProblemDefinition</a></div><div class="brief ">Represents a problem definition.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1094625871%2FClasslikes%2F-1793262594" anchor-label="ProblemEvent" id="1094625871%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-event/index.html"><span>Problem</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1094625871%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="org.jspecify.annotations/NullMarked///PointingToDeclaration/"><span class="token annotation builtin">NullMarked</span></span></div><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-event/index.html">ProblemEvent</a> : <a href="../org.gradle.tooling.events/-progress-event/index.html">ProgressEvent</a></div><div class="brief ">An event representing a problem.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1890262518%2FClasslikes%2F-1793262594" anchor-label="ProblemGroup" id="-1890262518%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-group/index.html"><span>Problem</span><wbr></wbr><span><span>Group</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1890262518%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-group/index.html">ProblemGroup</a></div><div class="brief ">Represents a problem group.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1004086530%2FClasslikes%2F-1793262594" anchor-label="ProblemId" id="-1004086530%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-id/index.html"><span>Problem</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1004086530%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-id/index.html">ProblemId</a></div><div class="brief ">Represents a unique identifier for a problem definition.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1496004029%2FClasslikes%2F-1793262594" anchor-label="ProblemSummariesEvent" id="-1496004029%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-summaries-event/index.html"><span>Problem</span><wbr></wbr><span>Summaries</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1496004029%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-summaries-event/index.html">ProblemSummariesEvent</a> : <a href="-problem-event/index.html">ProblemEvent</a></div><div class="brief ">The event capturing all problems summaries.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2107145411%2FClasslikes%2F-1793262594" anchor-label="ProblemSummary" id="2107145411%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-problem-summary/index.html"><span>Problem</span><wbr></wbr><span><span>Summary</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2107145411%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-problem-summary/index.html">ProblemSummary</a></div><div class="brief ">A problem summary.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="579298637%2FClasslikes%2F-1793262594" anchor-label="Severity" id="579298637%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-severity/index.html"><span><span>Severity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="579298637%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-severity/index.html">Severity</a></div><div class="brief ">Represents a problem severity.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="375481383%2FClasslikes%2F-1793262594" anchor-label="SingleProblemEvent" id="375481383%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-single-problem-event/index.html"><span>Single</span><wbr></wbr><span>Problem</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="375481383%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-single-problem-event/index.html">SingleProblemEvent</a> : <a href="-problem-event/index.html">ProblemEvent</a></div><div class="brief ">ProblemEvent with all the details relevant.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-841961903%2FClasslikes%2F-1793262594" anchor-label="Solution" id="-841961903%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-solution/index.html"><span><span>Solution</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-841961903%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-solution/index.html">Solution</a></div><div class="brief ">Represents a solution.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="588995691%2FClasslikes%2F-1793262594" anchor-label="TaskPathLocation" id="588995691%2FClasslikes%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-task-path-location/index.html"><span>Task</span><wbr></wbr><span>Path</span><wbr></wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="588995691%2FClasslikes%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">interface </span><a href="-task-path-location/index.html">TaskPathLocation</a> : <a href="-location/index.html">Location</a></div><div class="brief ">Represents a task path.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Gradle Kotlin DSL Reference</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

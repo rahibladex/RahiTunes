@@ -1,0 +1,73 @@
+/*
+ * Copyright 2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.gradle.internal.tools.api.impl;
+
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.ImmutableSortedSet;
+
+import java.util.Collection;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+public class AnnotationMember extends Member implements Comparable<AnnotationMember> {
+
+    private final SortedSet<AnnotationValue<?>> values = new TreeSet<>();
+    private final boolean visible;
+
+    public AnnotationMember(String name, boolean visible) {
+        super(name);
+        this.visible = visible;
+    }
+
+    public SortedSet<AnnotationValue<?>> getValues() {
+        return ImmutableSortedSet.copyOf(values);
+    }
+
+    public void addValue(AnnotationValue<?> value) {
+        values.add(value);
+    }
+
+    public void addValues(Collection<AnnotationValue<?>> values) {
+        this.values.addAll(values);
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    /**
+     * Orders the kinds of annotation member against each other.
+     *
+     * Subclasses compare fields that the other kinds do not have. Without a rank, such a
+     * comparison gives a different answer in each direction, which breaks the contract of
+     * {@link Comparable} and silently drops members of a {@link java.util.TreeSet}.
+     */
+    protected int kindRank() {
+        return 0;
+    }
+
+    protected ComparisonChain compare(AnnotationMember o) {
+        return super.compare(o)
+            .compareFalseFirst(visible, o.visible)
+            .compare(kindRank(), o.kindRank());
+    }
+
+    @Override
+    public int compareTo(AnnotationMember o) {
+        return compare(o).result();
+    }
+}

@@ -1,0 +1,3 @@
+* Stability fixes, streaming in particular
+* Fixed a small layouting regression in the last release
+* Updated dependencies

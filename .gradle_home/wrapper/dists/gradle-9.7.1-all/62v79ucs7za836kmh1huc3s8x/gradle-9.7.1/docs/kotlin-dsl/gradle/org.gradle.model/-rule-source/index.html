@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>RuleSource</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../styles/gradle.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    gradle
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+9.7.1        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":docs/java_api">API</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":docs/java_api"
+                                       data-filter=":docs/java_api"/>
+                                <span class="checkbox--icon"></span>
+                                API
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    gradle
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="gradle::org.gradle.model/RuleSource///PointingToDeclaration//-1793262594">
+  <div class="breadcrumbs"><a href="../../../index.html">gradle</a><span class="delimiter">/</span><a href="../index.html">org.gradle.model</a><span class="delimiter">/</span><span class="current">RuleSource</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Rule</span><wbr></wbr><span><span>Source</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../../org.gradle.api/-incubating/index.html"><span class="token annotation builtin">Incubating</span></a></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html"><strike>RuleSource</strike></a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/gradle/gradle/blob/92f0512e7f06d84621afba191f75e265363890cf/platforms/core-configuration/model-core/src/main/java//org/gradle/model/RuleSource.java#L84">source</a>)</span></span></div><div class="deprecation-content"><h3 class="">Deprecated</h3><p class="paragraph"><p class="paragraph"><p class="paragraph">The Gradle software model is deprecated and will be removed in Gradle 10. Use the new component model (e.g. <code class="lang-java">cpp-application</code>, <code class="lang-java">cpp-library</code>, <code class="lang-java">swift-application</code>, <code class="lang-java">swift-library</code>, <code class="lang-java">xctest</code>) instead.</p></p></p></div><p class="paragraph">A marker type for a class that is a collection of rules. </p><p class="paragraph"> A rule source is not used like a regular Java object. It is a stateless container of methods and possibly constants. </p><p class="paragraph"> Please consult the &quot;Rule based model configuration&quot; chapter of the Gradle User Manual for general information about &quot;rules&quot;. </p><h2 class="">Rule methods</h2><p class="paragraph"> Each method that is annotated with one of the following is considered a rule: </p><ul><li><a href="../-model/index.html">Model</a></li><li><a href="../-defaults/index.html">Defaults</a></li><li><a href="../-mutate/index.html">Mutate</a></li><li><a href="../-finalize/index.html">Finalize</a></li><li><a href="../-validate/index.html">Validate</a></li><li><a href="../-rules/index.html">Rules</a></li><li><code class="lang-java">org.gradle.platform.base.ComponentType</code></li><li><code class="lang-java">org.gradle.platform.base.ComponentBinaries</code></li><li><code class="lang-java">org.gradle.platform.base.BinaryTasks</code></li></ul><p class="paragraph"> Each annotation specifies the type of the rule, which affects when it will be executed. </p><p class="paragraph"> The following constraints apply to all rule methods: </p><ul><li>A method may only be annotated by at most one of the above annotations.</li><li>A rule method may be <code class="lang-java">static</code> or not; it makes no difference.</li><li>A rule method cannot be generic (i.e. cannot have type parameters).</li><li>With the exception of <a href="../-model/index.html">Model</a> methods, all methods must have at least one parameter.</li><li>With the exception of <a href="../-model/index.html">Model</a> methods, all methods must have a <code class="lang-java">void</code> return type.</li></ul><p class="paragraph"> See <a href="../-model/index.html">Model</a> for information on the significance of the return type of a <a href="../-model/index.html">Model</a> method. </p><h3 class="">Subjects and inputs</h3><p class="paragraph"> Method rules declare the subject and any inputs as parameters to the method. With the exception of <a href="../-model/index.html">Model</a> methods, the subject of the rule is the, required, first parameter and all subsequent parameters are inputs. For a non-void <a href="../-model/index.html">Model</a> method, the subject (i.e. model element being created) is the return object. For a void <a href="../-model/index.html">Model</a> method, the subject is the first method parameter. </p><p class="paragraph"> The <a href="../-path/index.html">Path</a> annotation can be placed on any parameter (except the subject of <a href="../-model/index.html">Model</a> rules) to indicate the model element to bind to. If there is no <a href="../-path/index.html">Path</a> annotation, a &quot;by-type&quot; binding will be attempted. The binding scope is determined by how the rule source is applied. </p><h2 class="">General class constraints</h2><p class="paragraph"> Along with the constraints on individual rule methods by their associated annotation, the following are general constraints of rule source implementations: </p><ul><li>Constructors are not allowed.</li><li>Inheritance hierarchies are not allowed (i.e. all rules sources must directly extend <a href="index.html">RuleSource</a>).</li><li>Instance variables are not allowed.</li><li>Non-final static variables are not allowed (i.e. constants are allowed).</li><li>Methods cannot be overloaded.</li><li>Implementations cannot be generic (i.e. cannot use type parameters).</li></ul></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="1533241457%2FConstructors%2F-1793262594" anchor-label="RuleSource" id="1533241457%2FConstructors%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rule-source.html"><span>Rule</span><wbr></wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1533241457%2FConstructors%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Gradle Kotlin DSL Reference</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,2193 @@
+<!doctype html>
+<html>
+  <head>
+    <meta property="og:image" content="https://gradle.org/assets/images/releases/gradle-default.png">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Gradle 9.7.1 Release Notes">
+    <meta property="og:site_name" content="Gradle Release Notes">
+    <meta property="og:description" content="We are excited to announce Gradle 9.7.1.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@gradle">
+    <meta name="twitter:creator" content="@gradle">
+    <meta name="twitter:title" content="Gradle 9.7.1 Release Notes">
+    <meta name="twitter:description" content="We are excited to announce Gradle 9.7.1.">
+    <meta name="twitter:image" content="https://gradle.org/assets/images/releases/gradle-default.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gradle 9.7.1 Release Notes</title>
+    <link rel="stylesheet" type="text/css" href="https://assets.gradle.com/lato/css/lato-font.css">
+    <style>/*
+ * Gradle Markdown Theme
+ */
+
+@font-face {
+    font-display: swap;
+    font-family: Lato;
+    font-weight: 500;
+    font-style: normal;
+    src: url("https://assets.gradle.com/lato/fonts/lato-semibold/lato-semibold.woff2") format("woff2"),
+         url("https://assets.gradle.com/lato/fonts/lato-semibold/lato-semibold.woff") format("woff");
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+body {
+    color: #02303A;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: #1DA2BD;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}
+
+h1 a:hover, h1 a:focus,
+h2 a:hover, h2 a:focus,
+h3 a:hover, h3 a:focus,
+h4 a:hover, h4 a:focus,
+h5 a:hover, h5 a:focus,
+h6 a:hover, h6 a:focus {
+    text-decoration: none;
+}
+
+a strong {
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 4px; /* match with `code` */
+}
+
+table {
+    width: 100%;
+    font-size: 85%;
+    border: 1px solid #e5e5e5;
+    border-collapse: collapse;
+}
+
+.table-contents {
+    overflow-x: auto;
+    padding-left: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+td,
+th {
+    padding: .25rem .5rem;
+    border: 1px solid #e5e5e5;
+}
+
+th {
+    text-align: left;
+}
+
+.content tbody tr:nth-child(odd) td,
+.content tbody tr:nth-child(odd) th {
+    background-color: #f9f9f9;
+}
+
+/* typography */
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #02303A;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+}
+
+h3 {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+}
+
+h4 {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+}
+
+h5, h6 {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+dt {
+    font-weight: 700;
+}
+
+dd {
+    margin-bottom: 0.5rem;
+    margin-left: 1.5em;
+}
+
+dd p {
+    margin-top: 0;
+}
+
+hr {
+    position: relative;
+    border: 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #fff;
+    margin: 0;
+}
+
+ul, ol, dl {
+    list-style-position: outside;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 1.5em;
+    padding: 0;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+dl dt {
+    font-weight: normal;
+}
+
+tfoot {
+    font-style: italic;
+}
+
+caption {
+    background: #eee;
+}
+
+abbr, acronym {
+    font-size: 85%;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+abbr[title], acronym[title] {
+    cursor: help;
+    border-bottom: 1px dotted #e5e5e5;
+}
+
+b, strong, dfn {
+    font-weight: 700;
+}
+
+em, dfn {
+    font-style: italic;
+}
+
+sup, sub {
+    line-height: 0;
+}
+
+address {
+    margin: 0 0 1.5em;
+    font-style: italic;
+}
+
+del {
+    color: #666;
+}
+
+blockquote {
+    padding: .5rem 1rem;
+    margin: .8rem 0;
+    color: #7a7a7a;
+    border-left: .25rem solid #e5e5e5;
+}
+
+blockquote p:first-child {
+    margin-top: 0;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+@media (min-width: 30em) {
+    blockquote {
+        padding-right: 5rem;
+        padding-left: 1.25rem;
+    }
+}
+
+/* layout */
+.container, .appendix, .book, .chapter, .footer {
+    background-color: white;
+    border-radius: 5px;
+    padding: 1.5rem;
+}
+
+.container, .appendix, .footer {
+    max-width: 45rem;
+}
+
+.container {
+    margin: 2rem auto;
+}
+
+.content, .text-container {
+    width: 60rem;
+}
+
+.content-container {
+    min-height: calc(100vh - 60px);
+}
+
+.content, .sidebar {
+    display: inline-block;
+}
+
+.sidebar {
+    float: right;
+    width: 12.5rem;
+}
+
+@media screen and (max-width: 45em) {
+    .container, .footer {
+        max-width: 100%;
+    }
+    .content {
+        display: block;
+        width: auto;
+    }
+    .sidebar {
+        display: none;
+    }
+    .container,
+    .main-content > .appendix,
+    .main-content > .book,
+    .main-content > .chapter {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+/* code */
+code {
+    font-size: 90%;
+    background-color: #f7f7f8;
+    border-radius: 4px;
+}
+
+*:not(pre) > code {
+    letter-spacing: 0;
+    padding: 0.1em 0.5ex;
+}
+
+.hljs {
+    background: #f7f7f8 !important;
+}
+
+/* util classes */
+.left {
+    float: left !important;
+}
+
+p .left {
+    margin: 1.5em 1.5em 1.5em 0;
+    padding: 0;
+}
+
+.right {
+    float: right !important;
+}
+
+p .right {
+    margin: 1.5em 0 1.5em 1.5em;
+    padding: 0;
+}
+
+.small {
+    font-size: .8em;
+    margin-bottom: 1.875em;
+    line-height: 1.875em;
+}
+
+.large {
+    font-size: 1.2em;
+    line-height: 2.5em;
+    margin-bottom: 1.25em;
+}
+
+.hide {
+    display: none;
+}
+
+.quiet {
+    color: #666;
+}
+
+.loud {
+    color: #000;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.highlight {
+    background: #ff0;
+}
+
+.added {
+    background: #060;
+    color: #fff;
+}
+
+.removed {
+    background: #900;
+    color: #fff;
+}
+
+.first {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.last {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.top {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.bottom {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.citetitle {
+    font-style: normal;
+}
+
+table th.border-right {
+    border-right: solid #d0d0d0 1px;
+}
+
+table th.no-border-bottom {
+    border-bottom: none;
+}
+
+h3.releaseinfo {
+    color: #999;
+    font-weight: normal;
+    margin-top: -0.5em;
+}
+
+/* Site header specific styles */
+.hamburger {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 11px 10px;
+}
+
+.hamburger:focus {
+    outline: 0;
+}
+
+.hamburger__bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: black;
+    border-radius: 1px;
+}
+
+.hamburger__bar + .hamburger__bar {
+    margin-top: 4px;
+}
+
+.site-header {
+    background-color: white;
+}
+
+/* Override javadoc styles */
+.site-header div {
+    font-family: 'Lato', Arial, sans-serif;
+}
+
+.site-header__navigation-header a {
+    align-self: center;
+    border-bottom: 0 none;
+    height: 36px;
+}
+
+.site-header .site-header-version {
+    align-self: center;
+    color: #1da2bd;
+    font-size: 20px;
+    padding-left: 1px;
+    margin-top: 22px;
+}
+
+.site-header__navigation {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-header__navigation-header {
+    display: flex;
+    flex: 0 0 auto;
+    margin-left: 12px;
+}
+
+.site-header__navigation-collapsible {
+    flex: 1 1 auto;
+    height: 210px;
+    overflow: visible;
+    transition: height 0.3s ease;
+}
+
+.site-header__navigation-items {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    max-height: 210px; /* This matches the collapsible height above */
+    margin: 0 20px;
+    padding-top: 12px;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.site-header__navigation-item {
+    flex: 0 1 auto;
+    font-size: 16px;
+    width: 250px;
+}
+
+.site-header__navigation-item .site-header__navigation-link {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+    padding: 5px;
+    line-height: 20px;
+    border: 0 none;
+    color: #02303A;
+    text-decoration: none;
+    transition: none;
+    -o-transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+}
+
+.site-header__navigation-item .site-header__navigation-link:hover {
+    color: #1DA2BD;
+}
+
+.site-header__navigation-item .site-header__navigation-link.active {
+    font-weight: 500;
+}
+
+/* Navigation submenu styles */
+.site-header__navigation-submenu-section {
+    position: relative;
+}
+
+.site-header__navigation-submenu-section .site-header__down-arrow {
+    width: 8px;
+    height: 8px;
+    margin-left: 2px;
+    margin-top: 0;
+}
+
+.site-header__navigation-submenu-section .site-header__navigation-link:hover path {
+    fill: none;
+}
+
+.site-header__navigation-submenu-section .site-header__navigation-submenu .site-header__navigation-submenu-item-link:hover {
+    color: #1DA2BD;
+}
+
+.site-header__navigation-submenu-section .site-header__navigation-submenu {
+    display: none;
+    width: 170px;
+    background-color: white;
+    top: 100%;
+    left: 7px; /* NOTE: This must match the padding of .site-header__navigation-link */
+    padding: 3px 10px 6px 10px;
+    z-index: 100;
+}
+
+.site-header__navigation-submenu-section .site-header__navigation-submenu .site-header__navigation-submenu-item-link {
+    width: 100%;
+    color: #02303A;
+    white-space: nowrap;
+    display: inline-block;
+    padding-top: 3px;
+    border: 0 none;
+    transition: none;
+    -o-transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+}
+
+.site-header__navigation-submenu-section .site-header__navigation-submenu .site-header__navigation-submenu-item-link .site-header__navigation-submenu-item-link-text {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.site-header__navigation-submenu-section.open .site-header__navigation-submenu {
+    display: block;
+}
+
+/* Top navigation mobile styles */
+@media (max-width: 1023px) {
+    .site-header__navigation-collapsible--collapse {
+        height: 0;
+        overflow-y: hidden;
+    }
+
+    .site-header__navigation-submenu-section .site-header__navigation-submenu {
+        padding: 0 1rem 0.5rem 1.5rem;
+        display: block;
+        top: 30px !important;
+        left: 0 !important;
+    }
+
+    .site-header__navigation-item,
+    .site-header__navigation-submenu-section .site-header__navigation-submenu .site-header__navigation-submenu-item-link .site-header__navigation-submenu-item-link-text {
+        font-size: 18px;
+    }
+
+    .site-header {
+        padding: 5px 12px;
+    }
+
+    .site-header-version {
+        display: none;
+    }
+
+    .site-footer__navigation {
+        flex-direction: column;
+    }
+
+    .site-footer__links {
+        flex-wrap: wrap;
+    }
+
+    .site-footer__link-group {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Top navigation desktop styles */
+@media (min-width: 1024px) {
+    .site-header {
+        -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .15);
+        -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .15);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .15);
+        z-index: 1;
+    }
+
+    /*
+      Pushes the section headings to just below the top nav bar when a user
+      navigates directly to section anchors.
+     */
+    #content h2[id], #content h3[id], #content h4[id] {
+        padding-top: 60px;
+    }
+
+    #content h2[id] {
+        /* Little extra room above h2s */
+        margin-top: -1em;
+    }
+
+    #content h3[id], #content h4[id] {
+        margin-top: -60px;
+    }
+
+    .site-header__navigation {
+        flex-direction: row;
+    }
+
+    .site-header__navigation-button {
+        display: none;
+    }
+
+    .site-header__navigation-items {
+        flex-direction: row;
+        align-items: center;
+        float: right;
+        width: auto;
+        padding-top: 0;
+    }
+
+    .site-header__navigation-item {
+        width: auto;
+    }
+
+    .site-header__navigation-item .site-header__navigation-link {
+        padding: 15px 18px;
+    }
+
+    .site-header__navigation-item:last-of-type .site-header__navigation-link {
+        padding-right: 0;
+    }
+
+    .site-header__navigation-link--button {
+        padding: 6px 12px;
+    }
+
+    .site-header__navigation-collapsible {
+        height: auto;
+    }
+
+    .site-header__navigation-submenu-section .site-header__navigation-submenu {
+        position: absolute;
+        border: 1px solid #9a9a9a;
+        border-radius: 3px;
+    }
+
+    .site-header__navigation-submenu-section:hover .site-header__navigation-submenu {
+        display: block;
+    }
+
+    /*
+      Pushes the section headings to just below the top nav bar when a user
+      navigates directly to section anchors. It doesn't work if you try
+      to apply the padding and margin to the `h` elements directly.
+     */
+    .chapter a[name],
+    .chapter .anchor {
+        padding-top: 60px;
+        margin-top: -60px;
+        text-decoration: none;
+        border: none;
+        display: inline-block;
+    }
+}
+
+/* Side Navigation styles */
+/* Docs Navigation */
+.docs-navigation .search-container {
+    display: none;
+    margin-bottom: 1rem;
+}
+
+.docs-navigation {
+    display: none;
+    padding-left: 5px;
+    padding: 20px 20px 20px 26px;
+    background: #f8f8f7;
+    border-right: 1px solid #e7e7e9;
+    overflow: auto;
+}
+
+.docs-navigation a {
+    color: #02303A;
+    display: block;
+    font-size: .80rem;
+    position: relative;
+}
+
+.docs-navigation a:focus {
+    outline: none;
+}
+
+.docs-navigation a:hover {
+    color: #35c1e4;
+    text-decoration: none;
+}
+
+.docs-navigation a code {
+    color: #02303A;
+    overflow-wrap: break-word;
+    padding: 0;
+    word-break: break-all;
+}
+
+.docs-navigation a.active {
+    text-decoration: underline;
+    outline: 0;
+    border: none;
+    outline-style: none;
+    -moz-outline-style: none;
+}
+
+.docs-navigation a.active:hover {
+    color: #35c1e4;
+    text-decoration: underline;
+}
+
+.docs-navigation .reference-links {
+    font-size: 1.0rem;
+}
+
+.docs-navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.docs-navigation li > ul > li a {
+    font-size: 14px;
+    color: #7d7d7d;
+}
+
+.docs-navigation ul:last-of-type {
+    margin-bottom: 0;
+}
+
+.docs-navigation li {
+    margin-top: 0.3334em;
+    line-height: 1.3334;
+}
+.docs-navigation li:last-of-type {
+    margin-bottom: 0;
+}
+
+.docs-navigation .nav-dropdown:before {
+    content: '\2023';
+    font-size: 28px;
+    position: absolute;
+    margin-left: -14px;
+    margin-top: -8px;
+}
+
+.docs-navigation .nav-dropdown.expanded:before {
+    transform: rotate(90deg);
+}
+
+.docs-navigation > ul ul,
+.docs-navigation > ul ul ul {
+    display: none;
+    height: 0;
+    margin-left: 1rem;
+}
+
+.docs-navigation > ul ul:target,
+.docs-navigation > ul ul:target ul,
+.docs-navigation > ul .nav-dropdown.expanded ~ ul {
+    display: block;
+    height: auto;
+}
+
+.docs-navigation h3 {
+    font-size: .95rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 1.5em 0 0;
+}
+
+@media screen and (min-width: 45rem) {
+    .main-content {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* User guide navigation appears for desktops */
+@media screen and (min-width: 64rem) {
+    .docs-navigation {
+        display: block;
+        flex: 0 0 auto;
+        width: 13.75rem;
+    }
+
+    .main-content > .appendix,
+    .main-content > .book,
+    .main-content > .chapter {
+        flex: 0 0 auto;
+        margin: 0 auto;
+    }
+}
+
+/* Table of Contents */
+.toc p {
+    font-size: 1em;
+}
+.toc dl dt,
+.toc a {
+    line-height: 1.0;
+}
+.toc dl dt {
+    padding-bottom: 0.625rem;
+}
+.toc a {
+    color: #1DA2BD;
+}
+.toc p {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+.toc dl, .list-of-examples dl {
+    margin-left: 0;
+}
+
+.navheader, .navfooter, .navbar {
+    display: none;
+}
+
+/* Userguide Meta */
+.chapter-meta {
+    float: right;
+    text-align: right;
+}
+
+.chapter-meta .edit-link {
+    color: #999;
+    font-size: 0.9em;
+    padding-right: 3px;
+}
+
+.chapter-meta .edit-link svg {
+    margin-right: 1px;
+}
+
+/* Clever use of RTL to fill in all stars to left of hover position */
+.rating {
+    direction: rtl;
+}
+.rating > .star {
+    cursor: pointer;
+    padding: 3px;
+}
+.rating > .star:hover > svg > g,
+.rating > .star:hover ~ .star > svg > g,
+.rating > .star.selected > svg > g,
+.rating > .star.selected ~ .star > svg > g {
+    fill: #999;
+}
+
+/* Footer styles */
+.site-footer {
+}
+
+.site-footer__navigation {
+    display: flex;
+    padding: 30px 12px;
+    max-width: 62.5rem;
+    margin: 0 auto;
+    padding-left: 5rem
+}
+
+.site-footer__links {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.site-footer__links .site-footer__links-list {
+    list-style-type: none;
+    margin: 0;
+}
+
+.site-footer__links .site-footer__links-list a {
+    color: #ddd;
+}
+
+.site-footer__link-group {
+    flex: 1 1 auto;
+    flex-basis: 175px;
+}
+
+.site-footer__link-group header {
+    color: #fff;
+}
+
+.site-footer__subscribe-newsletter .newsletter-form__header h5 {
+    color: #fff;
+    margin-top: 0;
+}
+
+.site-footer__subscribe-newsletter p {
+    font-size: 0.875rem;
+    margin: 2px 0 0 2px;
+    opacity: 0.7;
+}
+.site-footer__subscribe-newsletter .disclaimer {
+    color: #ddd;
+    font-size: 0.75rem;
+    opacity: 0.55;
+}
+.site-footer__subscribe-newsletter .newsletter-form {
+    padding-top: 6px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.site-footer__subscribe-newsletter .email,
+.site-footer__subscribe-newsletter .submit {
+    height: 40px;
+}
+
+.site-footer__subscribe-newsletter .email {
+    line-height: 40px;
+    width: 250px;
+    color: #1DA2BD;
+    font-size: 16px;
+    padding-left: 20px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-style: none;
+}
+
+.site-footer__subscribe-newsletter .submit {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 100px;
+    background-color: #1BA8CB;
+    color: white;
+    font-weight: 500;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-style: none;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+/* Secondary footer (below) */
+.site-footer-secondary {
+    background-color: white;
+    border-top: 1px solid #e7e7e9;
+    width: 100%;
+    z-index: 1;
+}
+
+.site-footer-secondary__contents {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 75rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/*
+ * 1. Value is the largest computed width among 'site-footer__copy' and 'site-footer__links'.
+ */
+.site-footer__copy,
+.site-footer__secondary-links {
+    flex-grow: 0;
+    /* 1. */
+}
+
+/*
+ * 1. 'flex-shrink: 1' is applied to the element with the smallest computed width among
+ *    'site-footer__copy' and 'site-footer__links'.
+ */
+.site-footer__copy {
+    flex-shrink: 1;
+    /* 1. */
+}
+
+.site-footer__logo {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.site-footer__logo svg {
+    width: 35px;
+    height: 35px;
+}
+
+/*
+ * 1. 'flex-shrink: 0' is applied to the element with the largest computed width among
+ *    'site-footer__copy' and 'site-footer__links'.
+ */
+.site-footer__secondary-links {
+    flex-shrink: 0;
+    /* 1 */
+    text-align: right;
+    white-space: nowrap;
+}
+
+.site-footer-secondary a {
+    color: #999;
+}
+
+.site-footer-secondary__links a:not(:last-child) {
+    padding-right: 10px;
+}
+
+.site-footer-secondary__links a:not(:first-child) {
+    padding-left: 10px;
+}
+
+@media all and (max-width: 29.99rem) {
+    .site-footer__navigation {
+        margin: 0.5rem auto;
+    }
+
+    .site-footer__rights,
+    .site-footer-secondary__links {
+        display: none;
+    }
+
+    .site-footer__link-group {
+        margin-bottom: 1rem;
+    }
+
+    .site-footer__logo {
+        order: 1;
+        text-align: left;
+    }
+
+    .site-footer__copy {
+        order: 2;
+        text-align: right;
+    }
+}
+
+/* Avoid the footer taking up much of the screen on short displays */
+@media all and (max-height: 56.25rem) {
+    .site-footer__navigation {
+        margin: 1rem auto 1rem auto;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 84.375rem) {
+    .ui-logos .ui-logo {
+        box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.56);
+    }
+}
+
+/* User Manual Home */
+.technology-logos,
+.ui-logos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.technology-logo,
+.ui-logo {
+    flex: 0 1 auto;
+}
+
+.ui-logo {
+    width: 224px;
+    height: 135px;
+    margin: 12px;
+}
+
+.segmentedlist {
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+}
+
+.segmentedlist table, .table table {
+    border: solid #d0d0d0 1px;
+    border-collapse: collapse;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.segmentedlist th {
+    padding: 0.3em 0.8em;
+    color: #505050;
+}
+
+.segmentedlist td {
+    padding: 0.3em 0.8em;
+}
+
+.segmentedlist dt,
+.variablelist dt {
+    font-weight: bold;
+}
+
+.variablelist dt a {
+    font-weight: normal;
+}
+
+.itemizedlist li p,
+.example pre,
+.figure pre {
+    margin-top: 0;
+    margin-bottom: 0.625rem;
+}
+
+.example, .figure, .table {
+    margin-top: 0;
+    margin-bottom: 1.8em;
+}
+
+.example .title, .figure .title, .table .title {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+}
+
+.example-contents > p {
+    margin: 0;
+}
+
+.example-break, .figure-break {
+    display: none;
+}
+
+.exampleLocation .emphasis em {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.appendix h1 {
+    margin-bottom: 1.0em;
+}
+
+.footnote sup {
+    vertical-align: baseline;
+    font-size: 100%;
+}
+
+.note p:first-child, .tip p:first-child {
+    margin-top: 0;
+}
+
+.note > :last-child, .tip > :last-child, .examplelocation > :last-child {
+    margin-bottom: 0;
+}
+
+.note, .tip, .exampleLocation {
+    border-left: 1px solid #ddddd8;
+    color: rgba(0,0,0,0.6);
+    margin: 0 0 1.5em 1.25em;
+    padding-left: 1.125em;
+    padding-right: 1.25em;
+}
+
+.note p:first-child:before {
+    content: "Note: ";
+    font-weight: bold;
+}
+
+.tip p:first-child:before {
+    content: "Tip: ";
+    font-weight: bold;
+}
+
+.note .title, .tip .title {
+    margin-left: 0px;
+}
+
+.tip h1, .note h1
+.tip h2, .note h2,
+.tip h3, .note h3,
+.tip h4, .note h4,
+.tip h5, .note h5,
+.tip h6, .note h6 {
+    margin-top: 0;
+}
+
+.literal, .filename {
+    white-space: nowrap;
+}
+
+.caution {
+    font-size: 15px;
+    color: #AF5252;
+    background-color: pink;
+    font-style: italic;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 0 5px;
+    margin-bottom: 8px;
+}
+
+.caution :last-child {
+    margin-bottom: 0;
+}
+
+table .caution {
+    font-size: 13px;
+    margin-right: 6px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    display: inline;
+    text-transform: lowercase;
+}
+
+.signature {
+    background-color: #f5f5f5;
+    border: solid #e7e7e7 1px;
+    color: #666666;
+    width: auto;
+    margin-right: -0.8em;
+    margin-left: -0.8em;
+    padding: 0.3em 0.8em;
+    font-weight: normal;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-family: "Ubuntu Mono", courier, monospace;
+    text-shadow: none;
+}
+
+.signature .literal {
+    color: #04598D;
+    padding-left: 0.1em;
+}
+
+.sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Single page html
+ */
+.book .chapter {
+    margin-top: 4em;
+}
+
+.toc .chapter {
+    padding-top: 0;
+}
+
+div.example code.filename {
+    font-weight: bold;
+}
+
+/* Clickable links on section headers */
+.section .title > a.section-anchor {
+    display: inline-block;
+    text-decoration: none !important;
+    margin-left: -1ch;
+    opacity: 0;
+    padding-right: 0.4ch;
+}
+
+.section .title > a.section-anchor:before {
+    content: "\00A7";
+    display: inline-block;
+    font-size: 0.8em;
+    vertical-align: bottom;
+}
+
+.section .title:hover > a {
+    opacity: 1;
+}
+
+.section .title:hover > a.section-anchor,
+.section .title a.section-anchor:hover {
+    border: inherit;
+    opacity: 1;
+}
+
+
+.docs-navigation {
+    width: 18rem;
+    padding: 20px 20px 20px 26px;
+    background: #f8f8f7;
+    border-right: 1px solid #e7e7e9;
+    overflow: auto;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.main-content {
+    overflow: auto;
+    display: flex;
+}
+
+.content {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.content .chapter,
+.content .book {
+    padding: 2rem 2.4rem;
+}
+
+.toc a:active {
+    font-weight: 500;
+}
+
+.site-header  {
+    margin-bottom: 1rem;
+}
+
+.site-header__navigation-submenu-item {
+    padding: 2px 0;
+}
+
+.site-footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px 0 40px 0;
+}
+
+#header {
+    margin-left: 0;
+}
+
+#header > h1:first-child {
+    margin-bottom: 40px;
+}
+
+@media screen and (min-width: 64rem) {
+    #header {
+        margin-bottom: 20px;
+    }
+
+    .site-header  {
+        margin-bottom: 0;
+        z-index: 2;
+    }
+
+    .site-header__navigation-header {
+        margin-top: -7px;
+    }
+
+    .site-header__navigation-submenu-section:after {
+        content: '\2023';
+        font-size: 28px;
+        position: absolute;
+        transform: rotate(90deg);
+        margin-right: 10px;
+        top: 5px;
+        right: -7px;
+    }
+
+    .site-footer__navigation {
+        flex-wrap: wrap;
+    }
+
+    .site-footer__link-group {
+        flex: 1 1 auto;
+    }
+
+    .site-footer__links {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (min-width: 75rem) {
+    .content .chapter,
+    .content .book {
+        box-sizing: content-box;
+    }
+
+    #content {
+        padding-right: 260px;
+        margin: 0;
+    }
+
+    .appendix .toc,
+    .book .home .toc,
+    .chapter .toc {
+        position: fixed;
+        margin: 0 auto;
+        padding-bottom: 0;
+        right: 0;
+        top: 65px;
+        width: 260px;
+        z-index: 1;
+        overflow: auto;
+        border-radius: 0 0 5px 0;
+        max-height: calc(100% - 123px);
+        margin-right: 15px;
+    }
+
+    .appendix .toctitle,
+    .book .home .toctitle,
+    .chapter .toctitle {
+        margin-top: 1.3em;
+    }
+
+    .appendix .toc > dl,
+    .book .home .toc > dl,
+    .chapter .toc > dl {
+        /* margin-left have to increase if you change border thickness of active toc item */
+        margin-left: 1px;
+        border-left: 1px solid #666;
+        margin-bottom: 0;
+        padding-right: 10px;
+        padding-bottom: 0.5rem;
+        background-color: #fff;
+    }
+
+    .appendix .toc > dl > dt,
+    .appendix .toc > dl > dt:last-of-type
+    .book .home .toc > dl > dt,
+    .book .home .toc > dl > dt:last-of-type
+    .chapter .toc > dl > dt,
+    .chapter .toc > dl > dt:last-of-type {
+        padding: 0.5rem 0;
+        margin: 0;
+    }
+
+    .appendix .toc a,
+    .book .home .toc a,
+    .chapter .toc a {
+        padding-left: 10px;
+        font-weight: 400;
+        color: #02303A;
+        font-size: .95rem;
+        display: inline-block;
+    }
+
+    .appendix .toc a.active,
+    .book .home .toc a.active,
+    .chapter .toc a.active {
+        font-weight: 500;
+        border-left: 3px solid #01303a;
+        margin-left: -2px;
+        padding-left: 9px;
+    }
+
+    .site-footer__navigation {
+        flex-wrap: wrap;
+        margin-left: auto;
+        padding-left: 3rem;
+    }
+
+    .site-footer__link-group {
+        flex: 0.15 1 auto;
+    }
+
+    .site-footer__subscribe-newsletter {
+        /* A fix so subscribe disclaimer does not go under long ToC */
+        max-width: calc(100% - 17rem);
+    }
+}
+
+@media screen and (min-width: 80rem) {
+    .site-footer__subscribe-newsletter {
+        max-height: none;
+    }
+}
+
+@media screen and (min-width: 100rem) {
+    .content .chapter,
+    .content .book {
+        max-width: 60.5rem;
+    }
+
+    #header {
+        margin: 0 auto;
+    }
+
+    #content {
+        padding-right: 0;
+        margin: 0 auto;
+    }
+
+    .appendix .toc,
+    .book .home .toc,
+    .chapter .toc {
+        right: initial;
+        margin-left: 62.5rem;
+    }
+
+    .site-footer__navigation {
+        padding-left: 0;
+    }
+
+    .site-footer__link-group {
+        flex: 0.2 1 auto;
+    }
+}
+
+@media screen and (min-width: 112rem) {
+    .content .chapter,
+    .content .book {
+        max-width: 62.5rem;
+        margin: 0 auto;
+        position: relative;
+        padding-right: 3.5rem;
+        left: -130px;
+    }
+
+    .appendix .toc,
+    .book .home .toc,
+    .chapter .toc {
+        right: initial;
+        margin-left: 64.5rem;
+    }
+
+    .site-footer__link-group {
+        flex: 0.2 1 auto;
+    }
+}
+
+@supports (-moz-appearance:meterbar) and (background-blend-mode:difference,normal) {
+    /* Firefox only */
+    .site-header__navigation-submenu-section:after {
+        top: 2px;
+        right: -4px;
+    }
+}
+</style>
+    <style>.table-of-contents a {
+  color: #02303A;
+}
+
+#fixed-issues-list ul,
+.table-of-contents ul,
+.topic ul {
+  list-style-type: none;
+}
+
+#fixed-issues-list li:before,
+.topic ul li:before {
+  color: #02303A;
+  content: '\002022';
+  font: 0.9em bold sans-serif;
+  margin-left: -1em;
+  margin-right: 0.4em;
+}
+
+li.mainTopic :before {
+  color: #02303A;
+  content: '\002022';
+  font: 0.9em bold sans-serif;
+  margin-left: -1em;
+  margin-right: 0.4em;
+}
+
+li.subTopic :before {
+  color: #02303A;
+  content: '\002022';
+  font: 0.9em bold sans-serif;
+  margin-left: 3em;
+  margin-right: 0.4em;
+}
+
+pre {
+    overflow: auto;
+}
+
+ul.toc-sub {
+  margin-bottom: 0;
+}
+
+button.display-toggle {
+  cursor: pointer;
+}
+
+a.incubating-marker {
+  display: inline;
+  color: white;
+  font-style: italic;
+  font-size: 0.6em;
+  text-shadow: none;
+  margin-left: 0.6em;
+  border-radius: 6px;
+  background-color: rgb(160, 160, 160);
+  border: 1px solid rgb(150, 150, 150);
+  padding: 1px 5px;
+  box-shadow: none;
+  cursor: pointer;
+  vertical-align: 1px;
+}
+
+a.incubating-marker:hover {
+  text-decoration: none;
+  border: 1px solid rgb(150, 150, 150);
+}
+
+/* Same as code highlighting values in docs.css */
+.java_keyword {
+  color: #963;
+}
+.java_comment {
+  color: #998;
+}
+.java_plain, .java_type {
+
+}
+.java_separator {
+
+}
+.java_operator {
+  color: #555;
+}
+.java_literal {
+  color: #d14;
+}
+
+/* Embedded Videos */
+.youtube-video {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  div {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-width: 900px;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
+    <script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+  function injectIssues(url, insertAfter, idBase, loadingText, messageFunction) {
+    var loadingPara = document.createElement('p');
+    loadingPara.className = idBase + '-loading';
+    loadingPara.textContent = loadingText + ' …';
+    insertAfter.insertAdjacentElement('afterend', loadingPara);
+
+    var animate = true;
+    var paraFadeOut = function() {
+      if (!animate) return;
+      loadingPara.style.transition = 'opacity 0.08s';
+      loadingPara.style.opacity = '0';
+      setTimeout(function() {
+        if (animate) paraFadeIn();
+      }, 80);
+    };
+    var paraFadeIn = function() {
+      if (!animate) return;
+      loadingPara.style.transition = 'opacity 0.08s';
+      loadingPara.style.opacity = '1';
+      setTimeout(function() {
+        if (animate) paraFadeOut();
+      }, 80);
+    };
+    var finishAnimation = function() {
+      animate = false;
+      if (loadingPara.parentNode) {
+        loadingPara.parentNode.removeChild(loadingPara);
+      }
+    };
+    paraFadeOut();
+
+    fetch(url)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        finishAnimation();
+        var para = document.createElement('p');
+        para.textContent = messageFunction(data.length);
+        insertAfter.insertAdjacentElement('afterend', para);
+
+        if (data.length > 0) {
+          var list = document.createElement('ul');
+          list.id = idBase + '-list';
+          list.style.display = 'none';
+          list.style.overflow = 'hidden';
+          list.style.transition = 'height 0.5s ease-out';
+          para.insertAdjacentElement('afterend', list);
+
+          data.forEach(function(issue) {
+            var li = document.createElement('li');
+            var link = document.createElement('a');
+            link.href = issue.link;
+            link.textContent = issue.key;
+
+            li.appendChild(document.createTextNode('['));
+            li.appendChild(link);
+            li.appendChild(document.createTextNode('] - ' + issue.summary));
+            list.appendChild(li);
+          });
+
+          // slideDown implementation
+          list.style.display = 'block';
+          var height = list.scrollHeight + 'px';
+          list.style.height = '0px';
+          // Trigger reflow
+          list.offsetHeight;
+          list.style.height = height;
+          setTimeout(function() {
+            list.style.height = '';
+            list.style.overflow = '';
+            list.style.transition = '';
+          }, 500);
+        }
+      })
+      .catch(function() {
+        finishAnimation();
+        var errorPara = document.createElement('p');
+        errorPara.textContent = 'Unable to retrieve the issue information. You may not be connected to the Internet, or there may have been an error.';
+        errorPara.style.fontWeight = 'bold';
+        errorPara.style.color = 'red';
+        insertAfter.insertAdjacentElement('afterend', errorPara);
+      });
+  }
+
+  var fixedIssuesHeader = document.getElementById('fixed-issues');
+  if (fixedIssuesHeader) {
+    injectIssues(
+      "https://services.gradle.org/fixed-issues/9.7.1",
+      fixedIssuesHeader.parentElement,
+      "fixed-issues",
+      "Retrieving the fixed issue information for 9.7.1",
+      function(i) {
+        return i + " issues have been fixed in Gradle 9.7.1.";
+      }
+    );
+  }
+
+  var knownIssuesHeader = document.getElementById('known-issues');
+  if (knownIssuesHeader) {
+    var knownIssuesParent = knownIssuesHeader.parentElement;
+    var insertAfter = knownIssuesParent.nextElementSibling;
+    injectIssues(
+      "https://services.gradle.org/known-issues/9.7.1",
+      insertAfter || knownIssuesParent,
+      "known-issues",
+      "Retrieving the known issue information for 9.7.1",
+      function(i) {
+        if (i > 0) {
+          return i + " issues are known to affect Gradle 9.7.1.";
+        } else {
+          return "There are no known issues of Gradle 9.7.1 at this time.";
+        }
+      }
+    );
+  }
+});
+</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/stackoverflow-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/groovy.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gradle Release Notes</h1>
+      <p>Gradle 9.7.1 is the first patch release for Gradle 9.7.0. (released <a href="https://gradle.org/releases/">2026-08-19</a>).</p>
+      <p>The following issues were resolved:</p>
+      <ul>
+        <li><a href="https://github.com/gradle/gradle/issues/38787">BaseExecSpec streams seem to no longer conform with API on Gradle 9.7.0</a></li>
+        <li><a href="https://github.com/gradle/gradle/issues/38788">Gradle 9.7.0 breaks the "Click to see difference" format from failed unit tests</a></li>
+        <li><a href="https://github.com/gradle/gradle/issues/38791">9.7 leaks bundled antlr into kapt classpath</a></li>
+        <li><a href="https://github.com/gradle/gradle/issues/38792">Gradle 9.7.0 breaks a working Transformer implementation</a></li>
+        <li><a href="https://github.com/gradle/gradle/issues/38861">ant.taskdef with an explicit classpath resolves task classes parent-first against Gradle's bundled jars since 9.7.0 (9.6.1 isolated them)</a></li>
+        <li><a href="https://github.com/gradle/gradle/issues/38873">Gradle 9.7.0 expects <code>Option</code> annotation arguments in a different order than before in build.gradle.kts</a></li>
+      </ul>
+      <p>We recommend upgrading to Gradle 9.7.1.</p>
+      <hr>
+      <p>In this release, the <a href="#isolated-projects">Isolated Projects</a> performance feature graduates from experimental to incubating, bringing safe parallel project configuration and tools to help you migrate your build.</p>
+      <p>This release also enhances the <a href="#configuration-cache-improvements">Configuration Cache</a>, where tasks gain access to higher-level dependency resolution APIs, Java agents and TestKit work better together, and a source of spurious invalidation when used from IntelliJ IDEA was removed.</p>
+      <p>When your build fails during IDE import or sync, Gradle now returns a partial model through <a href="#tooling-and-ide-integration">Resilient Sync</a>, so your IDE keeps offering code completion, navigation, and highlighting for the parts of the build logic that are healthy, instead of leaving you with all-red scripts and no assistance while you track down the problem.</p>
+      <p><a href="#test-reporting-and-execution">Test reporting and execution</a> now surfaces framework-initialization failures for TestNG, JUnit 4, and JUnit Platform in the console by default, and supports the new way of controlling parallelism in TestNG 7.10 and later.</p>
+      <p>In <a href="#cli-logging-and-problem-reporting">CLI, logging, and problem reporting</a>, Gradle now shows a source location for up to 2050 problems per build, up from 50, so the console, problems report, and Tooling API pinpoint many more issues.</p>
+      <p><a href="#security-and-infrastructure">Security and infrastructure</a> improvements make trusted PGP keys easier to document and signing-key rotations easier to spot, while <a href="#build-authoring-improvements">build authoring</a> gains custom archive timestamps along with several new APIs for build and plugin authors.</p>
+      <p>Finally, <a href="#performance-improvements">performance improvements</a> let file system watching work with a custom project cache directory, and <a href="#dependency-management-enhancements">dependency management</a> previews improved dependency resolution ordering.</p>
+      <p>We would like to thank the following community members for their contributions to this release of Gradle: <a href="https://github.com/aSemy">Adam</a>, <a href="https://github.com/Gautam-aman">Aman Gautam</a>, <a href="https://github.com/YukiCodepth">Aman Kumar</a>, <a href="https://github.com/adubrouski">Anton Dubrouski</a>, <a href="https://github.com/liutikas">Aurimas</a>, <a href="https://github.com/gbhavya07">gbhavya07</a>, <a href="https://github.com/joshfriend">Josh Friend</a>, <a href="https://github.com/nicklauslittle-gov">nicklauslittle-gov</a>, <a href="https://github.com/psoni674">Pragati</a>, <a href="https://github.com/Project516">project516</a>, <a href="https://github.com/Uomocapra">Qin Mi</a>, <a href="https://github.com/rkdfx">Ravi</a>, <a href="https://github.com/sk-reddy17">sk-reddy17</a>, <a href="https://github.com/Suvrat1629">Suvrat Acharya</a>, <a href="https://github.com/ShreckYe">Yongshun Ye</a>.</p>
+      <p>Be sure to check out the <a href="https://roadmap.gradle.org">public roadmap</a> for insight into what's planned for future releases.</p>
+      <section class="table-of-contents">
+        <h2>Table Of Contents</h2>
+        <ul class="toc">
+          <li class="mainTopic"><a href="#upgrade-instructions">Upgrade instructions</a></li>
+          <li class="mainTopic"><a href="#new-features-and-usability-improvements">New features and usability improvements</a></li>
+          <li class="subTopic"><a href="#isolated-projects">Isolated Projects</a></li>
+          <li class="subTopic"><a href="#configuration-cache-improvements">Configuration Cache improvements</a></li>
+          <li class="subTopic"><a href="#tooling-and-ide-integration">Tooling and IDE integration</a></li>
+          <li class="subTopic"><a href="#test-reporting-and-execution">Test reporting and execution</a></li>
+          <li class="subTopic"><a href="#cli-logging-and-problem-reporting">CLI, logging, and problem reporting</a></li>
+          <li class="subTopic"><a href="#security-and-infrastructure">Security and infrastructure</a></li>
+          <li class="subTopic"><a href="#build-authoring-improvements">Build authoring improvements</a></li>
+          <li class="subTopic"><a href="#performance-improvements">Performance improvements</a></li>
+          <li class="subTopic"><a href="#dependency-management-enhancements">Dependency management enhancements</a></li>
+          <li class="mainTopic"><a href="#promoted-features">Promoted features</a></li>
+          <li class="mainTopic"><a href="#documentation-and-training">Documentation and training</a></li>
+          <li class="subTopic"><a href="#user-manual">User Manual</a></li>
+          <li class="subTopic"><a href="#training">Training</a></li>
+          <li class="mainTopic"><a href="#fixed-issues">Fixed issues</a></li>
+          <li class="mainTopic"><a href="#known-issues">Known issues</a></li>
+          <li class="mainTopic"><a href="#external-contributions">External contributions</a></li>
+          <li class="mainTopic"><a href="#reporting-problems">Reporting problems</a></li>
+        </ul>
+      </section>
+      <section class="topic">
+        <h2><a href="#upgrade-instructions" id="upgrade-instructions">Upgrade instructions</a></h2>
+        <p>Switch your build to use Gradle 9.7.1 by updating the <a href="userguide/gradle_wrapper.html">wrapper</a> in your project:</p>
+        <pre><code class="language-text">./gradlew :wrapper --gradle-version=9.7.1 &amp;&amp; ./gradlew :wrapper
+</code></pre>
+        <p>See the <a href="userguide/upgrading_version_9.html#changes_9.7.1">Gradle 9.x upgrade guide</a> to learn about deprecations, breaking changes, and other considerations when upgrading to Gradle 9.7.1.</p>
+        <p>For Java, Groovy, Kotlin, and Android compatibility, see the <a href="userguide/compatibility.html">full compatibility notes</a>.</p>
+      </section>
+      <section class="topic">
+        <h2><a href="#new-features-and-usability-improvements" id="new-features-and-usability-improvements">New features and usability improvements</a></h2>
+        <h3><a href="#isolated-projects" id="isolated-projects">Isolated Projects</a></h3>
+        <p><a href="userguide/isolated_projects.html">Isolated Projects</a> is a performance feature that safely runs project configuration in parallel, significantly reducing configuration time in many scenarios, including IDE sync and CI builds.</p>
+        <p>Before running any task, Gradle must complete the <a href="userguide/build_lifecycle_intermediate.html">configuration phase</a>. The <a href="userguide/configuration_cache.html">Configuration Cache</a> lets repeated build invocations skip this phase entirely, but any other invocation configures every project, which is a noticeable cost in large builds. This includes IDE sync, where the configuration phase cannot be cached.</p>
+        <p>Isolated Projects accelerates the configuration phase. Today, it does so through parallelism: because each project is configured in isolation, sibling projects can be configured concurrently rather than sequentially. In the future, it will also configure projects incrementally, skipping the phase for any project whose configuration has not changed.</p>
+        <p><img src="release-notes-assets/isolated-projects.gif" alt="Isolated Projects demo"></p>
+        <p>Isolated Projects can be enabled with a new flag <code>--isolated-projects</code> on the command line, or in the properties file:</p>
+        <pre><code class="language-text"># gradle.properties
+org.gradle.isolated-projects=true
+</code></pre>
+        <p>Enabling Isolated Projects can result in <a href="userguide/isolated_projects.html#sec:behavior_changes">behavior changes</a>; the documentation describes each one and how to avoid it.</p>
+        <p>Isolated Projects serves as the foundation for future scalability work, allowing for more parallelism and reuse of work in the configuration phase.</p>
+        <h4><a href="#isolated-projects-constraints" id="isolated-projects-constraints">Isolated Projects constraints</a></h4>
+        <p>To keep builds reliable with added parallelism, project isolation must be enforced via new <a href="userguide/isolated_projects.html#sec:constraints">constraints</a> applied to the build logic. The core principle is that the configuration logic of a project cannot touch the mutable state of other projects or the build. For instance, calling <code>project(":other").tasks</code> or <code>gradle.extensions</code> is not allowed. Upon detecting a violation of the constraints, Gradle will fail the build immediately.</p>
+        <p>Initially, builds may contain many violations, and Isolated Projects includes a <a href="userguide/isolated_projects.html#sec:diagnostics_mode">Diagnostics mode</a> that lets you discover them without compromising safety.</p>
+        <pre><code class="language-text"># gradle.properties
+org.gradle.isolated-projects.diagnostics=true
+</code></pre>
+        <p>During the migration period, it can be useful to relax constraints to evaluate the performance benefit specific to your build. It is possible to dangerously ignore the violations by treating them as warnings:</p>
+        <pre><code class="language-text"># gradle.properties
+org.gradle.isolated-projects.dangerously-ignore-problems=true
+</code></pre>
+        <p>Both additional flags require Isolated Projects to be enabled to take effect.</p>
+        <p>See the <a href="userguide/isolated_projects.html#sec:constraints">Isolated Projects Constraints</a> chapter in the Gradle User Manual for more details.</p>
+        <h4><a href="#isolated-projects-is-now-incubating" id="isolated-projects-is-now-incubating">Isolated Projects is now incubating</a></h4>
+        <p>In this release, the feature transitions from being experimental to incubating. It is ready for early adopters to try and share feedback.</p>
+        <p>Follow the <a href="userguide/isolated_projects.html#sec:migration">migration</a> guide to make your build compatible with Isolated Projects.</p>
+        <p>The legacy <code>org.gradle.unsafe.isolated-projects</code> property names are now deprecated and will be removed in a future release. They continue to work as aliases for now.</p>
+        <p>The feature is not enabled by default and is not yet recommended for production use. Your build and plugins will likely need changes to meet the safety <a href="#isolated-projects-constraints">requirements</a>. Compatibility with <a href="userguide/configuration_cache.html">Configuration Cache</a> is also a prerequisite for Isolated Projects.</p>
+        <p>See the <a href="userguide/isolated_projects.html">Isolated Projects</a> documentation in the Gradle User Manual for more details.</p>
+        <h3><a href="#configuration-cache-improvements" id="configuration-cache-improvements">Configuration Cache improvements</a></h3>
+        <p>Gradle provides a <a href="userguide/configuration_cache.html">Configuration Cache</a> that improves build time by caching the result of the configuration phase and reusing it for subsequent builds.</p>
+        <h4><a href="#resolutionresult-is-fully-configuration-cache-compatible" id="resolutionresult-is-fully-configuration-cache-compatible"><code>ResolutionResult</code> is fully Configuration Cache compatible</a></h4>
+        <p>A <a href="javadoc/org/gradle/api/artifacts/result/ResolutionResult.html"><code>ResolutionResult</code></a> may now be included directly as a task input when using Configuration Cache.</p>
+        <p>This provides easy access to convenience APIs on <code>ResolutionResult</code>, avoiding the need to traverse the dependency graph manually to access them. This is useful for tasks that want to analyze the resolved dependency graph structure without needing to download the associated artifacts (JARs). For example, a task that generates a report of all resolved dependencies (such as a license report or an SBOM) can use <code>allComponents</code> directly, or a task that verifies that no dynamic versions are used can inspect <code>allDependencies</code> without manually walking the graph from the root:</p>
+        <pre><code class="language-kotlin">// Before
+abstract class PreviousTask : DefaultTask() {
+    @get:Input
+    abstract val rootComponent: Property&lt;ResolvedComponentResult&gt;
+    @get:Input
+    abstract val rootVariant: Property&lt;ResolvedVariantResult&gt;
+
+    @TaskAction
+    fun execute() {
+        // No access to APIs on ResolutionResult, requiring manual graph traversal.
+    }
+}
+
+tasks.register&lt;PreviousTask&gt;("before") {
+    rootComponent = configurations.runtimeClasspath.flatMap { it.incoming.resolutionResult.rootComponent }
+    rootVariant = configurations.runtimeClasspath.flatMap { it.incoming.resolutionResult.rootVariant }
+}
+
+// After
+abstract class NewTask : DefaultTask() {
+    @get:Input
+    abstract val resolutionResult: Property&lt;ResolutionResult&gt;
+
+    @TaskAction
+    fun traverse() {
+        // Access to convenience APIs on ResolutionResult.
+        resolutionResult.get().allDependencies
+        resolutionResult.get().allComponents
+    }
+}
+
+tasks.register&lt;NewTask&gt;("after") {
+    resolutionResult = configurations.runtimeClasspath.map { it.incoming.resolutionResult }
+}
+</code></pre>
+        <p>Previously, the root <a href="javadoc/org/gradle/api/artifacts/result/ResolvedComponentResult.html"><code>ResolvedComponentResult</code></a> and <a href="javadoc/org/gradle/api/artifacts/result/ResolvedVariantResult.html"><code>ResolvedVariantResult</code></a> needed to be extracted and included on the task separately.</p>
+        <h4><a href="#third-party-java-agents-work-with-the-configuration-cache-in-testkit" id="third-party-java-agents-work-with-the-configuration-cache-in-testkit">Third-party Java agents work with the Configuration Cache in TestKit</a></h4>
+        <p><a href="userguide/test_kit.html">TestKit</a> lets plugin authors functionally test their build logic by running real builds with <code>GradleRunner</code>. A common setup attaches a Java agent to the build JVM, for example the JaCoCo coverage agent to measure code coverage of the plugin under test.</p>
+        <p>Previously, attaching a third-party agent with the Configuration Cache enabled was unsupported and could produce spurious Configuration Cache problem reports, forcing plugin authors to choose between coverage measurement and testing their plugin under the Configuration Cache.</p>
+        <p>The Configuration Cache now supports third-party <code>-javaagent:</code> attachments to the build JVM in regular daemon builds and in TestKit's default daemon mode:</p>
+        <pre><code class="language-text"># gradle.properties of the build under test
+org.gradle.jvmargs=-javaagent:/path/to/jacocoagent.jar=destfile=build/jacoco/functionalTest.exec
+</code></pre>
+        <p>Only agents attached at JVM startup are supported, and TestKit's embedded mode (<code>withDebug(true)</code>) remains unsupported; to debug the build under test, use <code>-Dorg.gradle.debug=true</code> and attach the debugger manually.</p>
+        <p>See the <a href="userguide/configuration_cache_requirements.html#config_cache:requirements:java_agent">Third-party Java Agents with the Configuration Cache</a> section in the Gradle User Manual for more details.</p>
+        <h4><a href="#fewer-spurious-configuration-cache-invalidations-in-intellij-idea" id="fewer-spurious-configuration-cache-invalidations-in-intellij-idea">Fewer spurious Configuration Cache invalidations in IntelliJ IDEA</a></h4>
+        <p>Gradle sets the <code>idea.io.use.nio2</code> system property to speed up file I/O in the Kotlin compiler when compiling <code>.gradle.kts</code> scripts.</p>
+        <p>Previously, the property was set only when a build actually compiled scripts, so its value differed between builds that compiled scripts and builds that reused already-compiled ones. Because system properties read at configuration time are <a href="userguide/configuration_cache.html#config_cache:intro:build_configuration_inputs">build configuration inputs</a>, this alternation discarded otherwise reusable cache entries, which IntelliJ IDEA and Android Studio users saw as frequent unexplained cache misses:</p>
+        <pre><code class="language-text">Calculating task graph as configuration cache cannot be reused because system property 'idea.io.use.nio2' has changed.
+</code></pre>
+        <p>Gradle now sets the property at the start of every build, so its value stays stable and the Configuration Cache entry is reused.</p>
+        <p>This resolves <a href="https://github.com/gradle/gradle/issues/30145">one of the most highly-voted Configuration Cache issues</a>.</p>
+        <h3><a href="#tooling-and-ide-integration" id="tooling-and-ide-integration">Tooling and IDE integration</a></h3>
+        <p>Gradle provides <a href="userguide/third_party_integration.html">Tooling APIs</a> that facilitate deep integration with modern IDEs and CI/CD pipelines.</p>
+        <h4><a href="#resilient-sync-for-ide-integration" id="resilient-sync-for-ide-integration">Resilient sync for IDE integration</a></h4>
+        <p>When an IDE syncs a Gradle build, it queries tooling models through the <a href="userguide/tooling_api.html">Tooling API</a>.</p>
+        <p>With resilient sync, Gradle builds and returns models for as much of the build as it can configure and reports the rest as structured failures, so an IDE can keep assisting you with the healthy parts of the build while you repair what is broken. In particular, Gradle can now provide:</p>
+        <ul>
+          <li>A partial build model listing the projects Gradle could discover, even when the settings script or a settings plugin fails to configure.</li>
+          <li>A partial Kotlin DSL scripts model carrying the classpath and imports for the build scripts Gradle could resolve, even when other build logic is broken, so those scripts keep their editor assistance.</li>
+          <li>Other models for the individual included builds or <code>buildSrc</code> that configured successfully before a failure elsewhere in the build.</li>
+        </ul>
+        <p>Tooling API clients opt into this behavior by querying models through the incubating <a href="javadoc/org/gradle/tooling/BuildController.html#fetch(java.lang.Class)"><code>BuildController.fetch(...)</code></a> method, which returns each model together with any failures encountered instead of aborting the operation.</p>
+        <p>In this release, a resilient sync reports the operation as failed when any part of it fails, so the reported build status is accurate, while the partial models are still delivered to the client's intermediate result handlers before the failure is raised.</p>
+        <p>Resilient sync is <a href="userguide/feature_lifecycle.html">incubating</a>. The resilient behavior is available in IntelliJ IDEA 2026.2.</p>
+        <p>See the <a href="userguide/tooling_api.html#sec:embedding_resilient_sync">Resilient sync</a> section in the Gradle User Manual for more details.</p>
+        <h3><a href="#test-reporting-and-execution" id="test-reporting-and-execution">Test reporting and execution</a></h3>
+        <p>Gradle provides a <a href="userguide/java_testing.html">set of features and abstractions</a> for testing JVM code, along with test reports to display results.</p>
+        <h4><a href="#test-framework-initialization-failures-for-testng-junit-4-and-junit-platform-are-always-logged-to-the-console" id="test-framework-initialization-failures-for-testng-junit-4-and-junit-platform-are-always-logged-to-the-console">Test framework initialization failures for TestNG, JUnit 4, and JUnit Platform are always logged to the console</a></h4>
+        <p>Gradle's <a href="userguide/java_testing.html#sec:test_logging">test logging</a> now surfaces test-framework startup failures from TestNG, JUnit 4, and JUnit Platform even when the default granularity would otherwise hide them.</p>
+        <p>Previously, when these frameworks failed to initialize (for example, when a TestNG test class threw an exception from its constructor, a JUnit 4 suite could not be started, or a Jupiter <code>@BeforeAll</code> lifecycle hook aborted a container) the failure was silently filtered out by the default granularity. Users would see only <code>&gt; There were failing tests</code> and had to read the XML report to find the underlying cause:</p>
+        <pre><code class="language-text">&gt; Task :test FAILED
+
+&gt; There were failing tests. See the report at: file:///.../build/reports/tests/test/index.html
+
+FAILURE: Build failed with an exception.
+</code></pre>
+        <p>These framework-startup failures now bypass the granularity filter and are always written to the console by default:</p>
+        <pre><code class="language-text">&gt; Task :test
+
+ExampleTest &gt; initializationError FAILED
+    framework-startup org.testng.TestNGException: Cannot instantiate class ExampleTest
+        at org.testng.internal.ObjectFactoryImpl.newInstance(...)
+        ...
+</code></pre>
+        <p>The <code>testLogging.events</code> predicate still applies; explicitly silencing <code>FAILED</code> events is honored.</p>
+        <p>The new <code>TestFailureDetails.isFrameworkFailure()</code> predicate exposes this distinction to Tooling-API and Build-Scan consumers, who may render framework-startup failures differently from ordinary test failures.</p>
+        <p>See the <a href="userguide/java_testing.html#sec:test_logging">Test logging</a> section in the Gradle User Manual for more details.</p>
+        <h4><a href="#testng-threadpoolfactoryclass-works-with-testng-710-and-later" id="testng-threadpoolfactoryclass-works-with-testng-710-and-later">TestNG <code>threadPoolFactoryClass</code> works with TestNG 7.10 and later</a></h4>
+        <p>TestNG 7.10 replaced its thread-pool factory setter (<code>setExecutorFactoryClass(String)</code>) with a new API (<code>setExecutorServiceFactory(IExecutorServiceFactory)</code>). This release adds support for thread pool factories that implement this API on supported TestNG versions.</p>
+        <p>Gradle now detects which API the runtime TestNG version exposes and handles it accordingly:</p>
+        <ul>
+          <li>On TestNG 7.10 and later, the configured class must implement <code>org.testng.IExecutorServiceFactory</code>.</li>
+          <li>On TestNG 7.0 through 7.9, the configured class must implement <code>org.testng.thread.IExecutorFactory</code>.</li>
+        </ul>
+        <p>The test task configuration remains unchanged; only the interface the user-supplied class must implement differs across TestNG versions:</p>
+        <pre><code class="language-kotlin">tasks.named&lt;Test&gt;("test") {
+    useTestNG {
+        threadPoolFactoryClass = "com.example.MyExecutorServiceFactory"
+    }
+}
+</code></pre>
+        <h3><a href="#cli-logging-and-problem-reporting" id="cli-logging-and-problem-reporting">CLI, logging, and problem reporting</a></h3>
+        <p>Gradle provides an intuitive <a href="userguide/command_line_interface.html">command-line interface</a>, detailed <a href="userguide/logging.html">logs</a>, and a structured <a href="userguide/reporting_problems.html#sec:generated_html_report">problems report</a> that helps developers quickly identify and resolve build issues.</p>
+        <h4><a href="#source-locations-for-more-problems" id="source-locations-for-more-problems">Source locations for more problems</a></h4>
+        <p>Gradle infers a <a href="userguide/reporting_problems.html">problem's</a> source location from a captured stack trace. Because capture is expensive, only the first 50 problems per build received one, so builds that report many problems (especially deprecations) left most of them without a file and line number.</p>
+        <p>In this release, the first 50 problems still get full stack traces. Past that cap, Gradle now uses a much cheaper capture to attach a source location to up to 2000 more problems, at negligible cost.</p>
+        <p>As a result, the <a href="userguide/command_line_interface.html">console</a>, the <a href="userguide/reporting_problems.html#sec:generated_html_report">problems report</a>, and the <a href="userguide/third_party_integration.html">Tooling API</a> show a source location for many more problems than before.</p>
+        <p><img src="release-notes-assets/problems-locations.png" alt="Problems report listing many problems with their source locations"></p>
+        <p>Run with <code>--warning-mode=all</code> to remove the limit and capture a source location for every problem. Past the cap, including under <code>--warning-mode=all</code> and <code>fail</code>, the capture keeps the originating build logic down to the calling script, enough to locate the problem, rather than the full call chain.</p>
+        <p>See the <a href="userguide/command_line_interface.html#sec:command_line_warnings">CLI reference</a> in the Gradle User Manual for more details.</p>
+        <h3><a href="#security-and-infrastructure" id="security-and-infrastructure">Security and infrastructure</a></h3>
+        <p>Gradle provides robust <a href="userguide/security.html">security features and underlying infrastructure</a> to ensure that builds are secure, reproducible, and easy to maintain.</p>
+        <h4><a href="#document-the-origin-and-reason-of-trusted-pgp-keys" id="document-the-origin-and-reason-of-trusted-pgp-keys">Document the origin and reason of trusted PGP keys</a></h4>
+        <p>Gradle's <a href="userguide/dependency_verification.html">dependency verification</a> helps you mitigate security risks by ensuring downloaded artifacts match expected checksums or are signed with trusted keys.</p>
+        <p>Dependency verification metadata already lets you <a href="userguide/dependency_verification.html#sec:trusting-artifacts">annotate checksums</a> with <code>origin</code> and <code>reason</code> attributes to document where a checksum was obtained and why it is trusted.</p>
+        <p>Starting with this release, the same <code>origin</code> and <code>reason</code> attributes are also supported on the <code>&lt;trusted-key&gt;</code> and <code>&lt;pgp&gt;</code> elements, so you can record where a public key was verified (for example, the URL it was downloaded from) directly alongside the key:</p>
+        <pre><code class="language-xml">&lt;trusted-keys&gt;
+   &lt;trusted-key id="8756c4f765c9ac3cb6b85d62379ce192d401ab61"
+                group="com.github.javaparser"
+                origin="https://keyserver.ubuntu.com"
+                reason="Verified against the maintainer's website"/&gt;
+&lt;/trusted-keys&gt;
+</code></pre>
+        <p>These attributes are purely informational: Gradle preserves them across read/write cycles but never uses them during verification. Existing verification metadata files continue to be read without changes; files written by this version of Gradle use the new <code>dependency-verification-1.4.xsd</code> schema.</p>
+        <h4><a href="#dependency-verification-reports-other-trusted-keys-for-the-same-module-or-group" id="dependency-verification-reports-other-trusted-keys-for-the-same-module-or-group">Dependency verification reports other trusted keys for the same module or group</a></h4>
+        <p>When <a href="userguide/dependency_verification.html">dependency verification</a> fails because an artifact was signed with a key that could not be found on any key server, it can be hard to tell whether you are pulling a brand-new dependency for the first time or whether a previously trusted dependency has had its signing key rotated.</p>
+        <p>Gradle now appends the number of other keys you already trust for the failing artifact to the message, distinguishing keys trusted for the specific <code>group:module</code> from keys trusted for the whole <code>group</code>:</p>
+        <pre><code class="language-text">&gt; On artifact foo-1.0.jar (org:foo:1.0) in repository 'maven': Artifact was signed with key '14F53F0824875D73' but it wasn't found in any key server so it couldn't be verified (1 other key is already trusted for module 'org:foo'; 3 other keys are already trusted for group 'org')
+</code></pre>
+        <p>A non-zero count is a strong signal that the signing key has been rotated rather than that you are trusting the module or group for the first time, making it easier to react appropriately. This note now appears in both the console output and the generated HTML verification report.</p>
+        <p>See the <a href="userguide/dependency_verification.html#sec:signature-verification">Verifying dependency signatures</a> section in the Gradle User Manual for more details.</p>
+        <h3><a href="#build-authoring-improvements" id="build-authoring-improvements">Build authoring improvements</a></h3>
+        <p>Gradle provides <a href="userguide/getting_started_dev.html">rich APIs</a> for build engineers and plugin authors, enabling the creation of custom, reusable build logic and better maintainability.</p>
+        <h4><a href="#custom-timestamps-for-reproducible-archives" id="custom-timestamps-for-reproducible-archives">Custom timestamps for reproducible archives</a></h4>
+        <p>Gradle produces <a href="userguide/working_with_files.html#sec:reproducible_archives">reproducible archives</a> by default, using fixed timestamps for all entries. However, some environments, such as those following the <a href="https://reproducible-builds.org/specs/source-date-epoch/">SOURCE_DATE_EPOCH</a> specification, require a meaningful, verifiable timestamp rather than a fixed default.</p>
+        <p>Archive tasks now support a <a href="userguide/working_with_files.html#sec:reproducible_timestamp"><code>reproducibleFileTimestamp</code></a> property that lets you set a custom timestamp for every entry in the archive:</p>
+        <pre><code class="language-kotlin">import java.time.Instant
+
+tasks.withType&lt;AbstractArchiveTask&gt;().configureEach {
+    reproducibleFileTimestamp = providers.environmentVariable("SOURCE_DATE_EPOCH").map {
+        Instant.ofEpochSecond(it.toLong()).toEpochMilli()
+    }
+}
+</code></pre>
+        <p>See the <a href="userguide/working_with_files.html#sec:reproducible_timestamp">Timestamp for files inside archives</a> section in the Gradle User Manual for more details.</p>
+        <h4><a href="#new-apis-on-resolvedartifactresult" id="new-apis-on-resolvedartifactresult">New APIs on <code>ResolvedArtifactResult</code></a></h4>
+        <p>The <a href="javadoc/org/gradle/api/artifacts/result/ResolvedArtifactResult.html#getAttributes()"><code>ResolvedArtifactResult.getAttributes()</code></a> and <a href="javadoc/org/gradle/api/artifacts/result/ResolvedArtifactResult.html#getCapabilities()"><code>ResolvedArtifactResult.getCapabilities()</code></a> methods have been introduced to provide access to the attributes and capabilities of a resolved artifact without going through the <a href="javadoc/org/gradle/api/artifacts/result/ResolvedArtifactResult.html#getVariant()"><code>ResolvedArtifactResult.getVariant()</code></a> method. <code>ResolvedArtifactResult.getVariant()</code> is still available, but will be deprecated in a future release.</p>
+        <h4><a href="#new-getinputstream-method-on-buildcacheentrywriter" id="new-getinputstream-method-on-buildcacheentrywriter">New <code>getInputStream()</code> method on <code>BuildCacheEntryWriter</code></a></h4>
+        <p>Authors of custom <a href="javadoc/org/gradle/caching/BuildCacheService.html"><code>BuildCacheService</code></a> implementations can now obtain cache entry content as an <code>InputStream</code> via <a href="javadoc/org/gradle/caching/BuildCacheEntryWriter.html#getInputStream()"><code>BuildCacheEntryWriter.getInputStream()</code></a>, as an alternative to writing to an <code>OutputStream</code> via <code>writeTo</code>. Consuming an <code>InputStream</code> can be more efficient for I/O, especially for asynchronous HTTP clients.</p>
+        <h4><a href="#new-lazy-element-provider-for-domain-object-collections" id="new-lazy-element-provider-for-domain-object-collections">New lazy element provider for Domain Object Collections</a></h4>
+        <p><a href="javadoc/org/gradle/api/DomainObjectCollection.html#getElements()"><code>DomainObjectCollection.getElements()</code></a> returns a <code>Provider&lt;? extends Collection&lt;T&gt;&gt;</code> and acts as an important bridge between the <a href="userguide/collections.html">Domain Object Collection</a> and <a href="userguide/properties_providers.html">Provider APIs</a>. This API is similar to the existing <a href="javadoc/org/gradle/api/file/FileCollection.html#getElements()"><code>FileCollection.getElements()</code></a> method.</p>
+        <p>The returned provider carries build dependencies, meaning dependencies carried by providers added via <code>addLater</code> and <code>addAllLater</code> are reflected in the returned <code>elements</code> provider:</p>
+        <pre><code class="language-kotlin">val container = objects.domainObjectSet(MyType::class.java)
+container.addLater(someProvider)
+
+// Lazily access all elements as a Provider
+val allElements: Provider&lt;out Collection&lt;MyType&gt;&gt; = container.elements
+
+tasks.register("process") {
+    inputs.property("items", allElements)
+    doLast {
+        println(allElements.get())
+    }
+}
+</code></pre>
+        <p>See the <a href="userguide/collections.html#collection_types">Collections</a> section in the Gradle User Manual for more details.</p>
+        <h4><a href="#java-toolchain-support-for-groovydoc" id="java-toolchain-support-for-groovydoc">Java toolchain support for Groovydoc</a></h4>
+        <p>The <a href="dsl/org.gradle.api.tasks.javadoc.Groovydoc.html"><code>Groovydoc</code></a> task now supports <a href="userguide/toolchains.html">Java toolchains</a>, aligning it with <code>GroovyCompile</code>, <code>Javadoc</code>, and <code>ScalaDoc</code>. By default the task uses the project's configured toolchain, and it can also be configured per-task:</p>
+        <pre><code class="language-kotlin">tasks.named&lt;Groovydoc&gt;("groovydoc") {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+</code></pre>
+        <p>As <code>Groovydoc</code> now runs in a separate worker process, a new incubating <code>maxMemory</code> property is available to control the heap size of that process for larger code bases:</p>
+        <pre><code class="language-kotlin">tasks.named&lt;Groovydoc&gt;("groovydoc") {
+    maxMemory = "1g"
+}
+</code></pre>
+        <h4><a href="#lazy-variants-of-common-filedir-properties-on-built-in-tasks" id="lazy-variants-of-common-filedir-properties-on-built-in-tasks">Lazy variants of common <code>File</code>/<code>Dir</code> properties on built-in tasks</a></h4>
+        <p>Several built-in Gradle task types and extensions now expose <a href="userguide/working_with_files.html#sec:lazy_file_property_variants">renamed lazy variants</a> of file and directory properties that were originally declared with eager <code>File</code> getters.</p>
+        <p>Where previously you had to work around <code>Javadoc.getDestinationDir(): File</code>, <code>War.getWebXml(): File</code>, <code>CreateStartScripts.getOutputDir(): File</code>, and similar getters when composing lazy build logic, you can now configure <code>destinationDirectory</code>, <code>webXmlFile</code>, <code>outputDirectory</code>, and other lazy siblings directly.</p>
+        <p>The original eager getters remain as backward-compatible bridges so that existing builds need no changes, and the two getters share the same underlying state, so a value set through one is observable through the other.</p>
+        <pre><code class="language-kotlin">tasks.named&lt;Javadoc&gt;("javadoc") {
+    // New lazy variant: wire from another provider without forcing eager evaluation.
+    destinationDirectory = layout.buildDirectory.dir("docs/javadoc")
+}
+</code></pre>
+        <p>Fourteen properties across <code>Javadoc</code>, <code>Groovydoc</code>, <code>ScalaDoc</code>, <code>War</code>, <code>CreateStartScripts</code>, <code>GenerateIvyDescriptor</code>, <code>GenerateMavenPom</code>, <code>GroovyCompileOptions</code>, <code>JacocoTaskExtension</code>, <code>CodeQualityExtension</code>, and <code>ProcessForkOptions</code> are covered.</p>
+        <p>The new lazy getters are <a href="userguide/feature_lifecycle.html#feature_preview">incubating</a> and their signatures may change in a future release.</p>
+        <p>See the <a href="userguide/working_with_files.html#sec:lazy_file_property_variants">Lazy file property variants on built-in tasks</a> section in the Gradle User Manual for the full list.</p>
+        <h3><a href="#performance-improvements" id="performance-improvements">Performance improvements</a></h3>
+        <p>Gradle continuously improves <a href="userguide/performance.html">build performance</a> through caching, parallelism, and reduced overhead across all phases of the build.</p>
+        <h4><a href="#kotlin-dsl-accessor-generation-is-no-longer-stored-in-the-build-cache" id="kotlin-dsl-accessor-generation-is-no-longer-stored-in-the-build-cache">Kotlin DSL accessor generation is no longer stored in the build cache</a></h4>
+        <p>Generating the <a href="userguide/kotlin_dsl.html#type-safe-accessors">type-safe Kotlin DSL accessors</a> for a project produces Kotlin source files. For some projects those files can be sizeable, but their generation is fast.</p>
+        <p>Storing and fetching those files adds its own overhead when the <a href="userguide/build_cache.html#build_cache">Build Cache</a> is in use. That overhead alone is comparable to or higher than the cost of just regenerating the accessors. Gradle therefore no longer stores Kotlin DSL accessor generation in the Build Cache by default.</p>
+        <p>Builds that use a remote Build Cache will regenerate accessors locally instead of downloading them; in-build deduplication of accessor generation is unaffected. Kotlin DSL script compilation continues to be cached as before.</p>
+        <p>See the <a href="userguide/kotlin_dsl.html#type-safe-accessors">Type-safe model accessors</a> section in the Gradle User Manual for more details.</p>
+        <h4><a href="#file-system-watching-now-works-with-a-custom-project-cache-directory" id="file-system-watching-now-works-with-a-custom-project-cache-directory">File system watching now works with a custom project cache directory</a></h4>
+        <p><a href="userguide/file_system_watching.html">File system watching</a> lets Gradle skip work between builds by tracking file changes from the operating system. The project cache directory, by default <code>.gradle/</code> in the root project, stores per-project state that Gradle reuses across builds.</p>
+        <p>Some teams move this state out of the project tree using <code>--project-cache-dir</code> or <code>org.gradle.projectcachedir</code>, for example to keep build state on a separate or faster file system, or to share a project across users on CI. Until now, doing so was incompatible with file system watching, so these users could not benefit from it.</p>
+        <p>Gradle has decoupled the two. File system watching works with any project cache directory location, including one on a file system that does not support watching:</p>
+        <pre><code class="language-bash">$ ./gradlew build --watch-fs --project-cache-dir /custom/path
+</code></pre>
+        <p>See the <a href="userguide/file_system_watching.html#sec:excluding_files_and_directories">Excluding files and directories</a> section in the Gradle User Manual for more details.</p>
+        <h3><a href="#dependency-management-enhancements" id="dependency-management-enhancements">Dependency management enhancements</a></h3>
+        <p>Gradle provides a flexible <a href="userguide/getting_started_dep_man.html">dependency management</a> engine for declaring, resolving, and verifying the dependencies your build needs.</p>
+        <h4><a href="#preview-improved-dependency-resolution-ordering" id="preview-improved-dependency-resolution-ordering">Preview improved dependency resolution ordering</a></h4>
+        <p>When Gradle resolves a <a href="userguide/dependency_configurations.html">configuration</a>, the order of the resulting artifacts, such as entries on a JVM classpath, is determined by how the dependency graph is traversed.</p>
+        <p>Previously, <a href="userguide/dependency_constraints.html">dependency constraints</a> participated in that traversal, so adding or updating a constraint (for example, from a platform or a lockfile) could unexpectedly reorder the classpath even though constraints contribute no artifacts of their own.</p>
+        <p>The new <code>ENHANCED_GRAPH_ORDERING</code> feature preview opts into the ordering behavior that will become the default in Gradle 10:</p>
+        <ul>
+          <li><code>DEFAULT</code> uses a standard breadth-first ordering, placing dependencies closer to the root earlier on the classpath. This option results in the most predictable dependency ordering.</li>
+          <li><code>CONSUMER_FIRST</code> traverses the graph topologically, sorting artifacts before those that they depend on.</li>
+          <li><code>DEPENDENCY_FIRST</code> is the reverse of <code>CONSUMER_FIRST</code>.</li>
+        </ul>
+        <p>All sort orders ignore constraint edges when traversing the resolved graph, so constraints no longer affect artifact ordering.</p>
+        <p>Enable this preview in your settings file to try the new behavior and report any issues before it becomes the default in Gradle 10:</p>
+        <pre><code class="language-kotlin">// settings.gradle.kts
+enableFeaturePreview("ENHANCED_GRAPH_ORDERING")
+</code></pre>
+        <p>See the <a href="userguide/upgrading_version_9.html#dependency_resolution_ordering">upgrade guide</a> for more details.</p>
+      </section>
+      <section class="topic">
+        <h2><a href="#promoted-features" id="promoted-features">Promoted features</a></h2>
+        <p>Promoted features are features that were incubating in previous versions of Gradle but are now supported and subject to backward compatibility. See the User Manual section on the "<a href="userguide/feature_lifecycle.html">Feature Lifecycle</a>" for more information.</p>
+        <p>The following are the features that have been promoted in this Gradle release.</p>
+        <ul>
+          <li><a href="javadoc/org/gradle/api/artifacts/dsl/DependencyHandler.html#project()"><code>project()</code></a> in <code>DependencyHandler</code></li>
+          <li><a href="javadoc/org/gradle/api/artifacts/dsl/DependencyHandler.html#project(java.lang.String)"><code>project(String)</code></a> in <code>DependencyHandler</code></li>
+          <li><a href="javadoc/org/gradle/api/artifacts/dsl/DependencyFactory.html#createProjectDependency()"><code>createProjectDependency()</code></a> in <code>DependencyFactory</code></li>
+          <li><a href="javadoc/org/gradle/api/artifacts/dsl/DependencyFactory.html#createProjectDependency(java.lang.String)"><code>createProjectDependency(String)</code></a> in <code>DependencyFactory</code></li>
+        </ul>
+      </section>
+      <section class="topic">
+        <h2><a href="#documentation-and-training" id="documentation-and-training">Documentation and training</a></h2>
+        <h3><a href="#user-manual" id="user-manual">User Manual</a></h3>
+        <p>The <a href="userguide/best_practices.html">Best Practices</a> chapter grew significantly with guidance covering task authoring, lazy properties, dependency configuration, and CI hygiene:</p>
+        <ul>
+          <li><a href="userguide/best_practices_tasks.html#dont_hardcode_task_names">Do not hardcode task names</a> unless they are documented as public API.</li>
+          <li><a href="userguide/best_practices_tasks.html#dont_access_project_instance_inside_task">Don't access the <code>Project</code> instance from a task action</a> for Configuration Cache compliance.</li>
+          <li><a href="userguide/best_practices_tasks.html#map_versus_flatmap">Wire lazy task outputs using <code>map</code> and <code>flatMap</code></a> to preserve task dependencies through Provider chains.</li>
+          <li><a href="userguide/best_practices_dependencies.html#use_attributes_on_configurations">Always declare attributes on consumable and resolvable configurations</a> so downstream selection is deterministic.</li>
+          <li><a href="userguide/best_practices_general.html#consider_use_of_incubating_apis_carefully">Consider use of <code>@Incubating</code> APIs carefully</a> before adopting them in production build logic.</li>
+          <li><a href="userguide/best_practices_security.html#builds_should_be_reproducible">Build output should be byte-for-byte reproducible</a>.</li>
+          <li><a href="userguide/best_practices_security.html#run_gradle_on_external_projects">Do not run <code>./gradlew</code> on untrusted projects</a>.</li>
+        </ul>
+        <p>The <a href="userguide/configuration_cache.html">Configuration Cache</a> chapter received a substantial pass this release, including a reorganised main page, expanded coverage of <a href="userguide/configuration_cache_enabling.html">warn mode</a>, refined guidance on <a href="userguide/configuration_cache_requirements.html"><code>BuildServiceParameters</code></a>, a clearer explanation of how <a href="userguide/configuration_cache_requirements.html">dependency resolution types</a> interact with the cache, and improved Javadoc on the Configuration Cache classes themselves.</p>
+        <h3><a href="#training" id="training">Training</a></h3>
+        <p>The following course is now available:</p>
+        <ul>
+          <li><a href="https://dpeuniversity.gradle.com/app/courses/130bcfec-3b08-42fb-b8e2-bc310626fc54">Securing Gradle Builds</a> - a new DPE University course on protecting builds from supply-chain attacks with trusted repositories, dependency verification, and wrapper validation (<a href="https://www.youtube.com/watch?v=L3OC8alxEJo">YouTube video</a>).</li>
+        </ul>
+      </section>
+      <section class="topic">
+        <h2><a href="#fixed-issues" id="fixed-issues">Fixed issues</a></h2>
+      </section>
+      <section class="topic">
+        <h2><a href="#known-issues" id="known-issues">Known issues</a></h2>
+        <p>Known issues are problems that were discovered post-release that are directly related to changes made in this release.</p>
+      </section>
+      <section class="topic">
+        <h2><a href="#external-contributions" id="external-contributions">External contributions</a></h2>
+        <p>We love getting contributions from the Gradle community. For information on contributing, please see <a href="https://gradle.org/contribute">gradle.org/contribute</a>.</p>
+      </section>
+      <section class="topic">
+        <h2><a href="#reporting-problems" id="reporting-problems">Reporting problems</a></h2>
+        <p>If you find a problem with this release, please file a bug on <a href="https://github.com/gradle/gradle/issues">GitHub Issues</a> adhering to our issue guidelines. If you're not sure if you're encountering a bug, please use the <a href="https://discuss.gradle.org/c/help-discuss">forum</a>.</p>
+        <p>We hope you will build happiness with Gradle, and we look forward to your feedback via <a href="https://twitter.com/gradle">Twitter</a> or on <a href="https://github.com/gradle">GitHub</a>.</p>
+      </section>
+    </div>
+  </body>
+</html>

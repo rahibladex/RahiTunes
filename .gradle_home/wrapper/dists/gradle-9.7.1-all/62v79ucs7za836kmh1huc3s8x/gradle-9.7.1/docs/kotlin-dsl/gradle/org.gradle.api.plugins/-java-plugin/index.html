@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>JavaPlugin</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../styles/gradle.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    gradle
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+9.7.1        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":docs/java_api">API</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":docs/java_api"
+                                       data-filter=":docs/java_api"/>
+                                <span class="checkbox--icon"></span>
+                                API
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    gradle
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="gradle::org.gradle.api.plugins/JavaPlugin///PointingToDeclaration//-1793262594">
+  <div class="breadcrumbs"><a href="../../../index.html">gradle</a><span class="delimiter">/</span><a href="../index.html">org.gradle.api.plugins</a><span class="delimiter">/</span><span class="current">JavaPlugin</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Java</span><wbr></wbr><span><span>Plugin</span></span></h1>
+    <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+      <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">JavaPlugin</a> : <a href="../../org.gradle.api/-plugin/index.html">Plugin</a><span class="token operator">&lt;</span><a href="../../org.gradle.api/-project/index.html">Project</a><span class="token operator">&gt; </span><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/gradle/gradle/blob/92f0512e7f06d84621afba191f75e265363890cf/platforms/jvm/plugins-java/src/main/java//org/gradle/api/plugins/JavaPlugin.java#L73">source</a>)</span></span></div><p class="paragraph">A <a href="../../org.gradle.api/-plugin/index.html">Plugin</a> which compiles and tests Java source, and assembles it into a JAR file.</p> This plugin creates a built-in <a href="../../org.gradle.api.plugins.jvm/-jvm-test-suite/index.html">test suite</a> named <code class="lang-java">test</code> that represents the <a href="../../org.gradle.api.tasks.testing/-test/index.html">Test</a> task for Java projects.<h4 class="tableheader">See also</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div></div></span></div><div><div class="title"><p class="paragraph"><a href="https://docs.gradle.org/current/userguide/jvm_test_suite_plugin.html">JVM test suite plugin reference</a></p></div></div></div></div></div></div>    </div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1515366802%2FConstructors%2F-1793262594" anchor-label="JavaPlugin" id="-1515366802%2FConstructors%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-java-plugin.html"><span>Java</span><wbr></wbr><span><span>Plugin</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1515366802%2FConstructors%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="javax.inject/Inject///PointingToDeclaration/"><span class="token annotation builtin">Inject</span></span></div></div><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-1965851354%2FProperties%2F-1793262594" anchor-label="ANNOTATION_PROCESSOR_CONFIGURATION_NAME" id="-1965851354%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-n-n-o-t-a-t-i-o-n_-p-r-o-c-e-s-s-o-r_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>ANNOTATION_</span><wbr></wbr><span>PROCESSOR_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1965851354%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-a-n-n-o-t-a-t-i-o-n_-p-r-o-c-e-s-s-o-r_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">ANNOTATION_PROCESSOR_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;annotationProcessor&quot;</span></div><div class="brief ">The name of the annotation processor configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1147754314%2FProperties%2F-1793262594" anchor-label="API_CONFIGURATION_NAME" id="1147754314%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-p-i_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>API_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1147754314%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-a-p-i_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">API_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;api&quot;</span></div><div class="brief ">The name of the API configuration, where dependencies exported by a component at compile time should be declared.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-802978208%2FProperties%2F-1793262594" anchor-label="API_ELEMENTS_CONFIGURATION_NAME" id="-802978208%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-p-i_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>API_</span><wbr></wbr><span>ELEMENTS_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-802978208%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-a-p-i_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">API_ELEMENTS_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;apiElements&quot;</span></div><div class="brief ">The name of the configuration to define the API elements of a component.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="270293323%2FProperties%2F-1793262594" anchor-label="CLASSES_TASK_NAME" id="270293323%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-l-a-s-s-e-s_-t-a-s-k_-n-a-m-e.html"><span>CLASSES_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="270293323%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-c-l-a-s-s-e-s_-t-a-s-k_-n-a-m-e.html">CLASSES_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;classes&quot;</span></div><div class="brief ">The name of the lifecycle task which outcome is that all the classes of a component are generated.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1761837407%2FProperties%2F-1793262594" anchor-label="COMPILE_CLASSPATH_CONFIGURATION_NAME" id="-1761837407%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-m-p-i-l-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>COMPILE_</span><wbr></wbr><span>CLASSPATH_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1761837407%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-c-o-m-p-i-l-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">COMPILE_CLASSPATH_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;compileClasspath&quot;</span></div><div class="brief ">The name of the compile classpath configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="728272783%2FProperties%2F-1793262594" anchor-label="COMPILE_JAVA_TASK_NAME" id="728272783%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-m-p-i-l-e_-j-a-v-a_-t-a-s-k_-n-a-m-e.html"><span>COMPILE_</span><wbr></wbr><span>JAVA_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="728272783%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-c-o-m-p-i-l-e_-j-a-v-a_-t-a-s-k_-n-a-m-e.html">COMPILE_JAVA_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;compileJava&quot;</span></div><div class="brief ">The name of the task which compiles Java sources.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2008077527%2FProperties%2F-1793262594" anchor-label="COMPILE_ONLY_API_CONFIGURATION_NAME" id="2008077527%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-m-p-i-l-e_-o-n-l-y_-a-p-i_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>COMPILE_</span><wbr></wbr><span>ONLY_</span><wbr></wbr><span>API_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2008077527%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-c-o-m-p-i-l-e_-o-n-l-y_-a-p-i_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">COMPILE_ONLY_API_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;compileOnlyApi&quot;</span></div><div class="brief ">The name of the configuration to define the API elements of a component that are required to compile a component, but not at runtime.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1875174116%2FProperties%2F-1793262594" anchor-label="COMPILE_ONLY_CONFIGURATION_NAME" id="-1875174116%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-m-p-i-l-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>COMPILE_</span><wbr></wbr><span>ONLY_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1875174116%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-c-o-m-p-i-l-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">COMPILE_ONLY_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;compileOnly&quot;</span></div><div class="brief ">The name of the configuration that is used to declare dependencies which are only required to compile a component, but not at runtime.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1280393938%2FProperties%2F-1793262594" anchor-label="COMPILE_TEST_JAVA_TASK_NAME" id="-1280393938%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-m-p-i-l-e_-t-e-s-t_-j-a-v-a_-t-a-s-k_-n-a-m-e.html"><span>COMPILE_</span><wbr></wbr><span>TEST_</span><wbr></wbr><span>JAVA_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1280393938%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-c-o-m-p-i-l-e_-t-e-s-t_-j-a-v-a_-t-a-s-k_-n-a-m-e.html">COMPILE_TEST_JAVA_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;compileTestJava&quot;</span></div><div class="brief ">The name of the task which compiles the test Java sources.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="275353846%2FProperties%2F-1793262594" anchor-label="IMPLEMENTATION_CONFIGURATION_NAME" id="275353846%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-m-p-l-e-m-e-n-t-a-t-i-o-n_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>IMPLEMENTATION_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="275353846%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-i-m-p-l-e-m-e-n-t-a-t-i-o-n_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">IMPLEMENTATION_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;implementation&quot;</span></div><div class="brief ">The name of the implementation configuration, where dependencies that are only used internally by a component should be declared.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-365006794%2FProperties%2F-1793262594" anchor-label="JAR_TASK_NAME" id="-365006794%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-j-a-r_-t-a-s-k_-n-a-m-e.html"><span>JAR_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-365006794%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-j-a-r_-t-a-s-k_-n-a-m-e.html">JAR_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;jar&quot;</span></div><div class="brief ">The name of the task which generates the component main jar.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-614717148%2FProperties%2F-1793262594" anchor-label="JAVADOC_ELEMENTS_CONFIGURATION_NAME" id="-614717148%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-j-a-v-a-d-o-c_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>JAVADOC_</span><wbr></wbr><span>ELEMENTS_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-614717148%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-j-a-v-a-d-o-c_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">JAVADOC_ELEMENTS_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;javadocElements&quot;</span></div><div class="brief ">The name of the javadoc elements configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="153478043%2FProperties%2F-1793262594" anchor-label="JAVADOC_TASK_NAME" id="153478043%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-j-a-v-a-d-o-c_-t-a-s-k_-n-a-m-e.html"><span>JAVADOC_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="153478043%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-j-a-v-a-d-o-c_-t-a-s-k_-n-a-m-e.html">JAVADOC_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;javadoc&quot;</span></div><div class="brief ">The name of the task which generates the component javadoc.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1815180892%2FProperties%2F-1793262594" anchor-label="PROCESS_RESOURCES_TASK_NAME" id="1815180892%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-r-o-c-e-s-s_-r-e-s-o-u-r-c-e-s_-t-a-s-k_-n-a-m-e.html"><span>PROCESS_</span><wbr></wbr><span>RESOURCES_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1815180892%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-p-r-o-c-e-s-s_-r-e-s-o-u-r-c-e-s_-t-a-s-k_-n-a-m-e.html">PROCESS_RESOURCES_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;processResources&quot;</span></div><div class="brief ">The name of the task that processes resources.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="644596757%2FProperties%2F-1793262594" anchor-label="PROCESS_TEST_RESOURCES_TASK_NAME" id="644596757%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-r-o-c-e-s-s_-t-e-s-t_-r-e-s-o-u-r-c-e-s_-t-a-s-k_-n-a-m-e.html"><span>PROCESS_</span><wbr></wbr><span>TEST_</span><wbr></wbr><span>RESOURCES_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="644596757%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-p-r-o-c-e-s-s_-t-e-s-t_-r-e-s-o-u-r-c-e-s_-t-a-s-k_-n-a-m-e.html">PROCESS_TEST_RESOURCES_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;processTestResources&quot;</span></div><div class="brief ">The name of the task which processes the test resources.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-308795770%2FProperties%2F-1793262594" anchor-label="RUNTIME_CLASSPATH_CONFIGURATION_NAME" id="-308795770%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-u-n-t-i-m-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>RUNTIME_</span><wbr></wbr><span>CLASSPATH_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-308795770%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-r-u-n-t-i-m-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">RUNTIME_CLASSPATH_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;runtimeClasspath&quot;</span></div><div class="brief ">The name of the runtime classpath configuration, used by a component to query its own runtime classpath.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1545574814%2FProperties%2F-1793262594" anchor-label="RUNTIME_ELEMENTS_CONFIGURATION_NAME" id="-1545574814%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-u-n-t-i-m-e_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>RUNTIME_</span><wbr></wbr><span>ELEMENTS_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1545574814%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-r-u-n-t-i-m-e_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">RUNTIME_ELEMENTS_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;runtimeElements&quot;</span></div><div class="brief ">The name of the runtime elements configuration, that should be used by consumers to query the runtime dependencies of a component.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="754276887%2FProperties%2F-1793262594" anchor-label="RUNTIME_ONLY_CONFIGURATION_NAME" id="754276887%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-u-n-t-i-m-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>RUNTIME_</span><wbr></wbr><span>ONLY_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="754276887%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-r-u-n-t-i-m-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">RUNTIME_ONLY_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;runtimeOnly&quot;</span></div><div class="brief ">The name of the runtime only dependencies configuration, used to declare dependencies that should only be found at runtime.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-259176830%2FProperties%2F-1793262594" anchor-label="SOURCES_ELEMENTS_CONFIGURATION_NAME" id="-259176830%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-o-u-r-c-e-s_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>SOURCES_</span><wbr></wbr><span>ELEMENTS_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-259176830%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-s-o-u-r-c-e-s_-e-l-e-m-e-n-t-s_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">SOURCES_ELEMENTS_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;sourcesElements&quot;</span></div><div class="brief ">The name of the sources elements configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="397167167%2FProperties%2F-1793262594" anchor-label="TEST_ANNOTATION_PROCESSOR_CONFIGURATION_NAME" id="397167167%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-a-n-n-o-t-a-t-i-o-n_-p-r-o-c-e-s-s-o-r_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>ANNOTATION_</span><wbr></wbr><span>PROCESSOR_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="397167167%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-a-n-n-o-t-a-t-i-o-n_-p-r-o-c-e-s-s-o-r_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">TEST_ANNOTATION_PROCESSOR_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;testAnnotationProcessor&quot;</span></div><div class="brief ">The name of the test annotation processor configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1080295204%2FProperties%2F-1793262594" anchor-label="TEST_CLASSES_TASK_NAME" id="1080295204%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-c-l-a-s-s-e-s_-t-a-s-k_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>CLASSES_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1080295204%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-c-l-a-s-s-e-s_-t-a-s-k_-n-a-m-e.html">TEST_CLASSES_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;testClasses&quot;</span></div><div class="brief ">The name of the lifecycle task which outcome is that all test classes of a component are generated.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2102431704%2FProperties%2F-1793262594" anchor-label="TEST_COMPILE_CLASSPATH_CONFIGURATION_NAME" id="-2102431704%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-c-o-m-p-i-l-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>COMPILE_</span><wbr></wbr><span>CLASSPATH_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2102431704%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-c-o-m-p-i-l-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">TEST_COMPILE_CLASSPATH_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;testCompileClasspath&quot;</span></div><div class="brief ">The name of the test compile classpath configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-826600651%2FProperties%2F-1793262594" anchor-label="TEST_COMPILE_ONLY_CONFIGURATION_NAME" id="-826600651%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-c-o-m-p-i-l-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>COMPILE_</span><wbr></wbr><span>ONLY_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-826600651%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-c-o-m-p-i-l-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">TEST_COMPILE_ONLY_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;testCompileOnly&quot;</span></div><div class="brief ">The name of the configuration that should be used to declare dependencies which are only required to compile the tests, but not when running them.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1362860849%2FProperties%2F-1793262594" anchor-label="TEST_IMPLEMENTATION_CONFIGURATION_NAME" id="-1362860849%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-i-m-p-l-e-m-e-n-t-a-t-i-o-n_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>IMPLEMENTATION_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1362860849%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-i-m-p-l-e-m-e-n-t-a-t-i-o-n_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">TEST_IMPLEMENTATION_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;testImplementation&quot;</span></div><div class="brief ">The name of the test implementation dependencies configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-649390067%2FProperties%2F-1793262594" anchor-label="TEST_RUNTIME_CLASSPATH_CONFIGURATION_NAME" id="-649390067%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-r-u-n-t-i-m-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>RUNTIME_</span><wbr></wbr><span>CLASSPATH_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-649390067%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-r-u-n-t-i-m-e_-c-l-a-s-s-p-a-t-h_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">TEST_RUNTIME_CLASSPATH_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;testRuntimeClasspath&quot;</span></div><div class="brief ">The name of the test runtime classpath configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1802850352%2FProperties%2F-1793262594" anchor-label="TEST_RUNTIME_ONLY_CONFIGURATION_NAME" id="1802850352%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-r-u-n-t-i-m-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>RUNTIME_</span><wbr></wbr><span>ONLY_</span><wbr></wbr><span>CONFIGURATION_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1802850352%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-r-u-n-t-i-m-e_-o-n-l-y_-c-o-n-f-i-g-u-r-a-t-i-o-n_-n-a-m-e.html">TEST_RUNTIME_ONLY_CONFIGURATION_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;testRuntimeOnly&quot;</span></div><div class="brief ">The name of the test runtime only dependencies configuration.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="976710475%2FProperties%2F-1793262594" anchor-label="TEST_TASK_NAME" id="976710475%2FProperties%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-s-t_-t-a-s-k_-n-a-m-e.html"><span>TEST_</span><wbr></wbr><span>TASK_</span><wbr></wbr><span>NAME</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="976710475%2FProperties%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-e-s-t_-t-a-s-k_-n-a-m-e.html">TEST_TASK_NAME</a><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">&quot;test&quot;</span></div><div class="brief ">The name of the task which triggers execution of tests.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="284877025%2FFunctions%2F-1793262594" anchor-label="apply" id="284877025%2FFunctions%2F-1793262594" data-filterable-set=":docs/java_api"></a>
+          <div class="table-row table-row_content" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="apply.html"><span><span>apply</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="284877025%2FFunctions%2F-1793262594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":docs/java_api" data-filterable-set=":docs/java_api" data-active="" data-toggle=":docs/java_api">API</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":docs/java_api"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="apply.html"><span class="token function">apply</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">project<span class="token operator">: </span><a href="../../org.gradle.api/-project/index.html">Project</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Apply this plugin to the given target object.</div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Gradle Kotlin DSL Reference</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
