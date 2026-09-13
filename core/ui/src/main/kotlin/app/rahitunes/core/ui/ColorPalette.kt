@@ -33,7 +33,7 @@ data class ColorPalette(
     val isDark: Boolean
 ) : Parcelable
 
-private val defaultAccentColor = Color(0xffe06000).hsl
+private val defaultAccentColor = Color(0xffa855f7).hsl
 
 val defaultLightPalette = ColorPalette(
     background0 = Color(0xfffafafa),
@@ -42,26 +42,26 @@ val defaultLightPalette = ColorPalette(
     text = Color(0xff18181b),
     textSecondary = Color(0xff52525b),
     textDisabled = Color(0xffa1a1aa),
-    accent = Color(0xffe06000),
+    accent = Color(0xffa855f7),
     onAccent = Color(0xffffffff),
     red = Color(0xffdc2626),
-    blue = Color(0xffe08000),
+    blue = Color(0xff06b6d4),
     yellow = Color(0xfff59e0b),
     isDefault = true,
     isDark = false
 )
 
 val defaultDarkPalette = ColorPalette(
-    background0 = Color(0xff09090b),
-    background1 = Color(0xff18181b),
-    background2 = Color(0xff27272a),
-    text = Color(0xffffffff),
-    textSecondary = Color(0xffa1a1aa),
-    textDisabled = Color(0xff52525b),
-    accent = Color(0xffe06000),
+    background0 = Color(0xff08080f),
+    background1 = Color(0xff12121e),
+    background2 = Color(0xff1e1b30),
+    text = Color(0xfff0eeff),
+    textSecondary = Color(0xff7c729e),
+    textDisabled = Color(0xffc4bde8),
+    accent = Color(0xffa855f7),
     onAccent = Color(0xffffffff),
     red = Color(0xffef4444),
-    blue = Color(0xffe08000),
+    blue = Color(0xff06b6d4),
     yellow = Color(0xfff59e0b),
     isDefault = true,
     isDark = true
