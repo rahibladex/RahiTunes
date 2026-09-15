@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="288"
+    android:viewportHeight="288">
+
+    <!-- Centered RahiTunes Logo Note & Sparkles Group -->
+    <group
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:translateX="79"
+        android:translateY="35">
+
+        <!-- Left Note Head (Rotated Oval) -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 14,77 C 8,69 13,60 25,58 C 37,56 49,63 52,73 C 55,82 46,90 34,92 C 22,94 11,86 14,77 Z" />
+
+        <!-- Right Note Head (Rotated Oval) -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 57,60 C 51,52 56,43 68,41 C 80,39 92,46 95,56 C 98,65 89,73 77,75 C 65,77 54,69 57,60 Z" />
+
+        <!-- Left Stem -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 39,35 L 46,35 L 46,75 L 39,75 Z" />
+
+        <!-- Right Stem -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 82,18 L 89,18 L 89,58 L 82,58 Z" />
+
+        <!-- Slanted Connecting Top Beam -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 39,35 L 89,18 L 89,32 L 39,49 Z" />
+
+        <!-- Sparkles (4-Point Stars) -->
+        <!-- Sparkle 1 (Large Top Center) -->
+        <path
+            android:fillColor="#FF9900"
+            android:pathData="M 84,3 C 84,8 87,11 92,11 C 87,11 84,14 84,19 C 84,14 81,11 76,11 C 81,11 84,8 84,3 Z" />
+
+        <!-- Sparkle 2 (Small Left) -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 73,15 C 73,18 75,20 78,20 C 75,20 73,22 73,25 C 73,22 71,20 68,20 C 71,20 73,18 73,15 Z" />
+
+        <!-- Sparkle 3 (Medium Right) -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 93,18 C 93,21 95,23 98,23 C 95,23 93,25 93,28 C 93,25 91,23 88,23 C 91,23 93,21 93,18 Z" />
+    </group>
+
+    <!-- Vector Text Branding: "Rahi" in Orange (#FF8800), "Tunes" in White (#FFFFFF) -->
+    <group
+        android:translateX="30"
+        android:translateY="180">
+
+        <!-- R -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 0,0 H 12 C 18,0 22,3 22,9 C 22,14 18,17 12,17 H 6 V 28 H 0 Z M 6,5 V 12 H 11 C 14,12 16,10 16,8.5 C 16,6.5 14,5 11,5 Z M 13,17 L 22,28 H 15 L 8,17 Z" />
+
+        <!-- a -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 33,8 C 27,8 24,12 24,18 C 24,24 27,28 33,28 C 37,28 40,26 42,23 V 28 H 47 V 8 H 42 V 12 C 40,9 37,8 33,8 Z M 36,13 C 40,13 42,15 42,18 C 42,21 40,23 36,23 C 31,23 29,21 29,18 C 29,15 31,13 36,13 Z" />
+
+        <!-- h -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 52,0 V 28 H 58 V 16 C 58,13 60,12 64,12 C 68,12 70,13 70,16 V 28 H 76 V 14 C 76,9 71,8 65,8 C 61,8 59,9 58,11 V 0 Z" />
+
+        <!-- i -->
+        <path
+            android:fillColor="#FF8800"
+            android:pathData="M 81,0 H 87 V 5 H 81 Z M 81,8 H 87 V 28 H 81 Z" />
+
+        <!-- T -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M 98,0 H 122 V 6 H 113 V 28 H 107 V 6 H 98 Z" />
+
+        <!-- u -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M 127,8 H 133 V 20 C 133,23 135,24 139,24 C 143,24 145,23 145,20 V 8 H 151 V 28 H 146 V 24 C 144,27 141,28 137,28 C 131,28 127,25 127,20 Z" />
+
+        <!-- n -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M 156,8 H 162 V 12 C 163,9 166,8 170,8 C 176,8 180,10 180,16 V 28 H 174 V 16 C 174,13 172,12 168,12 C 164,12 162,13 162,16 V 28 H 156 Z" />
+
+        <!-- e -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M 194,8 C 187,8 184,12 184,18 C 184,24 187,28 194,28 C 200,28 204,26 206,22 L 201,19 C 200,21 198,23 194,23 C 190,23 189,21 189,19 H 207 C 207,17 207,15 206,13 C 204,9 200,8 194,8 Z M 189,16 C 190,13 192,12 194,12 C 197,12 199,13 200,16 Z" />
+
+        <!-- s -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M 218,8 C 212,8 210,10 210,13 C 210,16 213,17 217,18 C 221,19 223,20 223,22 C 223,24 220,25 216,25 C 212,25 210,23 209,21 L 204,24 C 206,27 210,29 216,29 C 228,29 228,22 228,22 C 228,18 225,17 220,16 C 216,15 215,14 215,13 C 215,11 217,10 220,10 C 224,10 226,11 227,13 L 232,10 C 230,8 226,7 218,8 Z" />
+    </group>
+</vector>

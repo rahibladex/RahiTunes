@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.RahiTunes" parent="@android:style/Theme.Holo.NoActionBar">
         <item name="android:windowActionBar">false</item>
@@ -7,9 +8,12 @@
         <item name="android:windowMinWidthMajor">100%</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">#08090C</item>
-        <item name="android:enforceNavigationBarContrast" tools:ignore="NewApi">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowSplashScreenBackground">#08090C</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">#08090C</item>
     </style>
 
     <style name="Theme.RahiTunes.NoActionBar" parent="Theme.RahiTunes">
