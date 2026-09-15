@@ -184,118 +184,62 @@ fun HomeSongs(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 12.dp)
                 ) {
-                    // Lossless Storage Vault Dashboard
-                    Box(
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(20.dp))
-                            .background(
-                                Brush.linearGradient(
-                                    listOf(Color(0xFF11141D), Color(0xFF1B202E))
-                                )
-                            )
-                            .border(
-                                width = 1.dp,
-                                brush = Brush.horizontalGradient(
-                                    listOf(Color(0xFF00F0FF).copy(alpha = 0.5f), Color(0xFFFF0055).copy(alpha = 0.3f))
-                                ),
-                                shape = RoundedCornerShape(20.dp)
-                            )
-                            .padding(16.dp)
+                            .padding(bottom = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Column {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Column {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(6.dp)
-                                    ) {
-                                        Box(
-                                            modifier = Modifier
-                                                .size(6.dp)
-                                                .clip(CircleShape)
-                                                .background(Color(0xFF00F0FF))
-                                        )
-                                        BasicText(
-                                            text = "LOSSLESS MASTER VAULT",
-                                            style = typography.xxs.copy(
-                                                color = Color(0xFF00F0FF),
-                                                fontWeight = FontWeight.ExtraBold,
-                                                letterSpacing = 1.2.sp
-                                            )
-                                        )
-                                    }
+                        BasicText(
+                            text = title,
+                            style = typography.l.copy(
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 24.sp
+                            )
+                        )
 
-                                    Spacer(Modifier.height(4.dp))
-
-                                    BasicText(
-                                        text = title,
-                                        style = typography.l.copy(
-                                            color = Color.White,
-                                            fontWeight = FontWeight.ExtraBold,
-                                            fontSize = 22.sp
+                        if (items.isNotEmpty()) {
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(20.dp))
+                                    .background(
+                                        Brush.horizontalGradient(
+                                            listOf(Color(0xFFFF9100), Color(0xFFFF1212))
                                         )
                                     )
-                                }
-
-                                // Instant Shuffle All Pill Button
-                                if (items.isNotEmpty()) {
-                                    Box(
-                                        modifier = Modifier
-                                            .clip(RoundedCornerShape(20.dp))
-                                            .background(
-                                                Brush.horizontalGradient(
-                                                    listOf(Color(0xFF00F0FF), Color(0xFFFF0055))
-                                                )
-                                            )
-                                            .clickable {
-                                                if (filteredItems.isNotEmpty()) {
-                                                    val shuffledIndex = (0 until filteredItems.size).random()
-                                                    binder?.stopRadio()
-                                                    binder?.player?.forcePlayAtIndex(
-                                                        filteredItems.map(Song::asMediaItem),
-                                                        shuffledIndex
-                                                    )
-                                                }
-                                            }
-                                            .padding(horizontal = 14.dp, vertical = 8.dp)
-                                    ) {
-                                        Row(
-                                            verticalAlignment = Alignment.CenterVertically,
-                                            horizontalArrangement = Arrangement.spacedBy(6.dp)
-                                        ) {
-                                            Image(
-                                                painter = painterResource(R.drawable.shuffle),
-                                                contentDescription = "Shuffle",
-                                                colorFilter = ColorFilter.tint(Color(0xFF08090C)),
-                                                modifier = Modifier.size(13.dp)
-                                            )
-                                            BasicText(
-                                                text = "Shuffle",
-                                                style = typography.xs.copy(
-                                                    color = Color(0xFF08090C),
-                                                    fontWeight = FontWeight.Black
-                                                )
+                                    .clickable {
+                                        if (filteredItems.isNotEmpty()) {
+                                            val shuffledIndex = (0 until filteredItems.size).random()
+                                            binder?.stopRadio()
+                                            binder?.player?.forcePlayAtIndex(
+                                                filteredItems.map(Song::asMediaItem),
+                                                shuffledIndex
                                             )
                                         }
                                     }
+                                    .padding(horizontal = 14.dp, vertical = 8.dp)
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                ) {
+                                    Image(
+                                        painter = painterResource(R.drawable.shuffle),
+                                        contentDescription = "Shuffle",
+                                        colorFilter = ColorFilter.tint(Color.White),
+                                        modifier = Modifier.size(13.dp)
+                                    )
+                                    BasicText(
+                                        text = "Shuffle",
+                                        style = typography.xs.copy(
+                                            color = Color.White,
+                                            fontWeight = FontWeight.Black
+                                        )
+                                    )
                                 }
                             }
-
-                            Spacer(Modifier.height(8.dp))
-
-                            BasicText(
-                                text = "${items.size} Lossless & High-Res Tracks Indexed",
-                                style = typography.xs.copy(
-                                    color = Color(0xFF8E9AA8),
-                                    fontWeight = FontWeight.Medium,
-                                    fontSize = 12.sp
-                                )
-                            )
                         }
                     }
 
@@ -347,15 +291,15 @@ fun HomeSongs(
                                     modifier = Modifier
                                         .size(38.dp)
                                         .clip(CircleShape)
-                                        .background(Color(0xFF11141D))
-                                        .border(1.dp, Color(0xFF1F2637), CircleShape)
+                                        .background(Color(0xFF151528))
+                                        .border(1.dp, Color(0xFFFF9100).copy(alpha = 0.35f), CircleShape)
                                         .clickable { searching = true },
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Image(
                                         painter = painterResource(R.drawable.search),
                                         contentDescription = "Search",
-                                        colorFilter = ColorFilter.tint(Color(0xFF00F0FF)),
+                                        colorFilter = ColorFilter.tint(Color(0xFFFF9100)),
                                         modifier = Modifier.size(18.dp)
                                     )
                                 }
@@ -460,9 +404,7 @@ fun HomeSongs(
         }
 
         FloatingActionsContainerWithScrollToTop(
-            lazyListState = lazyListState,
-            icon = R.drawable.search,
-            onClick = onSearchClick
+            lazyListState = lazyListState
         )
     }
 }
@@ -529,7 +471,7 @@ fun RowScope.HeaderSongSortBy(
 
     HeaderIconButton(
         icon = R.drawable.arrow_up,
-        color = Color(0xFF00F0FF),
+        color = Color(0xFFFF9100),
         onClick = { setSortOrder(!sortOrder) },
         modifier = Modifier.graphicsLayer { rotationZ = sortOrderIconRotation }
     )

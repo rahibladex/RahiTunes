@@ -20,6 +20,7 @@ import app.rahitunes.android.ui.screens.mood.MoreMoodsScreen
 import app.rahitunes.android.ui.screens.moodRoute
 import app.rahitunes.android.ui.screens.pipedPlaylistRoute
 import app.rahitunes.android.ui.screens.playlistRoute
+import app.rahitunes.android.ui.screens.searchResultRoute
 import app.rahitunes.android.ui.screens.searchRoute
 import app.rahitunes.android.ui.screens.settings.SettingsScreen
 import app.rahitunes.android.ui.screens.settingsRoute
@@ -77,7 +78,13 @@ fun HomeScreen() {
                 }
             ) { currentTabIndex ->
                 saveableStateHolder.SaveableStateProvider(key = currentTabIndex) {
-                    val onSearchClick = { searchRoute("") }
+                    val onSearchClick: (String) -> Unit = { query ->
+                        if (query.isNotBlank()) {
+                            searchResultRoute(query)
+                        } else {
+                            searchRoute("")
+                        }
+                    }
                     when (currentTabIndex) {
                         0 -> QuickPicks(
                             onAlbumClick = { albumRoute(it.key) },
@@ -90,7 +97,7 @@ fun HomeScreen() {
                                     p3 = it.channel?.name == "YouTube Music"
                                 )
                             },
-                            onSearchClick = onSearchClick,
+                            onSearchClick = { onSearchClick("") },
                             onFavoritesClick = { builtInPlaylistRoute(BuiltInPlaylist.Favorites) },
                             onSeeAllPlaylistsClick = { UIStatePreferences.homeScreenTabIndex = 1 },
                             onSettingsClick = { UIStatePreferences.homeScreenTabIndex = 4 },
@@ -108,7 +115,7 @@ fun HomeScreen() {
                                     p2 = playlist.id.toString()
                                 )
                             },
-                            onSearchClick = onSearchClick
+                            onSearchClick = { onSearchClick("") }
                         )
 
                         2 -> HomeDiscovery(
@@ -121,7 +128,7 @@ fun HomeScreen() {
                         )
 
                         3 -> HomeLocalSongs(
-                            onSearchClick = onSearchClick
+                            onSearchClick = { onSearchClick("") }
                         )
 
                         4 -> SettingsScreen()

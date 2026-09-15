@@ -343,25 +343,6 @@ private fun SongItem(
 fun SongItemPlaceholder(
     thumbnailSize: Dp,
     modifier: Modifier = Modifier
-) = ItemContainer(
-    alternative = false,
-    thumbnailSize = thumbnailSize,
-    modifier = modifier
-        .clip(RoundedCornerShape(16.dp))
-        .background(Color(0xFF0C0F18).copy(alpha = 0.6f))
-        .border(1.dp, Color.White.copy(alpha = 0.05f), RoundedCornerShape(16.dp))
-        .padding(horizontal = 4.dp, vertical = 2.dp)
 ) {
-    val (colorPalette, _, _, thumbnailShape) = LocalAppearance.current
-
-    Spacer(
-        modifier = Modifier
-            .background(color = colorPalette.shimmer, shape = thumbnailShape)
-            .size(thumbnailSize)
-    )
-
-    ItemInfoContainer {
-        TextPlaceholder()
-        TextPlaceholder()
-    }
+    // Suppress song loading placeholders
 }

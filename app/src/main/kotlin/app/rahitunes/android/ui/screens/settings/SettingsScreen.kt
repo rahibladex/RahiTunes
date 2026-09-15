@@ -114,13 +114,13 @@ fun SettingsScreen() {
                     .background(colorPalette.background0)
                     .fillMaxSize()
             ) {
-                // Top Settings Header with Back Button and Profile Card
+                // Top Settings Header with Back Button and Title
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = LocalPlayerAwareWindowInsets.current.only(WindowInsetsSides.Top).asPaddingValues().calculateTopPadding())
                 ) {
-                    // Profile & Navigation Bar
+                    // Navigation Bar
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -151,96 +151,10 @@ fun SettingsScreen() {
                             )
                         }
 
-                        // Compact Holographic Free Profile Card
-                        Box(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(
-                                    Brush.linearGradient(
-                                        listOf(Color(0xFF11141D), Color(0xFF1B202E), Color(0xFF0C192E))
-                                    )
-                                )
-                                .border(
-                                    width = 1.dp,
-                                    brush = Brush.horizontalGradient(
-                                        listOf(Color(0xFFE08000).copy(alpha = 0.5f), Color(0xFFE04000).copy(alpha = 0.3f))
-                                    ),
-                                    shape = RoundedCornerShape(16.dp)
-                                )
-                                .padding(horizontal = 12.dp, vertical = 8.dp)
-                        ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(10.dp)
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(34.dp)
-                                        .clip(CircleShape)
-                                        .background(
-                                            Brush.sweepGradient(
-                                                listOf(Color(0xFFE08000), Color(0xFFE04000), Color(0xFFFF9900), Color(0xFFE08000))
-                                            )
-                                        )
-                                        .padding(1.5.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(31.dp)
-                                            .clip(CircleShape)
-                                            .background(Color(0xFF08090C)),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Image(
-                                            painter = painterResource(R.drawable.person),
-                                            contentDescription = null,
-                                            colorFilter = ColorFilter.tint(Color(0xFFE08000)),
-                                            modifier = Modifier.size(18.dp)
-                                        )
-                                    }
-                                }
-
-                                Column {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(6.dp)
-                                    ) {
-                                        BasicText(
-                                            text = "Settings",
-                                            style = typography.s.copy(
-                                                color = Color.White,
-                                                fontWeight = FontWeight.Bold,
-                                                fontSize = 14.sp
-                                            )
-                                        )
-                                        Box(
-                                            modifier = Modifier
-                                                .clip(RoundedCornerShape(4.dp))
-                                                .background(Color(0xFFE08000))
-                                                .padding(horizontal = 5.dp, vertical = 1.dp)
-                                        ) {
-                                            BasicText(
-                                                text = "100% FREE",
-                                                style = typography.xxs.copy(
-                                                    color = Color(0xFF08090C),
-                                                    fontWeight = FontWeight.Black,
-                                                    fontSize = 8.sp
-                                                )
-                                            )
-                                        }
-                                    }
-                                    BasicText(
-                                        text = "Hi-Res Audio Engine • Open Source",
-                                        style = typography.xxs.copy(
-                                            color = Color(0xFF8E9AA8),
-                                            fontSize = 9.5.sp
-                                        )
-                                    )
-                                }
-                            }
-                        }
+                        BasicText(
+                            text = stringResource(R.string.settings),
+                            style = typography.l.copy(fontWeight = FontWeight.Bold)
+                        )
                     }
 
                     // TOP HORIZONTAL CATEGORIES BAR (Appearance, Player, Cache, Database, Sync, Other)

@@ -58,7 +58,7 @@ fun HomeHeroBanner(
             hiResText = "FLAC 96kHz",
             title = "Midnight\nAurora Wave",
             subtitle = "Hyper-curated synthwave, electronic & chill tracks",
-            gradientColors = listOf(Color(0xFF0A192F), Color(0xFF1E1B4B), Color(0xFF3B0764))
+            gradientColors = listOf(Color(0xFF1E1B30), Color(0xFF12121E), Color(0xFF08080F))
         ),
         HeroCardItem(
             id = "cyber_velocity",
@@ -66,7 +66,7 @@ fun HomeHeroBanner(
             hiResText = "TOP VIRAL 50",
             title = "Cyber\nVelocity Charts",
             subtitle = "The highest velocity trending hits right now",
-            gradientColors = listOf(Color(0xFF082F49), Color(0xFF164E63), Color(0xFF1E1B4B))
+            gradientColors = listOf(Color(0xFF12121E), Color(0xFF1E1B30), Color(0xFF08080F))
         )
     ),
     onPlayClick: (HeroCardItem) -> Unit,
@@ -100,14 +100,14 @@ fun HomeHeroBanner(
                         .clip(RoundedCornerShape(2.dp))
                         .background(
                             Brush.verticalGradient(
-                                listOf(Color(0xFF00F0FF), Color(0xFFFF0055))
+                                listOf(Color(0xFFA855F7), Color(0xFF06B6D4))
                             )
                         )
                 )
                 BasicText(
                     text = "Sonic Stream Deck",
                     style = typography.m.copy(
-                        color = Color.White,
+                        color = Color(0xFFF0EEFF),
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 17.sp
                     )
@@ -119,13 +119,13 @@ fun HomeHeroBanner(
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 MusicBars(
-                    color = Color(0xFF00F0FF),
+                    color = Color(0xFFA855F7),
                     modifier = Modifier.size(14.dp, 10.dp)
                 )
                 BasicText(
                     text = "Master Hi-Res",
                     style = typography.xxs.copy(
-                        color = Color(0xFF00F0FF),
+                        color = Color(0xFFA855F7),
                         fontWeight = FontWeight.Bold,
                         fontSize = 11.sp
                     )
@@ -146,7 +146,7 @@ fun HomeHeroBanner(
                         .shadow(
                             elevation = 16.dp,
                             shape = RoundedCornerShape(24.dp),
-                            spotColor = item.gradientColors.last().copy(alpha = 0.6f)
+                            spotColor = Color(0xFFA855F7).copy(alpha = 0.4f)
                         )
                         .clip(RoundedCornerShape(24.dp))
                         .background(
@@ -156,8 +156,8 @@ fun HomeHeroBanner(
                             width = 1.2.dp,
                             brush = Brush.linearGradient(
                                 listOf(
-                                    Color(0xFF00F0FF).copy(alpha = 0.6f),
-                                    Color(0xFFFF0055).copy(alpha = 0.35f),
+                                    Color(0xFFA855F7).copy(alpha = 0.6f),
+                                    Color(0xFF06B6D4).copy(alpha = 0.35f),
                                     Color.White.copy(alpha = 0.1f)
                                 )
                             ),
@@ -191,7 +191,7 @@ fun HomeHeroBanner(
                                 Image(
                                     painter = painterResource(R.drawable.musical_notes),
                                     contentDescription = null,
-                                    colorFilter = ColorFilter.tint(Color(0xFF00F0FF).copy(alpha = 0.25f)),
+                                    colorFilter = ColorFilter.tint(Color(0xFFA855F7).copy(alpha = 0.25f)),
                                     modifier = Modifier.size(90.dp)
                                 )
                             }
@@ -214,14 +214,14 @@ fun HomeHeroBanner(
                                 Box(
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(6.dp))
-                                        .background(Color(0xFF00F0FF).copy(alpha = 0.18f))
-                                        .border(1.dp, Color(0xFF00F0FF).copy(alpha = 0.4f), RoundedCornerShape(6.dp))
+                                        .background(Color(0xFFA855F7).copy(alpha = 0.18f))
+                                        .border(1.dp, Color(0xFFA855F7).copy(alpha = 0.4f), RoundedCornerShape(6.dp))
                                         .padding(horizontal = 7.dp, vertical = 3.dp)
                                 ) {
                                     BasicText(
                                         text = item.badge,
                                         style = typography.xxs.copy(
-                                            color = Color(0xFF00F0FF),
+                                            color = Color(0xFFA855F7),
                                             fontWeight = FontWeight.ExtraBold,
                                             fontSize = 9.sp,
                                             letterSpacing = 0.5.sp
@@ -238,7 +238,7 @@ fun HomeHeroBanner(
                                     BasicText(
                                         text = item.hiResText,
                                         style = typography.xxs.copy(
-                                            color = Color(0xFF8E9AA8),
+                                            color = Color(0xFFC4BDE8),
                                             fontWeight = FontWeight.Bold,
                                             fontSize = 8.5.sp
                                         )

@@ -42,6 +42,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -92,7 +93,11 @@ import app.rahitunes.core.ui.utils.isLandscape
 import app.rahitunes.providers.innertube.Innertube
 import app.rahitunes.providers.innertube.models.NavigationEndpoint
 import app.rahitunes.providers.innertube.models.bodies.NextBody
+import app.rahitunes.providers.innertube.models.bodies.SearchBody
+import app.rahitunes.providers.innertube.requests.discoverPage
 import app.rahitunes.providers.innertube.requests.relatedPage
+import app.rahitunes.providers.innertube.requests.searchPage
+import app.rahitunes.providers.innertube.utils.from
 import coil3.compose.AsyncImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -117,7 +122,7 @@ fun QuickPicks(
     onAlbumClick: (Innertube.AlbumItem) -> Unit,
     onArtistClick: (Innertube.ArtistItem) -> Unit,
     onPlaylistClick: (Innertube.PlaylistItem) -> Unit,
-    onSearchClick: () -> Unit,
+    onSearchClick: (String) -> Unit,
     onFavoritesClick: () -> Unit = {},
     onSeeAllPlaylistsClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {},
@@ -131,7 +136,36 @@ fun QuickPicks(
 
     var selectedFilter by remember { mutableStateOf("⚡ All Tracks") }
     var relatedPageResult by persist<Result<Innertube.RelatedPage?>?>(tag = "home/relatedPageResult")
+    var explorePageResult by persist<Result<Innertube.DiscoverPage?>?>(tag = "home/explorePageResult")
     var isRefreshing by remember { mutableStateOf(false) }
+
+    var activeSearchQuery by rememberSaveable { mutableStateOf("") }
+    var searchResultSongs by remember { mutableStateOf<List<Innertube.SongItem>?>(null) }
+    var isSearchingInline by remember { mutableStateOf(false) }
+
+    LaunchedEffect(activeSearchQuery) {
+        if (activeSearchQuery.isBlank()) {
+            searchResultSongs = null
+            isSearchingInline = false
+            return@LaunchedEffect
+        }
+
+        isSearchingInline = true
+        withContext(Dispatchers.IO) {
+            val page = Innertube.searchPage(
+                body = SearchBody(
+                    query = activeSearchQuery,
+                    params = Innertube.SearchFilter.Song.value
+                ),
+                fromMusicShelfRendererContent = Innertube.SongItem::from
+            )?.getOrNull()
+
+            withContext(Dispatchers.Main) {
+                searchResultSongs = page?.items?.filterIsInstance<Innertube.SongItem>()
+                isSearchingInline = false
+            }
+        }
+    }
 
     LaunchedEffect(relatedPageResult, DataPreferences.shouldCacheQuickPicks) {
         if (DataPreferences.shouldCacheQuickPicks)
@@ -167,6 +201,7 @@ fun QuickPicks(
         }
 
         withContext(Dispatchers.IO) {
+            val exploreRes = Innertube.discoverPage()
             val res = Innertube.relatedPage(body = NextBody(videoId = seedVideoId))
             val finalRes = if ((res == null || res.isFailure) && seedVideoId != "J7p4bzqLvCw") {
                 Innertube.relatedPage(body = NextBody(videoId = "J7p4bzqLvCw"))
@@ -174,6 +209,7 @@ fun QuickPicks(
                 res
             }
             withContext(Dispatchers.Main) {
+                explorePageResult = exploreRes
                 relatedPageResult = finalRes
                 isRefreshing = false
             }
@@ -261,7 +297,6 @@ fun QuickPicks(
 
         Column(
             modifier = Modifier
-                .background(Color(0xFF07080D))
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .padding(
@@ -275,6 +310,8 @@ fun QuickPicks(
             HomeTopBar(
                 userName = "Alex",
                 selectedFilter = selectedFilter,
+                searchQuery = activeSearchQuery,
+                onSearchQueryChange = { activeSearchQuery = it },
                 onFilterSelected = { filter ->
                     selectedFilter = filter
                     when {
@@ -284,260 +321,175 @@ fun QuickPicks(
                     }
                 },
                 onAvatarClick = onSettingsClick,
-                onSearchClick = onSearchClick,
+                onSearchClick = { activeSearchQuery = it },
                 onFavoritesClick = onFavoritesClick
             )
 
-            // SECTION 1: GLOBAL TOP STATIONS (Top of the feed right below TopBar)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 6.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+            Spacer(Modifier.height(18.dp))
+
+            if (activeSearchQuery.isNotBlank()) {
+                // INLINE HOME SEARCH RESULTS
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 6.dp)
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .size(4.dp, 16.dp)
-                            .clip(RoundedCornerShape(2.dp))
-                            .background(
-                                Brush.verticalGradient(
-                                    listOf(Color(0xFFFF0055), Color(0xFF00F0FF))
-                                )
-                            )
-                    )
-                    BasicText(
-                        text = "Global Top Stations",
-                        style = typography.m.copy(
-                            color = Color.White,
-                            fontWeight = FontWeight.ExtraBold,
-                            fontSize = 17.5.sp
-                        )
-                    )
-                    Box(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(6.dp))
-                            .background(Color(0xFFFF0055).copy(alpha = 0.15f))
-                            .border(1.dp, Color(0xFFFF0055).copy(alpha = 0.35f), RoundedCornerShape(6.dp))
-                            .padding(horizontal = 6.dp, vertical = 2.dp)
-                    ) {
-                        BasicText(
-                            text = "LIVE RADAR",
-                            style = typography.xxs.copy(
-                                color = Color(0xFFFF0055),
-                                fontWeight = FontWeight.Black,
-                                fontSize = 9.sp
-                            )
-                        )
-                    }
-                }
-
-                BasicText(
-                    text = "See all",
-                    style = typography.xs.copy(
-                        color = Color(0xFF00F0FF),
-                        fontWeight = FontWeight.Bold
-                    ),
-                    modifier = Modifier.clickable { onSeeAllPlaylistsClick() }
-                )
-            }
-
-            // Top Station Cards Stack
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                globalTopStations.forEach { station ->
-                    val isCurrentStation = currentMediaId == station.seedVideoId
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .shadow(
-                                elevation = 8.dp,
-                                shape = RoundedCornerShape(18.dp),
-                                spotColor = station.accentColor.copy(alpha = 0.35f)
-                            )
-                            .clip(RoundedCornerShape(18.dp))
-                            .background(
-                                Brush.horizontalGradient(
-                                    listOf(
-                                        Color(0xFF0F121C),
-                                        Color(0xFF141824)
-                                    )
-                                )
-                            )
-                            .border(
-                                1.dp,
-                                if (isCurrentStation) station.accentColor else Color.White.copy(alpha = 0.08f),
-                                RoundedCornerShape(18.dp)
-                            )
-                            .clickable {
-                                binder?.stopRadio()
-                                binder?.setupRadio(
-                                    NavigationEndpoint.Endpoint.Watch(videoId = station.seedVideoId)
-                                )
-                                binder?.player?.play()
-                            }
-                            .padding(12.dp),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(bottom = 12.dp)
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp),
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            // Rank Number Badge
-                            Box(
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(10.dp))
-                                    .background(station.accentColor.copy(alpha = 0.18f))
-                                    .border(
-                                        1.2.dp,
-                                        station.accentColor.copy(alpha = 0.6f),
-                                        RoundedCornerShape(10.dp)
-                                    )
-                                    .padding(horizontal = 9.dp, vertical = 6.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                BasicText(
-                                    text = station.rank,
-                                    style = typography.xs.copy(
-                                        color = station.accentColor,
-                                        fontWeight = FontWeight.Black,
-                                        fontSize = 13.sp
-                                    )
-                                )
-                            }
-
-                            // Square Artwork with Glow
-                            Box(
-                                modifier = Modifier
-                                    .size(52.dp)
-                                    .clip(RoundedCornerShape(14.dp))
-                                    .background(Color(0xFF181E2E)),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                if (!station.imageUrl.isNullOrBlank()) {
-                                    AsyncImage(
-                                        model = station.imageUrl,
-                                        contentDescription = null,
-                                        contentScale = ContentScale.Crop,
-                                        modifier = Modifier.fillMaxSize()
-                                    )
-                                } else {
-                                    Image(
-                                        painter = painterResource(station.iconRes),
-                                        contentDescription = null,
-                                        colorFilter = ColorFilter.tint(station.accentColor),
-                                        modifier = Modifier.size(24.dp)
-                                    )
-                                }
-                            }
-
-                            // Title and Subtitle Info
-                            Column(
-                                verticalArrangement = Arrangement.spacedBy(3.dp)
-                            ) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
-                                ) {
-                                    BasicText(
-                                        text = station.title,
-                                        style = typography.xs.copy(
-                                            color = Color.White,
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 14.sp
-                                        ),
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-                                }
-
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .clip(RoundedCornerShape(4.dp))
-                                            .background(station.accentColor.copy(alpha = 0.15f))
-                                            .padding(horizontal = 4.dp, vertical = 1.dp)
-                                    ) {
-                                        BasicText(
-                                            text = station.tag,
-                                            style = typography.xxs.copy(
-                                                color = station.accentColor,
-                                                fontWeight = FontWeight.ExtraBold,
-                                                fontSize = 8.5.sp
-                                            )
-                                        )
-                                    }
-
-                                    BasicText(
-                                        text = station.subtitle,
-                                        style = typography.xxs.copy(
-                                            color = Color(0xFF8E9AA8),
-                                            fontSize = 11.sp
-                                        ),
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-                                }
-                            }
-                        }
-
-                        // Right-aligned Dynamic Play / Radio Button
                         Box(
                             modifier = Modifier
-                                .size(38.dp)
-                                .shadow(
-                                    elevation = 6.dp,
-                                    shape = CircleShape,
-                                    spotColor = station.accentColor.copy(alpha = 0.4f)
-                                )
-                                .clip(CircleShape)
-                                .background(
-                                    Brush.radialGradient(
-                                        listOf(station.accentColor.copy(alpha = 0.25f), Color(0xFF181E2E))
-                                    )
-                                )
-                                .border(1.2.dp, station.accentColor.copy(alpha = 0.5f), CircleShape)
-                                .clickable {
-                                    binder?.stopRadio()
-                                    binder?.setupRadio(
-                                        NavigationEndpoint.Endpoint.Watch(videoId = station.seedVideoId)
-                                    )
-                                    binder?.player?.play()
-                                },
-                            contentAlignment = Alignment.Center
-                        ) {
-                            if (isCurrentStation && playing) {
-                                MusicBars(
-                                    color = station.accentColor,
-                                    modifier = Modifier.size(14.dp, 12.dp)
-                                )
-                            } else {
-                                Image(
-                                    painter = painterResource(R.drawable.play),
-                                    contentDescription = "Play Station",
-                                    colorFilter = ColorFilter.tint(station.accentColor),
-                                    modifier = Modifier.size(15.dp)
-                                )
+                                .size(4.dp, 16.dp)
+                                .clip(RoundedCornerShape(2.dp))
+                                .background(Color(0xFFFF9100))
+                        )
+                        BasicText(
+                            text = "Search Results for \"$activeSearchQuery\"",
+                            style = typography.m.copy(
+                                color = Color.White,
+                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 17.5.sp
+                            )
+                        )
+                    }
+
+                    if (isSearchingInline) {
+                        ShimmerHost {
+                            repeat(6) {
+                                SongItemPlaceholder(thumbnailSize = Dimensions.thumbnails.song)
                             }
+                        }
+                    } else if (searchResultSongs != null) {
+                        val songs = searchResultSongs.orEmpty()
+                        if (songs.isNotEmpty()) {
+                            Column(
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                songs.forEach { song ->
+                                    SongItem(
+                                        song = song,
+                                        thumbnailSize = Dimensions.thumbnails.song,
+                                        modifier = Modifier
+                                            .combinedClickable(
+                                                onLongClick = {
+                                                    menuState.display {
+                                                        NonQueuedMediaItemMenu(
+                                                            onDismiss = menuState::hide,
+                                                            mediaItem = song.asMediaItem
+                                                        )
+                                                    }
+                                                },
+                                                onClick = {
+                                                    val mediaItem = song.asMediaItem
+                                                    binder?.stopRadio()
+                                                    binder?.player?.forcePlay(mediaItem)
+                                                    binder?.setupRadio(
+                                                        NavigationEndpoint.Endpoint.Watch(videoId = mediaItem.mediaId)
+                                                    )
+                                                }
+                                            )
+                                            .fillMaxWidth(),
+                                        showDuration = true,
+                                        isPlaying = playing && currentMediaId == song.key
+                                    )
+                                }
+                            }
+                        } else {
+                            BasicText(
+                                text = "No tracks found for \"$activeSearchQuery\"",
+                                style = typography.s.secondary.center,
+                                modifier = Modifier
+                                    .padding(vertical = 24.dp)
+                                    .fillMaxWidth()
+                            )
                         }
                     }
                 }
-            }
+            } else {
+                // DEFAULT HOME FEED (YOUTUBE MUSIC EXPLORE)
+                explorePageResult?.getOrNull()?.let { explorePage ->
+                if (explorePage.trending.songs.isNotEmpty()) {
+                    Column {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp, vertical = 6.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(4.dp, 16.dp)
+                                        .clip(RoundedCornerShape(2.dp))
+                                        .background(Color(0xFFFF9100))
+                                )
+                                BasicText(
+                                    text = "Music Explore",
+                                    style = typography.m.copy(
+                                        color = Color.White,
+                                        fontWeight = FontWeight.ExtraBold,
+                                        fontSize = 17.5.sp
+                                    )
+                                )
+                            }
+                        }
 
-            Spacer(Modifier.height(18.dp))
+                        LazyHorizontalGrid(
+                            state = quickPicksLazyGridState,
+                            rows = GridCells.Fixed(4),
+                            flingBehavior = rememberSnapFlingBehavior(snapLayoutInfoProvider),
+                            contentPadding = endPaddingValues,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height((Dimensions.thumbnails.song + 20.dp) * 4)
+                                .padding(horizontal = 12.dp)
+                        ) {
+                            items(
+                                items = explorePage.trending.songs,
+                                key = Innertube.SongItem::key
+                            ) { song ->
+                                SongItem(
+                                    song = song,
+                                    thumbnailSize = Dimensions.thumbnails.song,
+                                    modifier = Modifier
+                                        .combinedClickable(
+                                            onLongClick = {
+                                                menuState.display {
+                                                    NonQueuedMediaItemMenu(
+                                                        onDismiss = menuState::hide,
+                                                        mediaItem = song.asMediaItem
+                                                    )
+                                                }
+                                            },
+                                            onClick = {
+                                                val mediaItem = song.asMediaItem
+                                                binder?.stopRadio()
+                                                binder?.player?.forcePlay(mediaItem)
+                                                binder?.setupRadio(
+                                                    NavigationEndpoint.Endpoint.Watch(videoId = mediaItem.mediaId)
+                                                )
+                                            }
+                                        )
+                                        .animateItem(fadeInSpec = null, fadeOutSpec = null)
+                                        .width(itemInHorizontalGridWidth),
+                                    showDuration = false,
+                                    isPlaying = playing && currentMediaId == song.key
+                                )
+                            }
+                        }
+
+                        Spacer(Modifier.height(16.dp))
+                    }
+                }
+            }
 
             // SECTION 2: QUICK PICKS SONGS & TAILORED FLOW
             relatedPageResult?.getOrNull()?.let { related ->
@@ -556,12 +508,12 @@ fun QuickPicks(
                             modifier = Modifier
                                 .size(4.dp, 16.dp)
                                 .clip(RoundedCornerShape(2.dp))
-                                .background(Color(0xFF00F0FF))
+                                .background(Color(0xFFA855F7))
                         )
                         BasicText(
                             text = stringResource(R.string.quick_picks),
                             style = typography.m.copy(
-                                color = Color.White,
+                                color = Color(0xFFF0EEFF),
                                 fontWeight = FontWeight.ExtraBold,
                                 fontSize = 17.5.sp
                             )
@@ -573,13 +525,13 @@ fun QuickPicks(
                         horizontalArrangement = Arrangement.spacedBy(5.dp)
                     ) {
                         MusicBars(
-                            color = Color(0xFF00F0FF),
+                            color = Color(0xFFA855F7),
                             modifier = Modifier.size(12.dp, 9.dp)
                         )
                         BasicText(
                             text = if (isRefreshing) "REFRESHING..." else "PREFERENCE FLOW",
                             style = typography.xxs.copy(
-                                color = Color(0xFF00F0FF),
+                                color = Color(0xFFA855F7),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 11.sp
                             )
@@ -851,12 +803,12 @@ fun QuickPicks(
                                 modifier = Modifier
                                     .size(4.dp, 16.dp)
                                     .clip(RoundedCornerShape(2.dp))
-                                    .background(Color(0xFF00F0FF))
+                                    .background(Color(0xFFA855F7))
                             )
                             BasicText(
                                 text = "Your Top Picks",
                                 style = typography.m.copy(
-                                    color = Color.White,
+                                    color = Color(0xFFF0EEFF),
                                     fontWeight = FontWeight.ExtraBold,
                                     fontSize = 17.5.sp
                                 )
@@ -868,13 +820,13 @@ fun QuickPicks(
                             horizontalArrangement = Arrangement.spacedBy(5.dp)
                         ) {
                             MusicBars(
-                                color = Color(0xFF00F0FF),
+                                color = Color(0xFFA855F7),
                                 modifier = Modifier.size(12.dp, 9.dp)
                             )
                             BasicText(
                                 text = "OFFLINE FLOW",
                                 style = typography.xxs.copy(
-                                    color = Color(0xFF00F0FF),
+                                    color = Color(0xFFA855F7),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 11.sp
                                 )
@@ -931,7 +883,7 @@ fun QuickPicks(
                                     Image(
                                         painter = painterResource(R.drawable.star),
                                         contentDescription = null,
-                                        colorFilter = ColorFilter.tint(Color(0xFF00F0FF)),
+                                        colorFilter = ColorFilter.tint(Color(0xFFA855F7)),
                                         modifier = Modifier.size(16.dp)
                                     )
                                 },
@@ -950,4 +902,5 @@ fun QuickPicks(
             }
         }
     }
+}
 }

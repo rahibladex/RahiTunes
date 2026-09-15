@@ -127,17 +127,17 @@ fun HomePlaylists(
     val lazyGridState = rememberLazyGridState()
     val builtInPlaylists by BuiltInPlaylistScreen.shownPlaylistsAsState()
 
-    val cardBg = Color(0xFF0F121C)
-    val cardBorder = Color.White.copy(alpha = 0.06f)
-    val neonCyan = Color(0xFF00F0FF)
-    val neonPink = Color(0xFFFF0055)
-    val amber = Color(0xFFF59E0B)
-    val slateMuted = Color(0xFF8E9AA8)
+    val cardBg = Color(0xFF12121E)
+    val cardBorder = Color(0xFFFF9100).copy(alpha = 0.2f)
+    val orangeMain = Color(0xFFFF9100)
+    val redOrange = Color(0xFFFF1212)
+    val amber = Color(0xFFFF9100)
+    val slateMuted = Color(0xFFA2A2D0)
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF07080D))
+            .background(Color(0xFF0E0E18))
     ) {
         LazyVerticalGrid(
             state = lazyGridState,
@@ -161,63 +161,6 @@ fun HomePlaylists(
                         .fillMaxWidth()
                         .padding(bottom = 8.dp)
                 ) {
-                    // Full-width interactive Search Capsule
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .shadow(
-                                elevation = 8.dp,
-                                shape = RoundedCornerShape(20.dp),
-                                spotColor = Color(0xFF00F0FF).copy(alpha = 0.12f)
-                            )
-                            .clip(RoundedCornerShape(20.dp))
-                            .background(cardBg)
-                            .border(1.dp, Color(0xFF00F0FF).copy(alpha = 0.35f), RoundedCornerShape(20.dp))
-                            .clickable(onClick = onSearchClick)
-                            .padding(horizontal = 14.dp, vertical = 11.dp)
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(30.dp)
-                                        .clip(CircleShape)
-                                        .background(Brush.linearGradient(listOf(neonCyan, neonPink))),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Icon(
-                                        painter = painterResource(R.drawable.search),
-                                        contentDescription = null,
-                                        tint = Color(0xFF07080D),
-                                        modifier = Modifier.size(15.dp)
-                                    )
-                                }
-                                Spacer(modifier = Modifier.width(10.dp))
-                                Column {
-                                    Text(
-                                        text = "Search playlists & collections",
-                                        color = Color.White,
-                                        fontSize = 12.sp,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                    Text(
-                                        text = "CURATED DECKS • AUTO-SYNC",
-                                        color = slateMuted,
-                                        fontSize = 9.sp,
-                                        fontWeight = FontWeight.Medium,
-                                        letterSpacing = 0.5.sp
-                                    )
-                                }
-                            }
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(14.dp))
-
                     // Title Row with Action Buttons
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -244,16 +187,16 @@ fun HomePlaylists(
                                 .shadow(
                                     elevation = 8.dp,
                                     shape = RoundedCornerShape(14.dp),
-                                    spotColor = neonCyan.copy(alpha = 0.4f)
+                                    spotColor = orangeMain.copy(alpha = 0.4f)
                                 )
                                 .clip(RoundedCornerShape(14.dp))
-                                .background(Brush.horizontalGradient(listOf(neonCyan, Color(0xFF0077FF))))
+                                .background(Brush.horizontalGradient(listOf(orangeMain, redOrange)))
                                 .clickable { isCreatingANewPlaylist = true }
                                 .padding(horizontal = 14.dp, vertical = 8.dp)
                         ) {
                             Text(
                                 text = "+ NEW DECK",
-                                color = Color(0xFF07080D),
+                                color = Color.White,
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.ExtraBold,
                                 letterSpacing = 0.5.sp
@@ -265,6 +208,7 @@ fun HomePlaylists(
                         // Grid / List View Toggle
                         HeaderIconButton(
                             icon = if (UIStatePreferences.playlistsAsGrid) R.drawable.grid else R.drawable.list,
+                            color = orangeMain,
                             onClick = {
                                 UIStatePreferences.playlistsAsGrid = !UIStatePreferences.playlistsAsGrid
                             }
@@ -273,7 +217,7 @@ fun HomePlaylists(
                         // Sort Order Toggle
                         HeaderIconButton(
                             icon = R.drawable.arrow_up,
-                            color = neonCyan,
+                            color = orangeMain,
                             onClick = { playlistSortOrder = !playlistSortOrder },
                             modifier = Modifier.graphicsLayer { rotationZ = sortOrderIconRotation }
                         )
@@ -287,7 +231,7 @@ fun HomePlaylists(
                     title = stringResource(R.string.favorites),
                     subtitle = "Hearted Soundtracks",
                     icon = R.drawable.heart,
-                    accentColor = neonPink,
+                    accentColor = redOrange,
                     onClick = { onBuiltInPlaylist(BuiltInPlaylist.Favorites) }
                 )
             }
@@ -297,7 +241,7 @@ fun HomePlaylists(
                     title = stringResource(R.string.offline),
                     subtitle = "Downloaded Vault",
                     icon = R.drawable.airplane,
-                    accentColor = neonCyan,
+                    accentColor = orangeMain,
                     onClick = { onBuiltInPlaylist(BuiltInPlaylist.Offline) }
                 )
             }
@@ -307,7 +251,7 @@ fun HomePlaylists(
                     title = "Top Velocity",
                     subtitle = "Most Played Tracks",
                     icon = R.drawable.trending,
-                    accentColor = amber,
+                    accentColor = orangeMain,
                     onClick = { onBuiltInPlaylist(BuiltInPlaylist.Top) }
                 )
             }
@@ -317,7 +261,7 @@ fun HomePlaylists(
                     title = stringResource(R.string.history),
                     subtitle = "Recent Playback Log",
                     icon = R.drawable.history,
-                    accentColor = slateMuted,
+                    accentColor = orangeMain,
                     onClick = { onBuiltInPlaylist(BuiltInPlaylist.History) }
                 )
             }
@@ -393,11 +337,11 @@ private fun SmartPlaylistCard(
             .shadow(
                 elevation = 6.dp,
                 shape = RoundedCornerShape(16.dp),
-                spotColor = accentColor.copy(alpha = 0.2f)
+                spotColor = accentColor.copy(alpha = 0.25f)
             )
             .clip(RoundedCornerShape(16.dp))
-            .background(Color(0xFF0F121C))
-            .border(1.dp, accentColor.copy(alpha = 0.3f), RoundedCornerShape(16.dp))
+            .background(Color(0xFF12121E))
+            .border(1.dp, accentColor.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
             .clickable(onClick = onClick)
             .padding(12.dp)
     ) {
@@ -409,8 +353,8 @@ private fun SmartPlaylistCard(
                 modifier = Modifier
                     .size(40.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(accentColor.copy(alpha = 0.15f))
-                    .border(1.dp, accentColor.copy(alpha = 0.4f), RoundedCornerShape(12.dp)),
+                    .background(accentColor.copy(alpha = 0.18f))
+                    .border(1.dp, accentColor.copy(alpha = 0.45f), RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -430,7 +374,7 @@ private fun SmartPlaylistCard(
                 )
                 Text(
                     text = subtitle,
-                    color = Color(0xFF8E9AA8),
+                    color = Color(0xFFA2A2D0),
                     fontSize = 10.5.sp
                 )
             }
@@ -438,7 +382,7 @@ private fun SmartPlaylistCard(
             Icon(
                 painter = painterResource(R.drawable.chevron_forward),
                 contentDescription = null,
-                tint = Color(0xFF8E9AA8),
+                tint = Color(0xFFA2A2D0),
                 modifier = Modifier.size(16.dp)
             )
         }

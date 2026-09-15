@@ -32,12 +32,17 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,9 +51,12 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -86,7 +94,7 @@ import app.rahitunes.providers.innertube.requests.discoverPage
 fun HomeDiscovery(
     onMoodClick: (mood: Innertube.Mood.Item) -> Unit,
     onNewReleaseAlbumClick: (String) -> Unit,
-    onSearchClick: () -> Unit,
+    onSearchClick: (String) -> Unit,
     onMoreMoodsClick: () -> Unit,
     onMoreAlbumsClick: () -> Unit,
     onPlaylistClick: (browseId: String) -> Unit
@@ -157,12 +165,12 @@ fun HomeDiscovery(
                                 modifier = Modifier
                                     .size(6.dp)
                                     .clip(CircleShape)
-                                    .background(Color(0xFF00F0FF))
+                                    .background(Color(0xFFFF9100))
                             )
                             BasicText(
                                 text = "GLOBAL RADAR",
                                 style = typography.xxs.copy(
-                                    color = Color(0xFF00F0FF),
+                                    color = Color(0xFFFF9100),
                                     fontWeight = FontWeight.Black,
                                     letterSpacing = 1.5.sp
                                 )
@@ -188,60 +196,19 @@ fun HomeDiscovery(
                             .shadow(
                                 elevation = 8.dp,
                                 shape = CircleShape,
-                                spotColor = Color(0xFF00F0FF).copy(alpha = 0.4f)
+                                spotColor = Color(0xFFFF9100).copy(alpha = 0.4f)
                             )
                             .clip(CircleShape)
-                            .background(Color(0xFF0F121C))
-                            .border(1.dp, Color(0xFF00F0FF).copy(alpha = 0.5f), CircleShape)
-                            .clickable(onClick = onSearchClick),
+                            .background(Color(0xFF151528))
+                            .border(1.dp, Color(0xFFFF9100).copy(alpha = 0.5f), CircleShape)
+                            .clickable { onSearchClick("") },
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = painterResource(R.drawable.globe),
                             contentDescription = "Radar",
-                            colorFilter = ColorFilter.tint(Color(0xFF00F0FF)),
+                            colorFilter = ColorFilter.tint(Color(0xFFFF9100)),
                             modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
-
-                Spacer(Modifier.height(14.dp))
-
-                // Full-width Search Capsule
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .shadow(
-                            elevation = 8.dp,
-                            shape = RoundedCornerShape(18.dp),
-                            spotColor = Color(0xFF00F0FF).copy(alpha = 0.15f)
-                        )
-                        .clip(RoundedCornerShape(18.dp))
-                        .background(
-                            Brush.horizontalGradient(
-                                listOf(Color(0xFF0F121C), Color(0xFF181E2E))
-                            )
-                        )
-                        .border(1.dp, Color(0xFF00F0FF).copy(alpha = 0.4f), RoundedCornerShape(18.dp))
-                        .clickable(onClick = onSearchClick)
-                        .padding(horizontal = 14.dp, vertical = 11.dp)
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.search),
-                            contentDescription = "Search",
-                            colorFilter = ColorFilter.tint(Color(0xFF00F0FF)),
-                            modifier = Modifier.size(18.dp)
-                        )
-                        BasicText(
-                            text = "Explore genres, trending vibes & moods...",
-                            style = typography.xs.copy(
-                                color = Color(0xFF8E9AA8),
-                                fontSize = 12.sp
-                            )
                         )
                     }
                 }
@@ -265,7 +232,7 @@ fun HomeDiscovery(
                                 modifier = Modifier
                                     .size(4.dp, 16.dp)
                                     .clip(RoundedCornerShape(2.dp))
-                                    .background(Color(0xFF00F0FF))
+                                    .background(Color(0xFFFF9100))
                             )
                             BasicText(
                                 text = "Moods & Vibes Matrix",
@@ -280,7 +247,7 @@ fun HomeDiscovery(
                         BasicText(
                             text = "View all",
                             style = typography.xs.copy(
-                                color = Color(0xFF00F0FF),
+                                color = Color(0xFFFF9100),
                                 fontWeight = FontWeight.Bold
                             ),
                             modifier = Modifier.clickable { onMoreMoodsClick() }
@@ -330,7 +297,7 @@ fun HomeDiscovery(
                                 modifier = Modifier
                                     .size(4.dp, 16.dp)
                                     .clip(RoundedCornerShape(2.dp))
-                                    .background(Color(0xFF8B5CF6))
+                                    .background(Color(0xFFFF9100))
                             )
                             BasicText(
                                 text = "Fresh Release Radar",
@@ -345,7 +312,7 @@ fun HomeDiscovery(
                         BasicText(
                             text = "More",
                             style = typography.xs.copy(
-                                color = Color(0xFF00F0FF),
+                                color = Color(0xFFFF9100),
                                 fontWeight = FontWeight.Bold
                             ),
                             modifier = Modifier.clickable { onMoreAlbumsClick() }
@@ -384,7 +351,7 @@ fun HomeDiscovery(
                                 modifier = Modifier
                                     .size(4.dp, 16.dp)
                                     .clip(RoundedCornerShape(2.dp))
-                                    .background(Color(0xFFFF0055))
+                                    .background(Color(0xFFFF1212))
                             )
                             BasicText(
                                 text = "Trending Global Velocity",
@@ -400,7 +367,7 @@ fun HomeDiscovery(
                             BasicText(
                                 text = "Playlist",
                                 style = typography.xs.copy(
-                                    color = Color(0xFF00F0FF),
+                                    color = Color(0xFFFF9100),
                                     fontWeight = FontWeight.Bold
                                 ),
                                 modifier = Modifier.clickable { onPlaylistClick(browseId) }
@@ -503,9 +470,7 @@ fun HomeDiscovery(
         }
 
         FloatingActionsContainerWithScrollToTop(
-            scrollState = scrollState,
-            icon = R.drawable.search,
-            onClick = onSearchClick
+            scrollState = scrollState
         )
     }
 }

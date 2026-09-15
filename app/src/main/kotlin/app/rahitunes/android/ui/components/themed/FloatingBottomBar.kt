@@ -65,33 +65,21 @@ fun FloatingBottomBar(
         Row(
             modifier = Modifier
                 .shadow(
-                    elevation = 24.dp,
-                    shape = RoundedCornerShape(36.dp),
-                    spotColor = Color(0xFF00F0FF).copy(alpha = 0.15f),
+                    elevation = 16.dp,
+                    shape = RoundedCornerShape(28.dp),
+                    spotColor = Color(0xFFFF9100).copy(alpha = 0.35f),
                     ambientColor = Color.Black
                 )
-                .clip(RoundedCornerShape(36.dp))
-                .background(
-                    Brush.verticalGradient(
-                        listOf(
-                            Color(0xFF131726).copy(alpha = 0.95f),
-                            Color(0xFF0A0D15).copy(alpha = 0.98f)
-                        )
-                    )
-                )
+                .clip(RoundedCornerShape(28.dp))
+                .background(Color(0xFF151528))
                 .border(
-                    width = 1.2.dp,
+                    width = 1.dp,
                     brush = Brush.horizontalGradient(
-                        listOf(
-                            Color(0xFF00F0FF).copy(alpha = 0.35f),
-                            Color(0xFF8B5CF6).copy(alpha = 0.2f),
-                            Color.White.copy(alpha = 0.08f),
-                            Color(0xFFFF0055).copy(alpha = 0.25f)
-                        )
+                        listOf(Color(0xFFFF9100).copy(alpha = 0.25f), Color(0xFFFF1212).copy(alpha = 0.25f))
                     ),
-                    shape = RoundedCornerShape(36.dp)
+                    shape = RoundedCornerShape(28.dp)
                 )
-                .padding(horizontal = 8.dp, vertical = 6.dp)
+                .padding(horizontal = 12.dp, vertical = 6.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
@@ -100,13 +88,13 @@ fun FloatingBottomBar(
                 val isSelected = selectedTabIndex == index
 
                 val scale by animateFloatAsState(
-                    targetValue = if (isSelected) 1.06f else 0.95f,
+                    targetValue = if (isSelected) 1.05f else 0.95f,
                     animationSpec = spring(dampingRatio = 0.7f, stiffness = Spring.StiffnessMediumLow),
                     label = "tab_scale"
                 )
 
                 val iconColor by animateColorAsState(
-                    targetValue = if (isSelected) Color(0xFF07080D) else Color(0xFF8E9AA8),
+                    targetValue = if (isSelected) Color(0xFFFF9100) else Color(0xFFA2A2D0),
                     animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
                     label = "tab_icon_color"
                 )
@@ -127,22 +115,14 @@ fun FloatingBottomBar(
                     contentAlignment = Alignment.Center
                 ) {
                     if (isSelected) {
-                        // Glowing Cyber-Circle for active tab
+                        // Orange/Red Gradient Active Tab Indicator
                         Box(
                             modifier = Modifier
                                 .size(42.dp)
-                                .shadow(
-                                    elevation = 10.dp,
-                                    shape = CircleShape,
-                                    spotColor = Color(0xFF00F0FF).copy(alpha = 0.8f)
-                                )
                                 .clip(CircleShape)
                                 .background(
                                     Brush.horizontalGradient(
-                                        listOf(
-                                            Color(0xFF00F0FF),
-                                            Color(0xFF38BDF8)
-                                        )
+                                        listOf(Color(0xFFFF9100).copy(alpha = 0.25f), Color(0xFFFF1212).copy(alpha = 0.25f))
                                     )
                                 ),
                             contentAlignment = Alignment.Center
@@ -150,12 +130,12 @@ fun FloatingBottomBar(
                             Image(
                                 painter = painterResource(tab.icon),
                                 contentDescription = null,
-                                colorFilter = ColorFilter.tint(Color(0xFF07080D)),
+                                colorFilter = ColorFilter.tint(Color(0xFFFF9100)),
                                 modifier = Modifier.size(22.dp)
                             )
                         }
                     } else {
-                        // Inactive icon state with subtle hover feel
+                        // Inactive icon state
                         Box(
                             modifier = Modifier
                                 .size(38.dp),

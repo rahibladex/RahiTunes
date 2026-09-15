@@ -212,21 +212,21 @@ fun Player(
                         .shadow(
                             elevation = 16.dp,
                             shape = 20.dp.roundedShape,
-                            spotColor = Color(0xFFE08000).copy(alpha = 0.25f)
+                            spotColor = Color(0xFFFF9100).copy(alpha = 0.25f)
                         )
                         .clip(20.dp.roundedShape)
                         .background(
                             Brush.horizontalGradient(
-                                listOf(Color(0xFF0E121E), Color(0xFF161B2E))
+                                listOf(Color(0xFF12121E), Color(0xFF151528))
                             )
                         )
-                        .border(1.2.dp, Color(0xFFE08000).copy(alpha = 0.35f), 20.dp.roundedShape)
+                        .border(1.2.dp, Color(0xFFFF9100).copy(alpha = 0.35f), 20.dp.roundedShape)
                         .drawBehind {
                             val progressWidth = runCatching {
                                 size.width * (position.toFloat() / duration.absoluteValue)
                             }.getOrElse { 0f }
                             drawRect(
-                                color = Color(0xFFE08000),
+                                color = Color(0xFFFF9100),
                                 topLeft = Offset(0f, size.height - 3f.dp.toPx()),
                                 size = Size(
                                     width = progressWidth,
@@ -294,7 +294,7 @@ fun Player(
                                 ) {
                                     BasicText(
                                         text = text,
-                                        style = typography.xs.semiBold.copy(color = Color(0xFF38BDF8)),
+                                        style = typography.xs.semiBold.copy(color = Color(0xFFA2A2D0)),
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
@@ -303,7 +303,7 @@ fun Player(
                                         Image(
                                             painter = painterResource(R.drawable.explicit),
                                             contentDescription = null,
-                                            colorFilter = ColorFilter.tint(Color(0xFFFF2A6D)),
+                                            colorFilter = ColorFilter.tint(Color(0xFFFF1212)),
                                             modifier = Modifier.size(15.dp)
                                         )
                                     }
@@ -347,7 +347,7 @@ fun Player(
                         ) {
                             AnimatedPlayPauseButton(
                                 playing = shouldBePlaying,
-                                color = Color(0xFFE08000),
+                                color = Color(0xFFFF9100),
                                 modifier = Modifier
                                     .align(Alignment.Center)
                                     .padding(horizontal = 4.dp, vertical = 8.dp)
@@ -483,8 +483,8 @@ fun Player(
                     modifier = Modifier
                         .size(36.dp)
                         .clip(CircleShape)
-                        .background(Color(0xFF161C2C).copy(alpha = 0.85f))
-                        .border(1.dp, Color(0xFFE08000).copy(alpha = 0.3f), CircleShape)
+                        .background(Color(0xFF151528).copy(alpha = 0.85f))
+                        .border(1.dp, Color(0xFFFF9100).copy(alpha = 0.3f), CircleShape)
                         .clickable(onClick = layoutState::collapseSoft),
                     contentAlignment = Alignment.Center
                 ) {
@@ -494,110 +494,6 @@ fun Player(
                         colorFilter = ColorFilter.tint(Color.White),
                         modifier = Modifier.size(18.dp)
                     )
-                }
-
-                // Studio Engine Status Badge
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    modifier = Modifier
-                        .clip(16.dp.roundedShape)
-                        .background(
-                            Brush.horizontalGradient(
-                                listOf(
-                                    Color(0xFFE08000).copy(alpha = 0.12f),
-                                    Color(0xFFE04000).copy(alpha = 0.12f)
-                                )
-                            )
-                        )
-                        .border(
-                            1.dp,
-                            Brush.horizontalGradient(
-                                listOf(
-                                    Color(0xFFE08000).copy(alpha = 0.4f),
-                                    Color(0xFFE04000).copy(alpha = 0.4f)
-                                )
-                            ),
-                            16.dp.roundedShape
-                        )
-                        .padding(horizontal = 12.dp, vertical = 5.dp)
-                ) {
-                    if (shouldBePlaying) {
-                        MusicBars(
-                            color = Color(0xFFE08000),
-                            modifier = Modifier.height(12.dp)
-                        )
-                    } else {
-                        Box(
-                            modifier = Modifier
-                                .size(6.dp)
-                                .clip(CircleShape)
-                                .background(Color(0xFFE08000))
-                        )
-                    }
-                    BasicText(
-                        text = "RAHITUNES HI-RES AUDIO",
-                        style = typography.xxs.bold.copy(
-                            color = Color(0xFFE08000),
-                            letterSpacing = 0.8.sp
-                        )
-                    )
-                }
-
-                // Right Actions: Speed/FX and Menu
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFF161C2C).copy(alpha = 0.85f))
-                            .border(1.dp, Color(0xFFE08000).copy(alpha = 0.3f), CircleShape)
-                            .clickable { audioDialogOpen = true },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.equalizer),
-                            contentDescription = "Audio FX",
-                            colorFilter = ColorFilter.tint(Color.White),
-                            modifier = Modifier.size(16.dp)
-                        )
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(CircleShape)
-                            .background(Color(0xFF161C2C).copy(alpha = 0.85f))
-                            .border(1.dp, Color(0xFFE08000).copy(alpha = 0.3f), CircleShape)
-                            .clickable {
-                                binder?.let { nonNullBinder ->
-                                    mediaItem?.let {
-                                        menuState.display {
-                                            PlayerMenu(
-                                                onDismiss = menuState::hide,
-                                                mediaItem = it,
-                                                binder = nonNullBinder,
-                                                onShowSpeedDialog = { audioDialogOpen = true },
-                                                onShowNormalizationDialog = {
-                                                    boostDialogOpen = true
-                                                }.takeIf { volumeNormalization }
-                                            )
-                                        }
-                                    }
-                                }
-                            },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.ellipsis_horizontal),
-                            contentDescription = "Menu",
-                            colorFilter = ColorFilter.tint(Color.White),
-                            modifier = Modifier.size(16.dp)
-                        )
-                    }
                 }
             }
 

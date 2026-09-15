@@ -273,27 +273,6 @@ fun PlaylistItemPlaceholder(
     thumbnailSize: Dp,
     modifier: Modifier = Modifier,
     alternative: Boolean = false
-) = ItemContainer(
-    alternative = alternative,
-    thumbnailSize = thumbnailSize,
-    modifier = modifier
-        .clip(RoundedCornerShape(18.dp))
-        .background(Color(0xFF0F121C).copy(alpha = 0.7f))
-        .border(1.dp, Color.White.copy(alpha = 0.06f), RoundedCornerShape(18.dp))
-        .padding(if (alternative) 6.dp else 4.dp)
 ) {
-    val (colorPalette, _, _, thumbnailShape) = LocalAppearance.current
-
-    Spacer(
-        modifier = Modifier
-            .background(color = colorPalette.shimmer, shape = RoundedCornerShape(14.dp))
-            .size(thumbnailSize)
-    )
-
-    ItemInfoContainer(
-        horizontalAlignment = if (alternative) Alignment.CenterHorizontally else Alignment.Start
-    ) {
-        TextPlaceholder()
-        TextPlaceholder()
-    }
+    // Suppress playlist loading placeholders
 }

@@ -152,8 +152,8 @@ private fun ClassicControls(
             binder = binder,
             position = position,
             media = media,
-            color = Color(0xFFE08000),
-            backgroundColor = Color(0xFF1E2638),
+            color = Color(0xFFFF9100),
+            backgroundColor = Color(0xFF151528),
             alwaysShowDuration = true
         )
 
@@ -168,12 +168,12 @@ private fun ClassicControls(
             GlassControlCircle(
                 onClick = { setLikedAt(if (likedAt == null) System.currentTimeMillis() else null) },
                 active = likedAt != null,
-                activeColor = Color(0xFFFF2A6D)
+                activeColor = Color(0xFFFF1212)
             ) {
                 Image(
                     painter = painterResource(if (likedAt == null) R.drawable.heart_outline else R.drawable.heart),
                     contentDescription = "Like",
-                    colorFilter = ColorFilter.tint(if (likedAt != null) Color(0xFFFF2A6D) else Color(0xFF94A3B8)),
+                    colorFilter = ColorFilter.tint(if (likedAt != null) Color(0xFFFF1212) else Color(0xFFA2A2D0)),
                     modifier = Modifier.size(20.dp)
                 )
             }
@@ -190,7 +190,7 @@ private fun ClassicControls(
                 )
             }
 
-            // Center Glowing Master Play Dial
+            // Center Glowing Master Play Dial (#FF9100 to #FF1212 Gradient Circle)
             GlowingMasterPlayButton(
                 radius = playButtonRadius,
                 shouldBePlaying = shouldBePlaying,
@@ -219,12 +219,12 @@ private fun ClassicControls(
             GlassControlCircle(
                 onClick = { trackLoopEnabled = !trackLoopEnabled },
                 active = trackLoopEnabled,
-                activeColor = Color(0xFFE08000)
+                activeColor = Color(0xFFFF9100)
             ) {
                 Image(
                     painter = painterResource(R.drawable.infinite),
                     contentDescription = "Loop",
-                    colorFilter = ColorFilter.tint(if (trackLoopEnabled) Color(0xFFE08000) else Color(0xFF94A3B8)),
+                    colorFilter = ColorFilter.tint(if (trackLoopEnabled) Color(0xFFFF9100) else Color(0xFFA2A2D0)),
                     modifier = Modifier.size(20.dp)
                 )
             }
@@ -261,8 +261,8 @@ private fun ModernControls(
             binder = binder,
             position = position,
             media = media,
-            color = Color(0xFFE08000),
-            backgroundColor = Color(0xFF1E2638),
+            color = Color(0xFFFF9100),
+            backgroundColor = Color(0xFF151528),
             alwaysShowDuration = true
         )
 
@@ -277,12 +277,12 @@ private fun ModernControls(
             GlassControlCircle(
                 onClick = { setLikedAt(if (likedAt == null) System.currentTimeMillis() else null) },
                 active = likedAt != null,
-                activeColor = Color(0xFFFF2A6D)
+                activeColor = Color(0xFFFF1212)
             ) {
                 Image(
                     painter = painterResource(if (likedAt == null) R.drawable.heart_outline else R.drawable.heart),
                     contentDescription = "Like",
-                    colorFilter = ColorFilter.tint(if (likedAt != null) Color(0xFFFF2A6D) else Color(0xFF94A3B8)),
+                    colorFilter = ColorFilter.tint(if (likedAt != null) Color(0xFFFF1212) else Color(0xFFA2A2D0)),
                     modifier = Modifier.size(20.dp)
                 )
             }
@@ -299,7 +299,7 @@ private fun ModernControls(
                 )
             }
 
-            // Center Glowing Master Play Dial
+            // Center Glowing Master Play Dial (#FF9100 to #FF1212 Gradient Circle)
             GlowingMasterPlayButton(
                 radius = playButtonRadius,
                 shouldBePlaying = shouldBePlaying,
@@ -328,12 +328,12 @@ private fun ModernControls(
             GlassControlCircle(
                 onClick = { trackLoopEnabled = !trackLoopEnabled },
                 active = trackLoopEnabled,
-                activeColor = Color(0xFFE08000)
+                activeColor = Color(0xFFFF9100)
             ) {
                 Image(
                     painter = painterResource(R.drawable.infinite),
                     contentDescription = "Loop",
-                    colorFilter = ColorFilter.tint(if (trackLoopEnabled) Color(0xFFE08000) else Color(0xFF94A3B8)),
+                    colorFilter = ColorFilter.tint(if (trackLoopEnabled) Color(0xFFFF9100) else Color(0xFFA2A2D0)),
                     modifier = Modifier.size(20.dp)
                 )
             }
@@ -350,7 +350,7 @@ private fun GlassControlCircle(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     active: Boolean = false,
-    activeColor: Color = Color(0xFFE08000),
+    activeColor: Color = Color(0xFFA855F7),
     content: @Composable () -> Unit
 ) {
     Box(
@@ -365,12 +365,12 @@ private fun GlassControlCircle(
             .clip(CircleShape)
             .background(
                 if (active) activeColor.copy(alpha = 0.15f)
-                else Color(0xFF151B2B).copy(alpha = 0.85f)
+                else Color(0xFF12121E).copy(alpha = 0.85f)
             )
             .border(
                 1.dp,
                 if (active) activeColor.copy(alpha = 0.6f)
-                else Color(0xFFE08000).copy(alpha = 0.2f),
+                else Color(0xFFA855F7).copy(alpha = 0.2f),
                 CircleShape
             )
             .clickable(onClick = onClick)
@@ -389,147 +389,31 @@ private fun GlowingMasterPlayButton(
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .size(66.dp)
+            .size(64.dp)
             .shadow(
-                elevation = 18.dp,
-                shape = radius.roundedShape,
-                spotColor = Color(0xFFE08000).copy(alpha = 0.65f),
-                ambientColor = Color(0xFFE08000).copy(alpha = 0.35f)
+                elevation = 12.dp,
+                shape = CircleShape,
+                spotColor = Color(0xFFFF9100).copy(alpha = 0.5f)
             )
-            .clip(radius.roundedShape)
+            .clip(CircleShape)
             .background(
-                Brush.linearGradient(
-                    listOf(
-                        Color(0xFFE08000),
-                        Color(0xFF00A2FF),
-                        Color(0xFF0284C7)
-                    )
+                Brush.horizontalGradient(
+                    listOf(Color(0xFFFF9100), Color(0xFFFF1212))
                 )
             )
             .clickable(onClick = onClick)
     ) {
         AnimatedPlayPauseButton(
             playing = shouldBePlaying,
-            color = Color(0xFF060913),
-            modifier = Modifier.size(34.dp)
+            color = Color.White,
+            modifier = Modifier.size(32.dp)
         )
     }
 }
 
 @Composable
 private fun PlayerQuickActionsDock() {
-    val (colorPalette, typography) = LocalAppearance.current
-    var isShowingLyrics by remember { mutableStateOf(PlayerPreferences.isShowingLyrics) }
-
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        // Lyrics Action Pill
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .weight(1f)
-                .clip(16.dp.roundedShape)
-                .background(
-                    if (PlayerPreferences.isShowingLyrics) Color(0xFFE08000).copy(alpha = 0.18f)
-                    else Color(0xFF141928).copy(alpha = 0.75f)
-                )
-                .border(
-                    1.dp,
-                    if (PlayerPreferences.isShowingLyrics) Color(0xFFE08000).copy(alpha = 0.5f)
-                    else Color(0xFFE08000).copy(alpha = 0.2f),
-                    16.dp.roundedShape
-                )
-                .clickable {
-                    PlayerPreferences.isShowingLyrics = !PlayerPreferences.isShowingLyrics
-                    isShowingLyrics = PlayerPreferences.isShowingLyrics
-                }
-                .padding(vertical = 7.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.text),
-                    contentDescription = "Lyrics",
-                    colorFilter = ColorFilter.tint(
-                        if (PlayerPreferences.isShowingLyrics) Color(0xFFE08000) else Color(0xFF94A3B8)
-                    ),
-                    modifier = Modifier.size(13.dp)
-                )
-                BasicText(
-                    text = "LYRICS",
-                    style = typography.xxs.bold.copy(
-                        color = if (PlayerPreferences.isShowingLyrics) Color(0xFFE08000) else Color(0xFFE2E8F0),
-                        letterSpacing = 0.5.sp
-                    )
-                )
-            }
-        }
-
-        // Lossless Audio Tag Pill
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .weight(1.2f)
-                .clip(16.dp.roundedShape)
-                .background(Color(0xFF141928).copy(alpha = 0.75f))
-                .border(1.dp, Color(0xFF8A2BE2).copy(alpha = 0.35f), 16.dp.roundedShape)
-                .padding(vertical = 7.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(6.dp)
-                        .clip(CircleShape)
-                        .background(Color(0xFFE08000))
-                )
-                BasicText(
-                    text = "24-BIT / 96kHz FLAC",
-                    style = typography.xxs.bold.copy(
-                        color = Color(0xFF38BDF8),
-                        letterSpacing = 0.4.sp
-                    )
-                )
-            }
-        }
-
-        // 3D Spatial Audio Pill
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .weight(1f)
-                .clip(16.dp.roundedShape)
-                .background(Color(0xFF141928).copy(alpha = 0.75f))
-                .border(1.dp, Color(0xFFE08000).copy(alpha = 0.2f), 16.dp.roundedShape)
-                .padding(vertical = 7.dp)
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.sparkles),
-                    contentDescription = "Spatial",
-                    colorFilter = ColorFilter.tint(Color(0xFFC084FC)),
-                    modifier = Modifier.size(13.dp)
-                )
-                BasicText(
-                    text = "DOLBY 3D",
-                    style = typography.xxs.bold.copy(
-                        color = Color(0xFFC084FC),
-                        letterSpacing = 0.5.sp
-                    )
-                )
-            }
-        }
-    }
+    // Suppress quick actions dock pills
 }
 
 @Composable

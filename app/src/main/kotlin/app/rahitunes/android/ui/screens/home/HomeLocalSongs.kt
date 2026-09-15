@@ -106,7 +106,7 @@ fun HomeLocalSongs(onSearchClick: () -> Unit) = with(OrderPreferences) {
         setSortBy = { localSongSortBy = it },
         sortOrder = localSongSortOrder,
         setSortOrder = { localSongSortOrder = it },
-        title = "Local Vault"
+        title = "Local Music"
     ) else {
         LaunchedEffect(Unit) { launcher.launch(permission) }
 
@@ -123,14 +123,14 @@ fun HomeLocalSongs(onSearchClick: () -> Unit) = with(OrderPreferences) {
                 modifier = Modifier
                     .size(80.dp)
                     .clip(CircleShape)
-                    .background(Color(0xFF11141D))
-                    .border(1.dp, Color(0xFF00F0FF).copy(alpha = 0.5f), CircleShape),
+                    .background(Color(0xFF151528))
+                    .border(1.dp, Color(0xFFFF9100).copy(alpha = 0.5f), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = painterResource(R.drawable.download),
                     contentDescription = null,
-                    colorFilter = ColorFilter.tint(Color(0xFF00F0FF)),
+                    colorFilter = ColorFilter.tint(Color(0xFFFF9100)),
                     modifier = Modifier.size(36.dp)
                 )
             }
@@ -151,7 +151,7 @@ fun HomeLocalSongs(onSearchClick: () -> Unit) = with(OrderPreferences) {
             BasicText(
                 text = "Grant audio storage permissions to index and play lossless FLAC, MP3, and WAV tracks from your device.",
                 style = typography.xs.copy(
-                    color = Color(0xFF8E9AA8),
+                    color = Color(0xFFA2A2D0),
                     fontSize = 13.sp
                 ),
                 modifier = Modifier.fillMaxWidth(0.85f)
@@ -165,7 +165,7 @@ fun HomeLocalSongs(onSearchClick: () -> Unit) = with(OrderPreferences) {
                     .clip(RoundedCornerShape(20.dp))
                     .background(
                         Brush.horizontalGradient(
-                            listOf(Color(0xFF00F0FF), Color(0xFFFF0055))
+                            listOf(Color(0xFFFF9100), Color(0xFFFF1212))
                         )
                     )
                     .clickable {
@@ -180,7 +180,7 @@ fun HomeLocalSongs(onSearchClick: () -> Unit) = with(OrderPreferences) {
                 BasicText(
                     text = "Authorize Storage Access",
                     style = typography.xs.copy(
-                        color = Color(0xFF08090C),
+                        color = Color.White,
                         fontWeight = FontWeight.ExtraBold
                     )
                 )
