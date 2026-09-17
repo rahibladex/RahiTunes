@@ -203,6 +203,7 @@ dependencies {
     implementation(libs.coil.ktor)
 
     implementation(libs.palette)
+    implementation(libs.splashscreen)
     implementation(libs.monet)
     runtimeOnly(projects.core.materialCompat)
 

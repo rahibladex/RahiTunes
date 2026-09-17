@@ -7,10 +7,10 @@
 
     <!-- Centered RahiTunes Logo Note & Sparkles Group -->
     <group
-        android:scaleX="1.3"
-        android:scaleY="1.3"
-        android:translateX="79"
-        android:translateY="35">
+        android:scaleX="0.88"
+        android:scaleY="0.88"
+        android:translateX="100"
+        android:translateY="68">
 
         <!-- Left Note Head (Rotated Oval) -->
         <path
@@ -56,8 +56,10 @@
 
     <!-- Vector Text Branding: "Rahi" in Orange (#FF8800), "Tunes" in White (#FFFFFF) -->
     <group
-        android:translateX="30"
-        android:translateY="180">
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:translateX="86"
+        android:translateY="168">
 
         <!-- R -->
         <path
