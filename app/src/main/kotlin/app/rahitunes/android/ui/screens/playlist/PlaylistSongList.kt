@@ -1,19 +1,29 @@
 package app.rahitunes.android.ui.screens.playlist
 
 import android.content.Intent
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -22,8 +32,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import app.rahitunes.android.Database
 import app.rahitunes.android.LocalPlayerAwareWindowInsets
 import app.rahitunes.android.LocalPlayerServiceBinder
@@ -60,6 +79,8 @@ import app.rahitunes.core.ui.utils.isLandscape
 import app.rahitunes.providers.innertube.Innertube
 import app.rahitunes.providers.innertube.models.bodies.BrowseBody
 import app.rahitunes.providers.innertube.requests.playlistPage
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
@@ -72,9 +93,10 @@ fun PlaylistSongList(
     params: String?,
     maxDepth: Int?,
     shouldDedup: Boolean,
+    onTitleLoaded: (String) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    val (colorPalette) = LocalAppearance.current
+    val (colorPalette, typography) = LocalAppearance.current
     val binder = LocalPlayerServiceBinder.current
     val context = LocalContext.current
     val menuState = LocalMenuState.current
@@ -82,7 +104,10 @@ fun PlaylistSongList(
     var playlistPage by persist<Innertube.PlaylistOrAlbumPage?>("playlist/$browseId/playlistPage")
 
     LaunchedEffect(Unit) {
-        if (playlistPage != null && playlistPage?.songsPage?.continuation == null) return@LaunchedEffect
+        if (playlistPage != null) {
+            playlistPage?.title?.let(onTitleLoaded)
+            if (playlistPage?.songsPage?.continuation == null) return@LaunchedEffect
+        }
 
         playlistPage = withContext(Dispatchers.IO) {
             Innertube
@@ -93,6 +118,7 @@ fun PlaylistSongList(
                 )
                 ?.getOrNull()
         }
+        playlistPage?.title?.let(onTitleLoaded)
     }
 
     var isImportingPlaylist by rememberSaveable { mutableStateOf(false) }
@@ -129,45 +155,113 @@ fun PlaylistSongList(
 
     val headerContent: @Composable () -> Unit = {
         if (playlistPage == null) HeaderPlaceholder(modifier = Modifier.shimmer())
-        else Header(title = playlistPage?.title ?: stringResource(R.string.unknown)) {
-            SecondaryTextButton(
-                text = stringResource(R.string.enqueue),
-                enabled = playlistPage?.songsPage?.items?.isNotEmpty() == true,
-                onClick = {
-                    playlistPage?.songsPage?.items?.map(Innertube.SongItem::asMediaItem)
-                        ?.let { mediaItems ->
-                            binder?.player?.enqueue(mediaItems)
-                        }
+        else Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            BasicText(
+                text = playlistPage?.title.orEmpty(),
+                style = typography.l.copy(
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp
+                )
+            )
+
+            Spacer(Modifier.height(12.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                // Enqueue Action Pill
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(20.dp))
+                        .background(
+                            if (playlistPage?.songsPage?.items?.isNotEmpty() == true) {
+                                Brush.horizontalGradient(listOf(Color(0xFFFF9100), Color(0xFFFF1212)))
+                            } else {
+                                SolidColor(Color(0xFF1F2637))
+                            }
+                        )
+                        .clickable(
+                            enabled = playlistPage?.songsPage?.items?.isNotEmpty() == true,
+                            onClick = {
+                                playlistPage?.songsPage?.items?.map(Innertube.SongItem::asMediaItem)
+                                    ?.let { mediaItems ->
+                                        binder?.player?.enqueue(mediaItems)
+                                    }
+                            }
+                        )
+                        .padding(horizontal = 18.dp, vertical = 8.dp)
+                ) {
+                    BasicText(
+                        text = stringResource(R.string.enqueue),
+                        style = typography.xs.copy(
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
                 }
-            )
 
-            Spacer(modifier = Modifier.weight(1f))
+                // Download, Add, Share Action Icons
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    playlistPage?.songsPage?.items?.map(Innertube.SongItem::asMediaItem)
+                        ?.let { PlaylistDownloadIcon(songs = it.toImmutableList()) }
 
-            playlistPage?.songsPage?.items?.map(Innertube.SongItem::asMediaItem)
-                ?.let { PlaylistDownloadIcon(songs = it.toImmutableList()) }
-
-            HeaderIconButton(
-                icon = R.drawable.add,
-                color = colorPalette.text,
-                onClick = { isImportingPlaylist = true }
-            )
-
-            HeaderIconButton(
-                icon = R.drawable.share_social,
-                color = colorPalette.text,
-                onClick = {
-                    val url = playlistPage?.url
-                        ?: "https://music.youtube.com/playlist?list=${browseId.removePrefix("VL")}"
-
-                    val sendIntent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        type = "text/plain"
-                        putExtra(Intent.EXTRA_TEXT, url)
+                    Box(
+                        modifier = Modifier
+                            .size(38.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFF141724))
+                            .border(1.dp, Color.White.copy(alpha = 0.08f), CircleShape)
+                            .clickable { isImportingPlaylist = true },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.add),
+                            contentDescription = "Add",
+                            colorFilter = ColorFilter.tint(Color.White),
+                            modifier = Modifier.size(18.dp)
+                        )
                     }
 
-                    context.startActivity(Intent.createChooser(sendIntent, null))
+                    Box(
+                        modifier = Modifier
+                            .size(38.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFF141724))
+                            .border(1.dp, Color.White.copy(alpha = 0.08f), CircleShape)
+                            .clickable {
+                                val url = playlistPage?.url
+                                    ?: "https://music.youtube.com/playlist?list=${browseId.removePrefix("VL")}"
+
+                                val sendIntent = Intent().apply {
+                                    action = Intent.ACTION_SEND
+                                    type = "text/plain"
+                                    putExtra(Intent.EXTRA_TEXT, url)
+                                }
+
+                                context.startActivity(Intent.createChooser(sendIntent, null))
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.share_social),
+                            contentDescription = "Share",
+                            colorFilter = ColorFilter.tint(Color.White),
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
                 }
-            )
+            }
         }
     }
 

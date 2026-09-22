@@ -149,12 +149,14 @@ Contributions are welcome! Feel free to:
 
 <div align="center">
 
+Made with ❤️ by **RahiBladeX**
+
 | | |
 |---|---|
-| **Name** | rahibladex |
+| **Developer** | RahiBladeX |
 | **GitHub** | [@rahibladex](https://github.com/rahibladex) |
-| **Repos** | [4 public repositories](https://github.com/rahibladex?tab=repositories) |
-| **Other Projects** | [Cortex-City](https://github.com/rahibladex/Cortex-City) — Traffic predictive digital twin simulator |
+| **Repository** | [rahibladex/RahiTunes](https://github.com/rahibladex/RahiTunes) |
+| **Latest Release** | [RahiTunes v1.0](https://github.com/rahibladex/RahiTunes/releases/tag/v1.0) |
 
 </div>
 

@@ -64,7 +64,7 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            manifestPlaceholders["appName"] = "RahiTunes Debug"
+            manifestPlaceholders["appName"] = "RahiTunes"
         }
 
         release {

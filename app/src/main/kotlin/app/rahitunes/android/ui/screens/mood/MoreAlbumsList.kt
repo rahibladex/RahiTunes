@@ -80,18 +80,6 @@ fun MoreAlbumsList(
             .background(colorPalette.background0)
             .fillMaxSize()
     ) {
-        item(
-            key = "header",
-            contentType = 0,
-            span = { GridItemSpan(maxLineSpan) }
-        ) {
-            if (albumsPage == null) HeaderPlaceholder(modifier = Modifier.shimmer())
-            else Header(
-                title = stringResource(R.string.new_released_albums),
-                modifier = Modifier.padding(endPaddingValues)
-            )
-        }
-
         data?.let { page ->
             itemsIndexed(
                 items = page,

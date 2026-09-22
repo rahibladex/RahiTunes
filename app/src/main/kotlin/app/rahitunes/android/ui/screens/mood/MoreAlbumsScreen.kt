@@ -28,7 +28,7 @@ fun MoreAlbumsScreen() {
                 tabIndex = 0,
                 onTabChange = { },
                 tabColumnContent = {
-                    tab(0, R.string.albums, R.drawable.disc)
+                    tab(0, R.string.new_released_albums, R.drawable.disc)
                 }
             ) { currentTabIndex ->
                 saveableStateHolder.SaveableStateProvider(key = currentTabIndex) {

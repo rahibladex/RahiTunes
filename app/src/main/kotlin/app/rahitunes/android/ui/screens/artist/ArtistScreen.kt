@@ -164,14 +164,17 @@ fun ArtistScreen(browseId: String) {
                     }
                 }
 
+            val defaultArtistTitle = stringResource(R.string.overview)
+            val title = artist?.name ?: artistPage?.name ?: defaultArtistTitle
+
             Scaffold(
-                key = "artist",
+                key = "artist/$browseId/$title",
                 topIconButtonId = R.drawable.chevron_back,
                 onTopIconButtonClick = pop,
                 tabIndex = UIStatePreferences.artistScreenTabIndex,
                 onTabChange = { UIStatePreferences.artistScreenTabIndex = it },
                 tabColumnContent = {
-                    tab(0, R.string.overview, R.drawable.sparkles)
+                    tab(0, title, R.drawable.sparkles)
                     tab(1, R.string.songs, R.drawable.musical_notes)
                     tab(2, R.string.albums, R.drawable.disc)
                     tab(3, R.string.singles, R.drawable.disc)

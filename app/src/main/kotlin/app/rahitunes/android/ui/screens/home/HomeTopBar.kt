@@ -69,9 +69,15 @@ fun HomeTopBar(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                Brush.verticalGradient(
-                    colors = listOf(Color(0xFF381512), Color(0xFF0E0E18))
-                )
+                if (colorPalette.isDark) {
+                    Brush.verticalGradient(
+                        colors = listOf(Color(0xFF381512), colorPalette.background0)
+                    )
+                } else {
+                    Brush.verticalGradient(
+                        colors = listOf(Color(0xFFFFF3E0), colorPalette.background0)
+                    )
+                }
             )
             .padding(top = 28.dp, bottom = 8.dp)
     ) {
@@ -93,7 +99,7 @@ fun HomeTopBar(
                     .clickable(onClick = onAvatarClick)
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(0.dp)) {
-                    // "Rahi" (Smooth Orange-to-Red Gradient Fade) + "Tunes" (White)
+                    // "Rahi" (Smooth Orange-to-Red Gradient Fade) + "Tunes" (Theme Text)
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -110,7 +116,7 @@ fun HomeTopBar(
                         BasicText(
                             text = "Tunes",
                             style = typography.m.copy(
-                                color = Color.White,
+                                color = colorPalette.text,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 24.sp
                             )
@@ -120,7 +126,7 @@ fun HomeTopBar(
                     BasicText(
                         text = "THE MUSIC APP U DESERVE",
                         style = typography.xxs.copy(
-                            color = Color.White.copy(alpha = 0.85f),
+                            color = colorPalette.textSecondary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 8.sp,
                             letterSpacing = 1.2.sp
@@ -133,7 +139,7 @@ fun HomeTopBar(
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(20.dp))
-                    .background(Color(0xFF151528))
+                    .background(colorPalette.background1)
                     .clickable(onClick = onFavoritesClick)
                     .padding(horizontal = 12.dp, vertical = 8.dp),
                 contentAlignment = Alignment.Center
@@ -152,7 +158,7 @@ fun HomeTopBar(
                         text = "Liked Songs",
                         maxLines = 1,
                         style = typography.xxs.copy(
-                            color = Color.White,
+                            color = colorPalette.text,
                             fontWeight = FontWeight.Bold,
                             fontSize = 11.sp
                         )
@@ -169,7 +175,7 @@ fun HomeTopBar(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .background(Color(0xFF151528))
+                .background(colorPalette.background1)
                 .border(
                     width = 1.dp,
                     brush = Brush.horizontalGradient(
@@ -197,7 +203,7 @@ fun HomeTopBar(
                             text = "What do you want to listen to?",
                             maxLines = 1,
                             style = typography.xs.copy(
-                                color = Color(0xFFA2A2D0),
+                                color = colorPalette.textSecondary,
                                 fontSize = 13.sp
                             )
                         )
@@ -212,7 +218,7 @@ fun HomeTopBar(
                         singleLine = true,
                         maxLines = 1,
                         textStyle = typography.xs.copy(
-                            color = Color.White,
+                            color = colorPalette.text,
                             fontSize = 13.sp
                         ),
                         cursorBrush = SolidColor(Color(0xFFFF9100)),
@@ -233,7 +239,7 @@ fun HomeTopBar(
                     Image(
                         painter = painterResource(R.drawable.close),
                         contentDescription = "Clear",
-                        colorFilter = ColorFilter.tint(Color(0xFFA2A2D0)),
+                        colorFilter = ColorFilter.tint(colorPalette.textSecondary),
                         modifier = Modifier
                             .size(16.dp)
                             .clickable {
@@ -264,7 +270,7 @@ fun HomeTopBar(
                         .clip(RoundedCornerShape(20.dp))
                         .background(
                             if (isSelected) Brush.horizontalGradient(listOf(Color(0xFFFF9100), Color(0xFFFF1212)))
-                            else Brush.horizontalGradient(listOf(Color(0xFF151528), Color(0xFF151528)))
+                            else SolidColor(colorPalette.background1)
                         )
                         .clickable { onFilterSelected(filter) }
                         .padding(horizontal = 16.dp, vertical = 8.dp),
@@ -272,7 +278,7 @@ fun HomeTopBar(
                 ) {
                     BasicText(
                         text = filter,
-                        style = if (isSelected) typography.xs.bold.color(Color.White) else typography.xs.medium.color(Color(0xFFA2A2D0))
+                        style = if (isSelected) typography.xs.bold.color(Color.White) else typography.xs.medium.color(colorPalette.textSecondary)
                     )
                 }
             }

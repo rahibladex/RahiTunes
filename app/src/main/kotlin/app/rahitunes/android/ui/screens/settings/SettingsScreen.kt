@@ -133,8 +133,8 @@ fun SettingsScreen() {
                             modifier = Modifier
                                 .size(40.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFF131726))
-                                .border(1.dp, Color.White.copy(alpha = 0.08f), CircleShape)
+                                .background(colorPalette.background1)
+                                .border(1.dp, colorPalette.textSecondary.copy(alpha = 0.15f), CircleShape)
                                 .clickable {
                                     if (UIStatePreferences.homeScreenTabIndex == 4) {
                                         UIStatePreferences.homeScreenTabIndex = 0
@@ -146,14 +146,14 @@ fun SettingsScreen() {
                             Image(
                                 painter = painterResource(R.drawable.chevron_back),
                                 contentDescription = "Back",
-                                colorFilter = ColorFilter.tint(Color.White),
+                                colorFilter = ColorFilter.tint(colorPalette.text),
                                 modifier = Modifier.size(20.dp)
                             )
                         }
 
                         BasicText(
                             text = stringResource(R.string.settings),
-                            style = typography.l.copy(fontWeight = FontWeight.Bold)
+                            style = typography.l.copy(color = colorPalette.text, fontWeight = FontWeight.Bold)
                         )
                     }
 
@@ -183,14 +183,12 @@ fun SettingsScreen() {
                                                 listOf(Color(0xFFE08000), Color(0xFFE04000))
                                             )
                                         } else {
-                                            Brush.horizontalGradient(
-                                                listOf(Color(0xFF141724), Color(0xFF10131E))
-                                            )
+                                            androidx.compose.ui.graphics.SolidColor(colorPalette.background1)
                                         }
                                     )
                                     .border(
                                         width = 1.dp,
-                                        color = if (isSelected) Color(0xFFE08000) else Color.White.copy(alpha = 0.08f),
+                                        color = if (isSelected) Color(0xFFE08000) else colorPalette.textSecondary.copy(alpha = 0.15f),
                                         shape = RoundedCornerShape(20.dp)
                                     )
                                     .clickable { onTabChanged(index) }
@@ -205,14 +203,14 @@ fun SettingsScreen() {
                                         painter = painterResource(iconRes),
                                         contentDescription = title,
                                         colorFilter = ColorFilter.tint(
-                                            if (isSelected) Color(0xFF07080D) else Color(0xFF8E9AA8)
+                                            if (isSelected) Color.White else colorPalette.textSecondary
                                         ),
                                         modifier = Modifier.size(16.dp)
                                     )
                                     BasicText(
                                         text = title,
                                         style = typography.xs.copy(
-                                            color = if (isSelected) Color(0xFF07080D) else Color.White,
+                                            color = if (isSelected) Color.White else colorPalette.text,
                                             fontWeight = if (isSelected) FontWeight.ExtraBold else FontWeight.SemiBold,
                                             fontSize = 12.5.sp
                                         )
@@ -431,8 +429,8 @@ fun SettingsEntry(
         modifier = modifier
             .padding(horizontal = if (usePadding) 16.dp else 0.dp, vertical = 4.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(Color(0xFF11141D))
-            .border(1.dp, Color(0xFF1F2637), RoundedCornerShape(16.dp))
+            .background(colorPalette.background1)
+            .border(1.dp, colorPalette.textSecondary.copy(alpha = 0.15f), RoundedCornerShape(16.dp))
             .clickable(enabled = isEnabled, onClick = onClick)
             .alpha(if (isEnabled) 1f else 0.5f)
             .padding(horizontal = 16.dp, vertical = 14.dp)
@@ -442,7 +440,7 @@ fun SettingsEntry(
             BasicText(
                 text = title,
                 style = typography.xs.copy(
-                    color = Color.White,
+                    color = colorPalette.text,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -450,7 +448,7 @@ fun SettingsEntry(
             if (text != null) BasicText(
                 text = text,
                 style = typography.xs.copy(
-                    color = Color(0xFF8E9AA8),
+                    color = colorPalette.textSecondary,
                     fontSize = 12.sp
                 )
             )
@@ -471,7 +469,7 @@ fun SettingsDescription(
     BasicText(
         text = text,
         style = if (important) typography.xxs.semiBold.color(colorPalette.red)
-        else typography.xxs.copy(color = Color(0xFF8E9AA8)),
+        else typography.xxs.copy(color = colorPalette.textSecondary),
         modifier = modifier
             .padding(start = 16.dp)
             .padding(horizontal = 16.dp, vertical = 6.dp)
@@ -540,13 +538,29 @@ fun SettingsCategoryScreen(
             description?.let { description ->
                 BasicText(
                     text = description,
-                    style = typography.s.copy(color = Color(0xFF8E9AA8))
+                    style = typography.s.copy(color = colorPalette.textSecondary)
                 )
                 SettingsGroupSpacer()
             }
         }
 
         content()
+
+        Spacer(modifier = Modifier.height(24.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 12.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            BasicText(
+                text = "Made with love by RahiBladeX",
+                style = typography.xs.copy(
+                    color = Color(0xFFFF9100),
+                    fontWeight = FontWeight.Bold
+                )
+            )
+        }
     }
 }
 

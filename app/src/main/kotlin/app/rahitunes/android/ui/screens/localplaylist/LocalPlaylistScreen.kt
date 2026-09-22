@@ -67,7 +67,7 @@ fun LocalPlaylistScreen(playlistId: Long) {
                 tabIndex = 0,
                 onTabChange = { },
                 tabColumnContent = {
-                    tab(0, R.string.songs, R.drawable.musical_notes)
+                    tab(0, playlist?.name.orEmpty(), R.drawable.musical_notes)
                 }
             ) { currentTabIndex ->
                 saveableStateHolder.SaveableStateProvider(currentTabIndex) {

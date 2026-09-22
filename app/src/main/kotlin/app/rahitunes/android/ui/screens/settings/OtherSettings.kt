@@ -112,18 +112,6 @@ fun OtherSettings() {
         title = stringResource(R.string.other),
         scrollState = scrollState
     ) {
-        SettingsGroup(title = stringResource(R.string.android_auto)) {
-            SwitchSettingsEntry(
-                title = stringResource(R.string.android_auto),
-                text = stringResource(R.string.android_auto_description),
-                isChecked = isAndroidAutoEnabled,
-                onCheckedChange = { isAndroidAutoEnabled = it }
-            )
-
-            AnimatedVisibility(visible = isAndroidAutoEnabled) {
-                SettingsDescription(text = stringResource(R.string.android_auto_warning))
-            }
-        }
         SettingsGroup(title = stringResource(R.string.search_history)) {
             SwitchSettingsEntry(
                 title = stringResource(R.string.pause_search_history),
@@ -253,7 +241,7 @@ fun OtherSettings() {
                 title = stringResource(R.string.need_help),
                 text = stringResource(R.string.need_help_description),
                 onClick = {
-                    uriHandler.openUri("https://dontkillmyapp.com/")
+                    uriHandler.openUri("https://github.com/rahibladex/RahiTunes")
                 }
             )
 

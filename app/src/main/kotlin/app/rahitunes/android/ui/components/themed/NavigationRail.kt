@@ -68,12 +68,10 @@ import kotlinx.parcelize.Parcelize
 class TabsBuilder @PublishedApi internal constructor() {
     companion object {
         @Composable
-        inline fun rememberTabs(crossinline content: TabsBuilder.() -> Unit) = rememberSaveable(
-            saver = listSaver(
-                save = { it },
-                restore = { it.toImmutableList() }
-            )
-        ) {
+        inline fun rememberTabs(
+            key: Any? = null,
+            noinline content: TabsBuilder.() -> Unit
+        ) = remember(key, content) {
             TabsBuilder().apply(content).tabs.values.toImmutableList()
         }
     }
@@ -189,11 +187,11 @@ inline fun NavigationRail(
     crossinline setHiddenTabs: (List<String>) -> Unit,
     modifier: Modifier = Modifier,
     tabsEditingTitle: String = stringResource(R.string.tabs),
-    crossinline content: TabsBuilder.() -> Unit
+    noinline content: TabsBuilder.() -> Unit
 ) {
     val (colorPalette, typography) = LocalAppearance.current
 
-    val tabs = TabsBuilder.rememberTabs(content)
+    val tabs = TabsBuilder.rememberTabs(content = content)
     val isLandscape = isLandscape
 
     val paddingValues = LocalPlayerAwareWindowInsets.current

@@ -1,16 +1,21 @@
 package app.rahitunes.android.ui.screens.mood
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,8 +23,12 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import app.rahitunes.android.LocalPlayerAwareWindowInsets
@@ -85,18 +94,6 @@ fun MoreMoodsList(
             .background(colorPalette.background0)
             .fillMaxSize()
     ) {
-        item(
-            key = "header",
-            contentType = 0,
-            span = { GridItemSpan(columns) }
-        ) {
-            if (moodsPage == null) HeaderPlaceholder(modifier = Modifier.shimmer())
-            else Header(
-                title = stringResource(R.string.moods_and_genres),
-                modifier = Modifier.padding(endPaddingValues)
-            )
-        }
-
         data?.let { page ->
             if (page.isNotEmpty()) page.fastForEachIndexed { i, (title, moods) ->
                 item(
@@ -104,11 +101,25 @@ fun MoreMoodsList(
                     contentType = 0,
                     span = { GridItemSpan(columns) }
                 ) {
-                    BasicText(
-                        text = title,
-                        style = typography.m.semiBold,
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = sectionTextModifier
-                    )
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(6.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFFFF9100))
+                        )
+                        BasicText(
+                            text = title,
+                            style = typography.m.copy(
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold
+                            )
+                        )
+                    }
                 }
 
                 itemsIndexed(

@@ -6,16 +6,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import app.rahitunes.core.ui.LocalAppearance
-import app.rahitunes.core.ui.surface
-import app.rahitunes.core.ui.utils.roundedShape
 
 @Composable
 fun PrimaryButton(
@@ -24,22 +25,28 @@ fun PrimaryButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    val (colorPalette) = LocalAppearance.current
-
     Box(
         modifier = modifier
-            .clip(16.dp.roundedShape)
+            .shadow(
+                elevation = 10.dp,
+                shape = CircleShape,
+                spotColor = Color(0xFFFF9100).copy(alpha = 0.6f)
+            )
+            .clip(CircleShape)
             .clickable(enabled = enabled, onClick = onClick)
-            .background(colorPalette.accent)
-            .size(56.dp)
+            .background(
+                Brush.horizontalGradient(
+                    listOf(Color(0xFFFF9100), Color(0xFFFF1212))
+                )
+            )
+            .size(56.dp),
+        contentAlignment = Alignment.Center
     ) {
         Image(
             painter = painterResource(icon),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(colorPalette.onAccent),
-            modifier = Modifier
-                .align(Alignment.Center)
-                .size(24.dp)
+            colorFilter = ColorFilter.tint(Color.White),
+            modifier = Modifier.size(22.dp)
         )
     }
 }

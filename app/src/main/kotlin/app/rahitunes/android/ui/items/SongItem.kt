@@ -228,15 +228,15 @@ private fun SongItem(
     val (colorPalette, typography) = LocalAppearance.current
 
     val cardBackground = if (isPlaying) {
-        Color(0xFF131A2B)
+        Color(0xFFFF9100).copy(alpha = 0.15f)
     } else {
-        Color(0xFF0C0F18).copy(alpha = 0.6f)
+        colorPalette.background1
     }
 
     val cardBorder = if (isPlaying) {
-        Color(0xFF00F0FF).copy(alpha = 0.4f)
+        Color(0xFFFF9100).copy(alpha = 0.5f)
     } else {
-        Color.White.copy(alpha = 0.05f)
+        colorPalette.textSecondary.copy(alpha = 0.1f)
     }
 
     if (!(hideExplicit && explicit)) ItemContainer(
@@ -262,7 +262,7 @@ private fun SongItem(
                     BasicText(
                         text = title.orEmpty(),
                         style = typography.xs.semiBold.copy(
-                            color = if (isPlaying) Color(0xFF00F0FF) else Color.White,
+                            color = if (isPlaying) Color(0xFFFF9100) else colorPalette.text,
                             fontWeight = if (isPlaying) FontWeight.Bold else FontWeight.SemiBold
                         ),
                         maxLines = 1,
@@ -275,7 +275,7 @@ private fun SongItem(
             } ?: BasicText(
                 text = title.orEmpty(),
                 style = typography.xs.semiBold.copy(
-                    color = if (isPlaying) Color(0xFF00F0FF) else Color.White,
+                    color = if (isPlaying) Color(0xFFFF9100) else colorPalette.text,
                     fontWeight = if (isPlaying) FontWeight.Bold else FontWeight.SemiBold
                 ),
                 maxLines = 1,
@@ -295,7 +295,7 @@ private fun SongItem(
                         BasicText(
                             text = authors,
                             style = typography.xs.copy(
-                                color = Color(0xFF8E9AA8),
+                                color = colorPalette.textSecondary,
                                 fontSize = 12.sp
                             ),
                             maxLines = 1,

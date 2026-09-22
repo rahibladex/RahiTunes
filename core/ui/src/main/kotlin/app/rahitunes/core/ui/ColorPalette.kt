@@ -73,42 +73,17 @@ private fun lightColorPalette(accent: Hsl) = lightColorPalette(
 )
 
 private fun lightColorPalette(hue: Float, saturation: Float) = ColorPalette(
-    background0 = Color.hsl(
-        hue = hue,
-        saturation = saturation.coerceAtMost(0.1f),
-        lightness = 0.925f
-    ),
-    background1 = Color.hsl(
-        hue = hue,
-        saturation = saturation.coerceAtMost(0.3f),
-        lightness = 0.90f
-    ),
-    background2 = Color.hsl(
-        hue = hue,
-        saturation = saturation.coerceAtMost(0.4f),
-        lightness = 0.85f
-    ),
-    text = Color.hsl(
-        hue = hue,
-        saturation = saturation.coerceAtMost(0.02f),
-        lightness = 0.12f
-    ),
-    textSecondary = Color.hsl(
-        hue = hue,
-        saturation = saturation.coerceAtMost(0.1f),
-        lightness = 0.40f
-    ),
-    textDisabled = Color.hsl(
-        hue = hue,
-        saturation = saturation.coerceAtMost(0.2f),
-        lightness = 0.65f
-    ),
-    accent = Color.hsl(
-        hue = hue,
-        saturation = saturation.coerceAtMost(0.5f),
-        lightness = 0.5f
-    ),
-    onAccent = Color.White,
+    background0 = Color(0xfff8f9fa),
+    background1 = Color(0xfff1f3f5),
+    background2 = Color(0xffe9ecef),
+    text = Color(0xff121212),
+    textSecondary = Color(0xff495057),
+    textDisabled = Color(0xff868e96),
+    accent = Color(0xffff9100),
+    onAccent = Color(0xffffffff),
+    red = Color(0xffff1212),
+    blue = Color(0xffff9100),
+    yellow = Color(0xffff9100),
     isDefault = false,
     isDark = false
 )

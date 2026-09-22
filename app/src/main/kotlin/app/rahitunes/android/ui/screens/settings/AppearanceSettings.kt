@@ -37,12 +37,6 @@ fun AppearanceSettings() = with(AppearancePreferences) {
     SettingsCategoryScreen(title = stringResource(R.string.appearance)) {
         SettingsGroup(title = stringResource(R.string.colors)) {
             EnumValueSelectorSettingsEntry(
-                title = stringResource(R.string.color_source),
-                selectedValue = colorSource,
-                onValueSelect = { colorSource = it },
-                valueText = { it.nameLocalized }
-            )
-            EnumValueSelectorSettingsEntry(
                 title = stringResource(R.string.color_mode),
                 selectedValue = colorMode,
                 onValueSelect = { colorMode = it },

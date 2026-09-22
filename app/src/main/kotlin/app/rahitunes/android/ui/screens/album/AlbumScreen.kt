@@ -186,14 +186,17 @@ fun AlbumScreen(browseId: String) {
                 url = album?.thumbnailUrl
             )
 
+            val defaultSongsTitle = stringResource(R.string.songs)
+            val title = album?.title ?: albumPage?.title ?: defaultSongsTitle
+
             Scaffold(
-                key = "album",
+                key = "album/$browseId/$title",
                 topIconButtonId = R.drawable.chevron_back,
                 onTopIconButtonClick = pop,
                 tabIndex = tabIndex,
                 onTabChange = { newTab -> tabIndexState.update { newTab } },
                 tabColumnContent = {
-                    tab(0, R.string.songs, R.drawable.musical_notes, canHide = false)
+                    tab(0, title, R.drawable.musical_notes, canHide = false)
                     tab(1, R.string.other_versions, R.drawable.disc)
                 }
             ) { currentTabIndex ->

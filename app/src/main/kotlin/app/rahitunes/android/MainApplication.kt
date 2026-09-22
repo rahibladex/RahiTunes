@@ -210,7 +210,9 @@ class MainActivity : ComponentActivity(), MonetColorsChangedListener {
             mode = colorMode,
             darkness = darkness,
             fontFamily = fontFamily,
-            materialAccentColor = Color(monet.getAccentColor(this@MainActivity)),
+            materialAccentColor = runCatching {
+                Color(monet.getAccentColor(this@MainActivity))
+            }.getOrDefault(Color(0xFFFF9100)),
             sampleBitmap = sampleBitmap,
             applyFontPadding = applyFontPadding,
             thumbnailRoundness = thumbnailRoundness.dp
@@ -282,10 +284,11 @@ class MainActivity : ComponentActivity(), MonetColorsChangedListener {
                 imeVisible,
                 imeBottomDp
             ) {
+                val minBottom = bottomBarOffset + animatedBottomDp
                 val bottom =
                     if (imeVisible) imeBottomDp.coerceAtLeast(playerBottomSheetState.value)
                     else playerBottomSheetState.value.coerceIn(
-                        animatedBottomDp..playerBottomSheetState.collapsedBound
+                        minBottom..playerBottomSheetState.collapsedBound
                     )
 
                 windowInsets
@@ -319,56 +322,61 @@ class MainActivity : ComponentActivity(), MonetColorsChangedListener {
                 ) {
                     val isDownloading by downloadState.collectAsState()
 
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        HomeScreen()
+                    app.rahitunes.compose.routing.ProvideRootRouter {
+                        Box(modifier = Modifier.fillMaxSize()) {
+                            HomeScreen()
 
-                        AnimatedVisibility(
-                            visible = isDownloading,
-                            modifier = Modifier.padding(playerAwareWindowInsets.asPaddingValues())
-                        ) {
-                            LinearProgressIndicator(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .align(Alignment.TopCenter)
-                            )
-                        }
-
-                        CompositionLocalProvider(
-                            LocalAppearance provides LocalAppearance.current.let {
-                                if (it.colorPalette.isDark && AppearancePreferences.darkness == Darkness.AMOLED) {
-                                    it.copy(colorPalette = it.colorPalette.amoled())
-                                } else it
+                            AnimatedVisibility(
+                                visible = isDownloading,
+                                modifier = Modifier.padding(playerAwareWindowInsets.asPaddingValues())
+                            ) {
+                                LinearProgressIndicator(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .align(Alignment.TopCenter)
+                                )
                             }
-                        ) {
-                            Player(
-                                layoutState = playerBottomSheetState,
+
+                            CompositionLocalProvider(
+                                LocalAppearance provides LocalAppearance.current.let {
+                                    if (it.colorPalette.isDark && AppearancePreferences.darkness == Darkness.AMOLED) {
+                                        it.copy(colorPalette = it.colorPalette.amoled())
+                                    } else it
+                                }
+                            ) {
+                                Player(
+                                    layoutState = playerBottomSheetState,
+                                    modifier = Modifier.align(Alignment.BottomCenter)
+                                )
+                            }
+
+                            BottomSheetMenu(
                                 modifier = Modifier.align(Alignment.BottomCenter)
                             )
-                        }
 
-                        BottomSheetMenu(
-                            modifier = Modifier.align(Alignment.BottomCenter)
-                        )
+                            val homeTabs = app.rahitunes.android.ui.components.themed.TabsBuilder.rememberTabs {
+                                tab(0, R.string.quick_picks, R.drawable.sparkles)
+                                tab(1, R.string.playlists, R.drawable.playlist)
+                                tab(2, R.string.discover, R.drawable.globe)
+                                tab(3, R.string.local, R.drawable.download)
+                                tab(4, R.string.settings, R.drawable.settings)
+                            }
 
-                        val homeTabs = app.rahitunes.android.ui.components.themed.TabsBuilder.rememberTabs {
-                            tab(0, R.string.quick_picks, R.drawable.sparkles)
-                            tab(1, R.string.playlists, R.drawable.playlist)
-                            tab(2, R.string.discover, R.drawable.globe)
-                            tab(3, R.string.local, R.drawable.download)
-                            tab(4, R.string.settings, R.drawable.settings)
-                        }
-
-                        if (!playerBottomSheetState.expanded) {
-                            app.rahitunes.android.ui.components.themed.FloatingBottomBar(
-                                tabs = homeTabs,
-                                selectedTabIndex = app.rahitunes.android.preferences.UIStatePreferences.homeScreenTabIndex,
-                                onTabSelected = { app.rahitunes.android.preferences.UIStatePreferences.homeScreenTabIndex = it },
-                                modifier = Modifier
-                                    .align(Alignment.BottomCenter)
-                                    .graphicsLayer {
-                                        alpha = (1f - (playerBottomSheetState.progress * 4)).coerceIn(0f, 1f)
-                                    }
-                            )
+                            if (!playerBottomSheetState.expanded) {
+                                app.rahitunes.android.ui.components.themed.FloatingBottomBar(
+                                    tabs = homeTabs,
+                                    selectedTabIndex = app.rahitunes.android.preferences.UIStatePreferences.homeScreenTabIndex,
+                                    onTabSelected = {
+                                        app.rahitunes.android.preferences.UIStatePreferences.homeScreenTabIndex = it
+                                        router.push(null)
+                                    },
+                                    modifier = Modifier
+                                        .align(Alignment.BottomCenter)
+                                        .graphicsLayer {
+                                            alpha = (1f - (playerBottomSheetState.progress * 4)).coerceIn(0f, 1f)
+                                        }
+                                )
+                            }
                         }
                     }
                 }
