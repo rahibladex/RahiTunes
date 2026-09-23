@@ -210,7 +210,7 @@ fun Thumbnail(
 
                 AsyncImage(
                     model = currentWindow.mediaItem.mediaMetadata.artworkUri
-                        ?.thumbnail((Dimensions.thumbnails.player.song - 64.dp).px),
+                        ?.thumbnail(app.rahitunes.android.preferences.AppearancePreferences.maxThumbnailSize),
                     placeholder = painterResource(id = R.drawable.ic_launcher_foreground),
                     error = painterResource(id = R.drawable.ic_launcher_foreground),
                     contentDescription = null,

@@ -149,7 +149,7 @@ fun String?.thumbnail(
     size: Int,
     maxSize: Int = AppearancePreferences.maxThumbnailSize
 ): String? {
-    val actualSize = size.coerceAtMost(maxSize)
+    val actualSize = size.coerceIn(512, maxSize)
     return when {
         this?.startsWith("https://lh3.googleusercontent.com") == true -> "$this-w$actualSize-h$actualSize"
         this?.startsWith("https://yt3.ggpht.com") == true -> "$this-w$actualSize-h$actualSize-s$actualSize"
