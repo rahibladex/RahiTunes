@@ -414,8 +414,11 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
-        if (!player.shouldBePlaying || PlayerPreferences.stopWhenClosed) {
+        runCatching {
+            maybeSavePlayerQueue()
+            player.pause()
             broadcastPendingIntent<NotificationDismissReceiver>().send()
+            stopSelf()
         }
         super.onTaskRemoved(rootIntent)
     }
