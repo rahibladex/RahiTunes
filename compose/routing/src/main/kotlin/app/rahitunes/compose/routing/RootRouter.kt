@@ -8,12 +8,14 @@ import androidx.compose.animation.core.SeekableTransitionState
 import androidx.compose.animation.core.rememberTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.movableContentOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -63,40 +65,59 @@ interface Router {
 
 @Stable
 class RootRouter : Router {
-    private inline fun route(block: RouteHandlerScope.() -> Unit?) = current?.block() ?: Unit
+    val activeScopes = mutableStateListOf<RouteHandlerScope>()
 
-    var current: RouteHandlerScope? by mutableStateOf(null)
+    val current: RouteHandlerScope?
+        get() = activeScopes.lastOrNull()
 
-    override val pop = {
-        route {
-            pop()
+    fun registerScope(scope: RouteHandlerScope) {
+        if (!activeScopes.contains(scope)) {
+            activeScopes.add(scope)
         }
     }
 
-    override val push = { route: Route? ->
-        route {
-            replace(route)
+    fun unregisterScope(scope: RouteHandlerScope) {
+        activeScopes.remove(scope)
+    }
+
+    override val pop: () -> Unit = {
+        current?.pop?.invoke()
+    }
+
+    override val push: (Route?) -> Unit = { route ->
+        if (route == null) {
+            activeScopes.toList().asReversed().forEach { it.replace(null) }
+        } else {
+            current?.replace?.invoke(route)
         }
     }
 
-    override operator fun Route0.invoke() = push(this)
-
-    override operator fun <P0> Route1<P0>.invoke(p0: P0) = route {
-        args[0] = p0
-        push(this@invoke)
+    override operator fun Route0.invoke() {
+        push(this)
     }
 
-    override operator fun <P0, P1> Route2<P0, P1>.invoke(p0: P0, p1: P1) = route {
-        args[0] = p0
-        args[1] = p1
-        push(this@invoke)
+    override operator fun <P0> Route1<P0>.invoke(p0: P0) {
+        current?.let { scope ->
+            scope.args[0] = p0
+            scope.replace(this@invoke)
+        }
     }
 
-    override operator fun <P0, P1, P2> Route3<P0, P1, P2>.invoke(p0: P0, p1: P1, p2: P2) = route {
-        args[0] = p0
-        args[1] = p1
-        args[2] = p2
-        push(this@invoke)
+    override operator fun <P0, P1> Route2<P0, P1>.invoke(p0: P0, p1: P1) {
+        current?.let { scope ->
+            scope.args[0] = p0
+            scope.args[1] = p1
+            scope.replace(this@invoke)
+        }
+    }
+
+    override operator fun <P0, P1, P2> Route3<P0, P1, P2>.invoke(p0: P0, p1: P1, p2: P2) {
+        current?.let { scope ->
+            scope.args[0] = p0
+            scope.args[1] = p1
+            scope.args[2] = p2
+            scope.replace(this@invoke)
+        }
     }
 
     override operator fun <P0, P1, P2, P3> Route4<P0, P1, P2, P3>.invoke(
@@ -104,12 +125,14 @@ class RootRouter : Router {
         p1: P1,
         p2: P2,
         p3: P3
-    ) = route {
-        args[0] = p0
-        args[1] = p1
-        args[2] = p2
-        args[3] = p3
-        push(this@invoke)
+    ) {
+        current?.let { scope ->
+            scope.args[0] = p0
+            scope.args[1] = p1
+            scope.args[2] = p2
+            scope.args[3] = p3
+            scope.replace(this@invoke)
+        }
     }
 }
 
@@ -194,8 +217,11 @@ private fun RouteHandler(
     ) {
         val scope = remember(it) { it.scope() }
 
-        LaunchedEffect(predictiveBackProgress, scope) {
-            if (predictiveBackProgress == null && scope.child == null) router.current = scope
+        DisposableEffect(scope) {
+            router.registerScope(scope)
+            onDispose {
+                router.unregisterScope(scope)
+            }
         }
 
         scope.content()
